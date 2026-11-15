@@ -1,0 +1,57 @@
+/* Jetons des pages de la guilde (accueil, recrutement, boss). */
+:root {
+  --atelier-min-height: 360px;
+  --atelier-height: min(58vw, 600px);
+  --atelier-min-height-mobile: 260px;
+  --atelier-height-mobile: 70vw;
+  --atelier-image: url("/img/banniere-chargement.jpg");
+  --atelier-voile: rgb(20 12 30 / 58%);
+  --contenu-width: min(80%, 600px);
+}
+
+/* ---------- Accueil et recrutement ---------- */
+:root {
+  /* Vues et en-têtes de section */
+  --vue-padding-bottom: 4rem;
+  --entete-suite-margin-top: 2.5rem;
+
+  /* Fiche de la guilde */
+  --fs-fiche-term: .87rem;
+  --fiche-row-padding: .75rem .9rem;
+
+  /* Postes de recrutement */
+  --poste-padding: 1.1rem 1rem;
+  --poste-hover-bg: color-mix(in srgb, var(--bleu-pale) 60%, transparent);
+  --pion-size: 30px;
+  --statut-padding: .3rem .7rem;
+  --statut-prio-bg: color-mix(in srgb, var(--or) 14%, transparent);
+
+  /* Étapes */
+  --etape-padding: 1.3rem 0;
+  --etape-pastille-size: 2.6rem;
+  --etape-pastille-glow: 0 0 25px var(--halo-violet-etapes);
+
+  /* Formulaire */
+  --form-margin-top: .5rem;
+  --grille-gap: 1.2rem 1.5rem;
+  --fs-label: .87rem;
+  --label-opt-margin: .35rem;
+  --champ-padding: .75rem .8rem;
+  --textarea-min-height: 120px;
+  --fs-aide: .82rem;
+  --fw-statut-envoi: 600;
+
+  /* Récapitulatif */
+  --recap-margin-top: 1.75rem;
+  --recap-padding: 1.4rem;
+  --recap-pre-padding: .9rem;
+
+  /* Pop-up « Dernière étape » */
+  --popup-width: min(460px, 92vw);
+  --popup-padding: 1.75rem;
+  --popup-radius: 4px;
+  --popup-shadow: 0 24px 60px -20px rgb(7 16 36 / 60%);
+  --popup-backdrop: rgb(15 23 32 / 62%);
+  --popup-title-margin: .6rem;
+  --fs-popup-text: .95rem;
+}

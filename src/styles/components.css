@@ -1,0 +1,57 @@
+/* ---------- Composants réutilisables : filet, boutons, sections, titres ---------- */
+
+.filet {
+  height: var(--border-medium);
+  margin: var(--space-0);
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--bleu) 28%, var(--or) 50%, var(--bleu) 72%, transparent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-xl);
+  border: var(--border-thin) solid var(--or);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to));
+  box-shadow: var(--ombre-btn);
+  color: var(--blanc-pur);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  text-decoration: none;
+  transition: transform var(--dur-base) var(--ease), filter var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+.btn:hover { filter: brightness(1.12); box-shadow: var(--ombre-btn-hover); transform: translateY(var(--lift)); }
+.btn.fantome {
+  border-color: var(--ligne);
+  background: color-mix(in srgb, var(--blanc) var(--ghost-glass), transparent);
+  box-shadow: none;
+  color: var(--bleu);
+}
+.btn.fantome:hover { border-color: var(--or); background: var(--bleu-pale); filter: none; }
+
+section.bloc { padding: var(--space-section) var(--space-0); }
+
+.entete { display: flex; align-items: baseline; gap: var(--space-md); margin-bottom: var(--space-xl); }
+.entete h2 { color: var(--bleu); }
+.entete .trait { height: var(--border-thin); flex: 1; background: linear-gradient(90deg, var(--or), var(--ligne)); }
+
+.colonnes {
+  display: grid;
+  grid-template-columns: 1.25fr .85fr;
+  align-items: start;
+  gap: var(--space-columns);
+}
+@media (--bp-nav) {
+  .colonnes { grid-template-columns: 1fr; gap: var(--space-2xl); }
+}

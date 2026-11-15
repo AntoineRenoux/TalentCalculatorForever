@@ -1,0 +1,66 @@
+/** Textes du calculateur de talents (page talents.html). */
+export const talents = {
+  hero: {
+    devise: 'Outils · WoW Forever',
+    title: 'Calculateur de talents',
+    intro: 'Talents, sorts appris à chaque niveau, traits raciaux et armurerie des membres de la guilde.',
+  },
+  tabs: {
+    ariaLabel: 'Sections de l’outil',
+    calc: 'Calculateur',
+    armory: 'Armurerie',
+  },
+  toolbar: {
+    classesAria: 'Classes',
+    levelAria: 'Niveau du personnage',
+    levelDown: 'Niveau -1',
+    levelDownIcon: '−',
+    levelUp: 'Niveau +1',
+    levelUpIcon: '+',
+    removeMode: 'Mode retrait (mobile) : un clic retire un point',
+    removeModeIcon: '−1',
+    resetAll: 'Tout réinitialiser',
+    resetAllIcon: '⟲',
+    copyLink: 'Copier le lien du build',
+    copyLinkIcon: '🔗',
+  },
+  heading: 'Talents — {className}',
+  headingEmpty: 'Talents',
+  documentTitle: 'Calculateur de talents — {className}',
+  search: {
+    icon: '🔍',
+    placeholder: 'Rechercher parmi tous les talents',
+  },
+  summary: {
+    spreadSeparator: ' / ',
+    requiredLevel: 'Niveau requis :',
+    requiredLevelNone: '—',
+    remaining: 'Points restants :',
+  },
+  tree: {
+    points: '{spent} / {available}',
+    reset: '✕ Réinitialiser',
+  },
+  talentRank: '{rank}/{max}',
+  hint: 'Clic gauche : ajouter un point · Clic droit ou Maj+clic : retirer un point',
+  order: {
+    title: 'Ordre des talents',
+    empty: 'Aucun point dépensé.',
+    rank: '{rank}/{max}',
+  },
+  welcome: 'Choisissez une classe ci-dessus pour commencer.',
+  tooltip: {
+    rank: 'Rang {rank}/{max}',
+    requiresTree: 'Nécessite {points} points en {tree}',
+    requiresTalent: { one: 'Nécessite {count} point en {talent}', other: 'Nécessite {count} points en {talent}' },
+    nextRank: 'Rang suivant :',
+    canAdd: 'Cliquez pour apprendre',
+    canRemove: 'Clic droit pour désapprendre',
+  },
+  toast: {
+    levelTooLow: 'Ce build demande au moins le niveau {level}.',
+    removeOn: 'Mode retrait activé',
+    removeOff: 'Mode ajout activé',
+    linkCopied: 'Lien copié !',
+  },
+} as const;

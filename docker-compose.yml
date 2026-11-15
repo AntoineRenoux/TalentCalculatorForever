@@ -13,7 +13,9 @@ services:
 
   # Armurerie : appelle l'API Blizzard avec le client défini dans .env (jamais commité).
   api:
-    build: ./server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
     restart: unless-stopped
     env_file: .env
     networks:

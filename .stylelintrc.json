@@ -1,0 +1,35 @@
+{
+  "plugins": ["stylelint-declaration-strict-value"],
+  "ignoreFiles": ["src/styles/tokens/**/*.css"],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      [
+        "/color$/",
+        "fill",
+        "stroke",
+        "z-index",
+        "font-size",
+        "font-family",
+        "font-weight",
+        "line-height",
+        "letter-spacing",
+        "/^border-radius/",
+        "/^(margin|padding)/",
+        "gap",
+        "row-gap",
+        "column-gap",
+        "box-shadow",
+        "transition-duration",
+        "animation-duration"
+      ],
+      {
+        "ignoreValues": [
+          "transparent", "inherit", "currentcolor", "currentColor", "none", "0", "auto",
+          "initial", "unset", "normal", "100%", "inset"
+        ],
+        "ignoreFunctions": false,
+        "disableFix": true
+      }
+    ]
+  }
+}

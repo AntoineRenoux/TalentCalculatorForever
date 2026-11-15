@@ -1,0 +1,6 @@
+/* Socle commun importé par chaque feuille de page (src/styles/pages/*.css). */
+@import "./tokens/media.css";
+@import "./tokens/core.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";

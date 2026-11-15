@@ -1,0 +1,237 @@
+/* ---------- Pages de la guilde (accueil, recrutement, boss) ---------- */
+
+/* Image « travaux en cours » */
+.atelier {
+  position: relative;
+  width: 100%;
+  min-height: var(--atelier-min-height);
+  height: var(--atelier-height);
+  border: var(--border-thin) solid var(--ligne);
+  border-radius: var(--radius-xl);
+  background-color: var(--voile);
+  background-image: var(--atelier-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: var(--ombre);
+}
+.atelier::before {
+  position: absolute;
+  inset: var(--space-0);
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 45%, var(--atelier-voile));
+  content: "";
+}
+.contenu {
+  position: absolute;
+  z-index: var(--z-content);
+  top: 50%;
+  left: 50%;
+  width: var(--contenu-width);
+  color: var(--blanc-pur);
+  font-size: var(--fs-4xl);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+@media (--bp-mobile) {
+  .atelier { min-height: var(--atelier-min-height-mobile); height: var(--atelier-height-mobile); }
+}
+
+/* ---------- Accueil : vue et en-têtes ---------- */
+.vue { display: none; padding-bottom: var(--vue-padding-bottom); }
+.vue.active { display: block; }
+.entete.entete-suite { margin-top: var(--entete-suite-margin-top); }
+
+/* ---------- Fiche de la guilde ---------- */
+dl.fiche {
+  overflow: hidden;
+  margin: var(--space-0);
+  border: var(--border-thin) solid var(--ligne);
+  border-top: var(--border-medium) solid var(--or);
+  border-radius: var(--radius-md);
+  background: var(--voile);
+  box-shadow: var(--ombre);
+}
+dl.fiche div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--fiche-row-padding);
+  border-bottom: var(--border-thin) solid var(--ligne);
+}
+dl.fiche div:last-child { border-bottom: 0; }
+dl.fiche dt { color: var(--argent-fonce); font-size: var(--fs-fiche-term); }
+dl.fiche dd {
+  margin: var(--space-0);
+  color: var(--encre);
+  font-size: var(--fs-md-minus);
+  font-weight: var(--fw-bold);
+  text-align: right;
+}
+
+/* ---------- Postes de recrutement ---------- */
+ul.postes {
+  overflow: hidden;
+  margin: var(--space-0);
+  padding: var(--space-0);
+  border: var(--border-thin) solid var(--ligne);
+  border-radius: var(--radius-lg);
+  background: var(--voile);
+  box-shadow: var(--ombre);
+  list-style: none;
+}
+ul.postes li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--poste-padding);
+  border-bottom: var(--border-thin) solid var(--ligne);
+}
+ul.postes li:last-child { border-bottom: 0; }
+ul.postes li:hover { background: var(--poste-hover-bg); }
+.pion { width: var(--pion-size); height: var(--pion-size); flex: none; }
+.poste-nom { font-family: var(--font-serif); font-size: var(--fs-lg); font-weight: var(--fw-bold); }
+.poste-det { display: block; color: var(--encre-doux); font-size: var(--fs-sm); }
+.postes-note { margin-top: var(--space-md); }
+
+.statut {
+  padding: var(--statut-padding);
+  border: var(--border-thin) solid;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+}
+.statut.prio { border-color: var(--or); background: var(--statut-prio-bg); color: var(--or); }
+.statut.ouvert { border-color: var(--bleu-vif); background: var(--bleu-pale); color: var(--bleu); }
+.statut.ferme { border-color: var(--ligne); background: var(--voile); color: var(--argent-fonce); }
+
+/* ---------- Étapes ---------- */
+ol.etapes {
+  display: grid;
+  gap: var(--space-0);
+  margin: var(--space-0);
+  padding: var(--space-0);
+  counter-reset: etape;
+  list-style: none;
+}
+ol.etapes li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-lg);
+  padding: var(--etape-padding);
+  border-bottom: var(--border-thin) solid var(--ligne);
+  counter-increment: etape;
+}
+ol.etapes li:first-child { border-top: var(--border-thin) solid var(--ligne); }
+ol.etapes li::before {
+  display: grid;
+  width: var(--etape-pastille-size);
+  height: var(--etape-pastille-size);
+  border: var(--border-thin) solid var(--or);
+  border-radius: var(--radius-round);
+  background: var(--bleu-pale);
+  box-shadow: var(--etape-pastille-glow);
+  color: var(--bleu);
+  content: counter(etape, decimal-leading-zero);
+  font-family: var(--font-serif);
+  font-size: var(--fs-md-minus);
+  place-items: center;
+}
+ol.etapes h3 { margin-bottom: var(--space-3xs); color: var(--bleu); font-family: var(--font-serif); }
+ol.etapes p { margin: var(--space-0); color: var(--encre-doux); font-size: var(--fs-md); }
+
+/* ---------- Formulaire de candidature ---------- */
+form { margin-top: var(--form-margin-top); }
+form.candidature { max-width: none; }
+.grille { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grille-gap); }
+.champ { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.champ.large { grid-column: 1 / -1; }
+label { color: var(--encre); font-size: var(--fs-label); font-weight: var(--fw-bold); }
+label .opt { margin-left: var(--label-opt-margin); color: var(--argent-fonce); font-weight: var(--fw-regular); }
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: var(--champ-padding);
+  border: var(--border-thin) solid var(--ligne);
+  border-bottom: var(--border-medium) solid var(--argent);
+  border-radius: var(--radius-sm);
+  background: var(--voile);
+  color: var(--encre);
+  font: inherit;
+  font-size: var(--fs-md);
+}
+textarea { min-height: var(--textarea-min-height); resize: vertical; line-height: var(--lh-snug); }
+input:focus,
+select:focus,
+textarea:focus {
+  border-bottom-color: var(--or);
+  outline: var(--border-medium) solid var(--bleu-vif);
+  outline-offset: var(--border-medium);
+  background: var(--blanc);
+}
+
+.aide { color: var(--argent-fonce); font-size: var(--fs-aide); }
+.pied-form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); margin-top: var(--space-xl); }
+
+/* ---------- Récapitulatif (mode manuel) ---------- */
+.recap {
+  margin-top: var(--recap-margin-top);
+  padding: var(--recap-padding);
+  border: var(--border-thin) solid var(--ligne);
+  border-top: var(--border-thick) solid var(--or);
+  border-radius: var(--radius-md);
+  background: var(--bleu-pale);
+  box-shadow: var(--ombre);
+}
+.recap[hidden] { display: none; }
+.recap h3 { margin-bottom: var(--space-xs); color: var(--bleu); font-family: var(--font-serif); }
+.recap pre {
+  overflow-x: auto;
+  margin: var(--space-sm) var(--space-0);
+  padding: var(--recap-pre-padding);
+  border: var(--border-thin) solid var(--ligne);
+  border-radius: var(--radius-sm);
+  background: var(--blanc);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  white-space: pre-wrap;
+}
+.statut-envoi { color: var(--argent-fonce); font-weight: var(--fw-statut-envoi); }
+.statut-envoi[data-tone="success"] { color: var(--bleu); }
+.statut-envoi[data-tone="warning"] { color: var(--or); }
+.actions.actions-gauche { justify-content: flex-start; margin-top: var(--space-0); }
+
+/* ---------- Pop-up « Dernière étape » ---------- */
+#popup-candidature {
+  width: var(--popup-width);
+  margin: auto;
+  padding: var(--popup-padding);
+  border: var(--border-thin) solid var(--bleu-vif);
+  border-top: var(--border-thick) solid var(--or);
+  border-radius: var(--popup-radius);
+  background: var(--blanc);
+  box-shadow: var(--popup-shadow);
+  color: var(--encre);
+}
+#popup-candidature::backdrop { background: var(--popup-backdrop); }
+#popup-candidature h3 {
+  margin: var(--space-0) var(--space-0) var(--popup-title-margin);
+  color: var(--bleu);
+  font-family: var(--font-serif);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+}
+#popup-candidature p { margin: var(--space-0) var(--space-0) var(--space-lg); color: var(--encre-doux); font-size: var(--fs-popup-text); }
+#popup-candidature .actions { justify-content: flex-start; margin-top: var(--space-0); }
+
+@media (--bp-mobile) {
+  .grille { grid-template-columns: 1fr; }
+  .champ.large { grid-column: auto; }
+  ul.postes li { grid-template-columns: auto 1fr; gap: var(--space-sm); }
+  ul.postes .statut { grid-column: 2; justify-self: start; }
+}

@@ -1,0 +1,192 @@
+/* Jetons du calculateur de talents, de la progression et de l'armurerie. */
+:root {
+  /* ---------- Grille des talents (lue aussi par le JS : talentsConfig.cssVars) ---------- */
+  --cell: 64px;
+  --icon: 44px;
+  --grid-columns: 4;
+  --grid-rows: 7;
+  --z-arrow: 1;
+  --cell-tiny: 56px;
+  --icon-tiny: 40px;
+
+  /* ---------- Couleurs propres ---------- */
+  --cls-mix: 58%;                 /* couleurs de classe assombries pour rester lisibles sur fond clair */
+  --q-poor: #7d7d7d;
+  --q-common: #3a3446;
+  --q-uncommon: #1a8a00;
+  --q-rare: #0062c4;
+  --q-epic: #8a2bd0;
+  --q-legendary: #c96500;
+  --q-heirloom: #9a7b2e;
+  --tag-moved: #c06aa8;
+
+  /* Panneaux « jeu » (arbres, infobulles) : sombres dans les deux thèmes */
+  --jeu: #15101f;
+  --jeu-fond: #0c0912;
+  --jeu-bord: #4d4360;
+  --jeu-texte-doux: #aaa0b8;
+  --jeu-vert: #5cc46f;
+  --jeu-or: #e3c473;
+  --jeu-match: #c79bff;
+  --jeu-flash: rgb(255 80 80 / 80%);
+  --jeu-voile-verrou: rgb(0 0 0 / 50%);
+  --halo-vert: 0 0 8px rgb(92 196 111 / 55%);
+  --halo-or: 0 0 10px rgb(227 196 115 / 60%);
+  --halo-fleche: 0 0 5px rgb(227 196 115 / 55%);
+  --flash-ring: 0 0 0 4px var(--jeu-flash);
+
+  /* Infobulle (style jeu) */
+  --tt-fond: rgb(16 11 26 / 97%);
+  --tt-bord: #b8892a;
+  --tt-texte: #f2edf8;
+  --tt-titre: #fff;
+  --tt-doux: #aaa0b8;
+  --tt-rouge: #ff6b6b;
+  --tt-or: #f0d58d;
+  --tt-forever: #ffb347;
+  --tt-vert-objet: #1eff00;
+  --tt-gris: #888;
+  --tt-rouge-objet: #ff4040;
+  --tt-ombre: 0 12px 34px rgb(0 0 0 / 50%);
+  --tt-q-poor: #9d9d9d;
+  --tt-q-common: #fff;
+  --tt-q-uncommon: #1eff00;
+  --tt-q-rare: #3d8eff;
+  --tt-q-epic: #b552ff;
+  --tt-q-legendary: #ff8000;
+  --tt-q-heirloom: #e6cc80;
+
+  /* Dégradé du niveau courant dans la progression */
+  --lvl-current-from: #e3c473;
+  --lvl-current-to: #b8892a;
+  --lvl-current-text: #211b2b;
+
+  /* ---------- Mélanges de couleurs ---------- */
+  --chip-on-bg: color-mix(in srgb, var(--or) 14%, var(--carte));
+  --tag-new-bg: color-mix(in srgb, var(--or) 14%, transparent);
+  --icon-btn-on-bg: color-mix(in srgb, var(--danger) 18%, var(--carte));
+  --book-forever-border: color-mix(in srgb, var(--or) 55%, var(--ligne));
+  --class-ring: 0 0 0 3px color-mix(in srgb, var(--c) 45%, transparent);
+  --cls-color: color-mix(in srgb, var(--c) var(--cls-mix), var(--encre));
+  --avatar-ring: 0 0 0 var(--ring-gap) var(--carte), 0 0 0 var(--ring-line) var(--argent);
+
+  /* ---------- Typographie ---------- */
+  --fs-tc-3xs: 9px;
+  --fs-tc-2xs: 11px;
+  --fs-tc-xs: 12px;
+  --fs-tc-sm: 13px;
+  --fs-tc-md: 15px;
+  --fs-tc-lg: 16px;
+  --fs-tc-xl: 17px;
+  --fs-tc-2xl: 18px;
+  --fs-tc-title: clamp(22px, 3vw, 30px);
+  --fs-tc-hero: clamp(2rem, 5vw, 3.2rem);
+  --lh-tc-body: 1.6;
+  --lh-tc-tip: 1.5;
+  --lh-tc-slot: 1.3;
+  --lh-tc-rank: 16px;
+  --lh-tc-tag: 18px;
+
+  /* ---------- Espacements ---------- */
+  --tc-1: 2px;
+  --tc-2: 3px;
+  --tc-3: 4px;
+  --tc-4: 6px;
+  --tc-5: 8px;
+  --tc-6: 10px;
+  --tc-7: 12px;
+  --tc-8: 14px;
+  --tc-9: 16px;
+  --tc-10: 18px;
+  --tc-11: 20px;
+  --tc-12: 22px;
+  --tc-page-top: 28px;
+  --tc-page-bottom: 48px;
+  --tc-page-top-mobile: 18px;
+  --tc-hero-top: clamp(2rem, 5vw, 3.2rem);
+  --tc-hero-bottom: clamp(1.4rem, 3vw, 2rem);
+  --tc-tabs-margin: 1.2rem;
+
+  /* ---------- Tailles ---------- */
+  --tc-search-basis: 340px;
+  --tc-search-small-basis: 240px;
+  --tc-search-height: 38px;
+  --tc-search-small-height: 32px;
+  --tc-chip-height: 32px;
+  --tc-chip-icon: 18px;
+  --tc-btn-height: 36px;
+  --tc-level-width: 56px;
+  --tc-class-btn: 40px;
+  --tc-primary-height: 40px;
+  --tc-reset-height: 34px;
+  --tc-tree-icon: 28px;
+  --tc-order-level: 34px;
+  --tc-order-icon: 22px;
+  --tc-order-columns: 3 240px;
+  --tc-racial-min: 260px;
+  --tc-racial-icon: 38px;
+  --tc-lvl-size: 48px;
+  --tc-row-icon: 30px;
+  --tc-book-min: 220px;
+  --tc-book-icon: 38px;
+  --tc-book-school-icon: 24px;
+  --tc-member-min: 270px;
+  --tc-member-avatar: 50px;
+  --tc-member-class: 20px;
+  --tc-member-class-offset: -3px;
+  --tc-member-border: 3px;
+  --tc-char-avatar: 68px;
+  --tc-side-width: 300px;
+  --tc-render-min: 200px;
+  --tc-render-max: 520px;
+  --tc-render-max-mobile: 280px;
+  --tc-slot-icon: 40px;
+  --tc-slot-basis: 220px;
+  --tc-tooltip-max: 340px;
+  --tc-toast-bottom: 24px;
+  --tc-rank-min: 28px;
+  --tc-rank-offset: -9px;
+  --tc-arrow-head: 7px;
+  --tc-arrow-tip: 8px;
+  --tc-arrow-shift: -4px;
+  --tc-arrow-reach: -12px;
+  --tc-match-offset: 3px;
+
+  /* ---------- Opacités, filtres, mouvement ---------- */
+  --tc-opacity-dim: .3;
+  --tc-opacity-future: .5;
+  --tc-opacity-disabled: .45;
+  --tc-opacity-level-label: .7;
+  --tc-class-idle-filter: grayscale(.5) brightness(.9);
+  --tc-hover-filter: brightness(1.12);
+  --tc-lift: -1px;
+  --tc-dur-flash: .35s;
+}
+
+/* ---------- Thème nuit ---------- */
+@media (--prefers-dark) {
+  :root:not([data-theme="light"]) {
+    --cls-mix: 100%;
+    --q-poor: #9d9d9d;
+    --q-common: #fff;
+    --q-uncommon: #1eff00;
+    --q-rare: #3d8eff;
+    --q-epic: #b552ff;
+    --q-legendary: #ff8000;
+    --q-heirloom: #e6cc80;
+  }
+}
+:root[data-theme="dark"] {
+  --cls-mix: 100%;
+  --q-poor: #9d9d9d;
+  --q-common: #fff;
+  --q-uncommon: #1eff00;
+  --q-rare: #3d8eff;
+  --q-epic: #b552ff;
+  --q-legendary: #ff8000;
+  --q-heirloom: #e6cc80;
+}
+
+@media (--bp-tiny) {
+  :root { --cell: var(--cell-tiny); --icon: var(--icon-tiny); }
+}

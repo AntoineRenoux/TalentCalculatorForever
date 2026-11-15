@@ -1,0 +1,135 @@
+/* ---------- Armurerie : liste des membres et fiche personnage ---------- */
+
+.armory { margin-top: var(--tc-12); }
+.armory h2 { color: var(--bleu); font-size: var(--fs-tc-title); }
+.armory p { margin: var(--tc-1) var(--space-0); }
+.member-classes { margin: var(--tc-9) var(--space-0); }
+
+.members { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--tc-member-min), 1fr)); gap: var(--tc-6); }
+.member {
+  display: grid;
+  grid-template-columns: var(--tc-member-avatar) 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: var(--tc-7);
+  padding: var(--tc-6) var(--tc-7);
+  border-left: var(--tc-member-border) solid var(--cls-color);
+  color: var(--encre);
+  text-decoration: none;
+  transition: var(--dur-fast);
+}
+.member:hover { border-color: var(--or); background: var(--bleu-pale); box-shadow: var(--ombre); transform: translateY(var(--tc-lift)); }
+.m-avatar { position: relative; grid-row: 1 / 3; width: var(--tc-member-avatar); height: var(--tc-member-avatar); }
+.m-avatar > img:first-child {
+  width: var(--tc-member-avatar);
+  height: var(--tc-member-avatar);
+  border: var(--border-medium) solid var(--or);
+  border-radius: var(--radius-round);
+  background: var(--noir);
+  object-fit: cover;
+}
+.m-avatar .m-class {
+  position: absolute;
+  right: var(--tc-member-class-offset);
+  bottom: var(--tc-member-class-offset);
+  width: var(--tc-member-class);
+  height: var(--tc-member-class);
+  border: var(--border-medium) solid var(--carte);
+  border-radius: var(--radius-round);
+}
+.member .m-name { color: var(--cls-color); font-weight: var(--fw-bold); }
+.member .m-info { grid-column: 2; color: var(--encre-doux); font-size: var(--fs-tc-xs); }
+.member .m-rank {
+  grid-row: 1 / 3;
+  grid-column: 3;
+  padding: var(--tc-1) var(--tc-5);
+  border: var(--border-thin) solid var(--ligne);
+  border-radius: var(--radius-pill);
+  color: var(--argent-fonce);
+  font-size: var(--fs-tc-2xs);
+  font-weight: var(--fw-semibold);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Fiche */
+.back { display: inline-block; margin: var(--space-0) var(--space-0) var(--tc-8); color: var(--bleu-vif); font-weight: var(--fw-semibold); text-decoration: none; }
+.back:hover { color: var(--or); }
+.char-head { display: flex; align-items: center; gap: var(--tc-9); padding: var(--tc-9); border-top: var(--tc-member-border) solid var(--cls-color); }
+.char-head h2 { color: var(--encre); font-size: var(--fs-tc-title); }
+.char-head .avatar {
+  width: var(--tc-char-avatar);
+  height: var(--tc-char-avatar);
+  border: var(--border-medium) solid var(--or);
+  border-radius: var(--radius-round);
+  box-shadow: var(--avatar-ring);
+}
+.char-body { display: grid; grid-template-columns: minmax(0, 1fr) var(--tc-side-width); gap: var(--tc-8); margin: var(--tc-8) var(--space-0); }
+
+.doll { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--tc-5); padding: var(--tc-7); }
+.doll .slots { display: flex; flex-direction: column; gap: var(--tc-4); }
+.doll .slots.bottom {
+  flex-flow: row wrap;
+  grid-column: 1 / -1;
+  justify-content: center;
+  padding-top: var(--tc-5);
+  border-top: var(--border-thin) solid var(--ligne);
+}
+.doll .slots.bottom .slot { flex: 0 1 var(--tc-slot-basis); }
+.render {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: var(--tc-render-min);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 50% 70%, var(--bleu-pale), transparent 70%);
+}
+.render img { max-width: 100%; max-height: var(--tc-render-max); object-fit: contain; }
+.slot { display: flex; align-items: center; gap: var(--tc-5); min-width: 0; padding: var(--tc-3); border-radius: var(--radius-md); outline: none; }
+.slot[data-slot]:hover, .slot[data-slot]:focus { background: var(--bleu-pale); }
+.slot .ico {
+  flex: none;
+  width: var(--tc-slot-icon);
+  height: var(--tc-slot-icon);
+  overflow: hidden;
+  border: var(--border-medium) solid var(--argent);
+  border-radius: var(--radius-md);
+  background: var(--jeu);
+}
+.slot .ico img { display: block; width: 100%; height: 100%; }
+.slot .s-name { display: flex; flex-direction: column; min-width: 0; font-size: var(--fs-tc-xs); line-height: var(--lh-tc-slot); }
+.slot .s-name b { overflow: hidden; font-size: var(--fs-tc-sm); text-overflow: ellipsis; white-space: nowrap; }
+.empty-slot .ico { border-style: dashed; background: transparent; }
+
+/* Qualité des objets (ajustée au thème) */
+.q-poor { border-color: var(--q-poor) !important; color: var(--q-poor); }
+.q-common { border-color: var(--q-common) !important; color: var(--q-common); }
+.q-uncommon { border-color: var(--q-uncommon) !important; color: var(--q-uncommon); }
+.q-rare { border-color: var(--q-rare) !important; color: var(--q-rare); }
+.q-epic { border-color: var(--q-epic) !important; color: var(--q-epic); }
+.q-legendary { border-color: var(--q-legendary) !important; color: var(--q-legendary); }
+.q-artifact, .q-heirloom { border-color: var(--q-heirloom) !important; color: var(--q-heirloom); }
+
+/* Colonne latérale : talents et caractéristiques */
+.char-side { display: flex; flex-direction: column; gap: var(--tc-8); }
+.side-box { padding: var(--tc-9); }
+.side-box h3 { margin: var(--space-0) var(--space-0) var(--tc-6); color: var(--bleu); font-size: var(--fs-tc-xl); }
+ul.spread { margin: var(--space-0) var(--space-0) var(--tc-7); padding: var(--space-0); list-style: none; }
+ul.spread li { display: flex; align-items: center; gap: var(--tc-5); padding: var(--tc-4) var(--space-0); border-bottom: var(--border-thin) solid var(--ligne); }
+ul.spread li img { width: var(--tc-order-icon); height: var(--tc-order-icon); border-radius: var(--radius-round); }
+ul.spread li b { margin-left: auto; color: var(--or); font-family: var(--font-serif); }
+.stats { display: grid; grid-template-columns: 1fr auto; margin: var(--space-0); font-size: var(--fs-tc-sm); }
+.stats dt, .stats dd { padding: var(--tc-4) var(--space-0); border-bottom: var(--border-thin) solid var(--ligne); }
+.stats dt { color: var(--argent-fonce); }
+.stats dd { margin: var(--space-0); font-variant-numeric: tabular-nums; font-weight: var(--fw-bold); text-align: right; }
+
+@media (--bp-wide) {
+  .char-body { grid-template-columns: 1fr; }
+}
+@media (--bp-small) {
+  .doll { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .doll .render { grid-row: 1; grid-column: 1 / -1; min-height: 0; }
+  .render img { max-height: var(--tc-render-max-mobile); }
+  .doll .slots.bottom .slot { flex-basis: 100%; }
+}

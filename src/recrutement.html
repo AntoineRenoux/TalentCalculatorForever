@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{cfg lang}}">
+<head>
+  {{> head page=recruitment}}
+  <script type="module" src="./entries/recruitment.ts"></script>
+</head>
+<body>
+
+{{> header page=recruitment}}
+
+<main>
+
+  <div class="heros">
+    <div class="wrap">
+      <img class="sceau" src="{{cfg assets.seal}}" alt="">
+      <p class="devise">{{t recruitment.hero.devise}}</p>
+      <h1>{{t recruitment.hero.title}}</h1>
+      <p>{{t recruitment.hero.intro}}</p>
+    </div>
+  </div>
+
+  <section class="bloc wrap" id="postes-ouverts">
+    <div class="entete">
+      <h2>{{t recruitment.posts.title}}</h2>
+      <span class="trait"></span>
+    </div>
+
+    {{> recruitmentPosts}}
+
+    <p class="aide postes-note">{{t recruitment.posts.note}}</p>
+  </section>
+
+  <section class="bloc wrap" id="comment-ca-se-passe">
+    <div class="entete">
+      <h2>{{t recruitment.steps.title}}</h2>
+      <span class="trait"></span>
+    </div>
+
+    {{> recruitmentSteps}}
+  </section>
+
+  <section class="bloc wrap" id="candidature-section">
+    <div class="entete">
+      <h2>{{t recruitment.form.title}}</h2>
+      <span class="trait"></span>
+    </div>
+
+    <form id="candidature" class="prose candidature" novalidate>
+      {{> recruitmentFields}}
+
+      <div class="pied-form">
+        <button class="btn" type="submit">{{t recruitment.form.submit}}</button>
+        <span class="aide" id="erreur" role="status"></span>
+      </div>
+    </form>
+
+    <div class="recap" id="recap" hidden>
+      <h3>{{t recruitment.recap.title}}</h3>
+      <p id="intro-recap">{{h recruitment.recap.intro}}</p>
+      <p class="aide statut-envoi" id="statut-envoi" role="status"></p>
+      <pre id="texte-recap"></pre>
+
+      <div class="actions actions-gauche">
+        <button class="btn" type="button" id="copier">{{t recruitment.recap.copy}}</button>
+        <a
+          class="btn fantome"
+          href="{{cfg urls.discordInvite}}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{{t recruitment.recap.openDiscord}}</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{{> footer}}
+
+<dialog id="popup-candidature" aria-labelledby="popup-titre">
+  <h3 id="popup-titre">{{t recruitment.popup.title}}</h3>
+  <p>{{t recruitment.popup.text}}</p>
+  <div class="actions">
+    <button type="button" class="btn" id="popup-ok">{{t recruitment.popup.confirm}}</button>
+    <button type="button" class="btn fantome" id="popup-annuler">{{t recruitment.popup.cancel}}</button>
+  </div>
+</dialog>
+
+</body>
+</html>

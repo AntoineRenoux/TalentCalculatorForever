@@ -1,0 +1,13 @@
+/* Points de rupture et préférences système (postcss-custom-media).
+   À importer en tête de chaque feuille de page pour que les @media (--…) soient résolus. */
+@custom-media --prefers-dark (prefers-color-scheme: dark);
+@custom-media --reduced-motion (prefers-reduced-motion: reduce);
+@custom-media --motion-ok (prefers-reduced-motion: no-preference);
+
+@custom-media --bp-wide (max-width: 920px);
+@custom-media --bp-tablet (max-width: 850px);
+@custom-media --bp-nav (max-width: 760px);
+@custom-media --bp-addon-sm (max-width: 620px);
+@custom-media --bp-small (max-width: 600px);
+@custom-media --bp-mobile (max-width: 560px);
+@custom-media --bp-tiny (max-width: 400px);

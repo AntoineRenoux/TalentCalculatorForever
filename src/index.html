@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="{{cfg lang}}">
+<head>
+  {{> head page=home}}
+  {{> legacyRedirect}}
+  <script type="module" src="./entries/home.ts"></script>
+</head>
+<body>
+
+{{> header page=home}}
+
+<main>
+  <div class="vue active" id="accueil">
+    <div class="heros">
+      <div class="wrap">
+        <img
+          class="logo-guilde"
+          src="{{cfg assets.logo}}"
+          alt="{{t home.hero.logoAlt}}"
+        >
+
+        <p class="devise">{{> tcfg home.hero.devise year=guild.foundedYear}}</p>
+
+        <h1>
+          {{cfg guild.name}}
+          <span class="ligne2">{{t home.hero.tagline}}</span>
+        </h1>
+
+        <p>{{t home.hero.intro}}</p>
+
+        <div class="actions">
+          <a class="btn" href="{{cfg pages.recruitment.file}}">{{t home.hero.ctaRecruitment}}</a>
+          <a class="btn fantome" href="{{cfg pages.boss.file}}">{{t home.hero.ctaBoss}}</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="bloc wrap">
+      <div class="colonnes">
+        <div class="prose">
+          <div class="entete">
+            <h2>{{t home.guild.title}}</h2>
+            <span class="trait"></span>
+          </div>
+
+          <p>{{t home.guild.welcome}}</p>
+
+          <p>{{t home.guild.origins}}</p>
+
+          <p><strong>{{t home.guild.philosophyTitle}}</strong></p>
+
+          <p>{{t home.guild.values}}</p>
+
+          <p>{{t home.guild.environment}}</p>
+
+          <p>{{t home.guild.raids}}</p>
+
+          <p>{{t home.guild.outside}}</p>
+
+          <div class="entete entete-suite">
+            <h2>{{t home.expectations.title}}</h2>
+            <span class="trait"></span>
+          </div>
+
+          <p>{{t home.expectations.text}}</p>
+        </div>
+
+        <div>
+          <div class="entete">
+            <h2>{{t home.sheet.title}}</h2>
+            <span class="trait"></span>
+          </div>
+
+          {{> guildSheet}}
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+{{> footer}}
+
+</body>
+</html>

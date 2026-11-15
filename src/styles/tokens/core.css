@@ -1,0 +1,203 @@
+/* =========================================================
+   JETONS DE DESIGN — seul endroit où figurent les valeurs brutes.
+   Couleurs jour/nuit, typographie, espacements, rayons, ombres,
+   tailles, durées et plans d'empilement (z-index).
+========================================================= */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---------- Couleurs : thème jour ---------- */
+  --blanc: #f8f7fb;
+  --voile: #efedf4;
+  --carte: #fdfcff;
+  --argent: #c9c3d4;
+  --argent-fonce: #746e80;
+  --or: #b8892a;
+  --or-clair: #e3c473;
+  --bleu: #3b245d;
+  --bleu-vif: #68449a;
+  --bleu-pale: #eee8f6;
+  --encre: #211b2b;
+  --encre-doux: #5f586b;
+  --ligne: #ddd8e5;
+  --ok: #2f8a43;
+  --danger: #b3261e;
+  --blanc-pur: #fff;
+  --noir: #000;
+
+  /* Dégradé des boutons principaux (identique dans les deux thèmes) */
+  --btn-grad-from: #7651a6;
+  --btn-grad-to: #3b245d;
+  --selection-bg: #68449a;
+
+  /* Ombres et halos violets (jour) */
+  --ombre: 0 16px 50px -24px rgb(52 24 82 / 34%), 0 2px 8px rgb(52 24 82 / 8%);
+  --halo-violet: rgb(104 68 154 / 25%);
+  --halo-violet-doux: rgb(104 68 154 / 13%);
+  --halo-violet-fort: rgb(104 68 154 / 28%);
+  --halo-violet-etapes: rgb(104 68 154 / 16%);
+  --ombre-btn: 0 8px 25px -12px rgb(72 37 111 / 70%);
+  --ombre-btn-hover: 0 10px 30px -12px rgb(72 37 111 / 80%);
+  --ombre-logo: 0 22px 65px -25px rgb(72 37 111 / 55%);
+  --glow-emblem: 0 0 18px var(--halo-violet);
+  --glow-nav: 0 0 22px var(--halo-violet-doux);
+  --glow-seal: 0 0 32px var(--halo-violet-fort);
+  --ring-gap: 5px;
+  --ring-line: 6px;
+  --or-ligne: color-mix(in srgb, var(--or) 60%, var(--ligne));
+  --ombre-sceau: 0 0 0 var(--ring-gap) var(--blanc), var(--glow-seal);
+  --ombre-logo-cadre: 0 0 0 var(--ring-gap) var(--blanc), 0 0 0 var(--ring-line) var(--argent), var(--ombre-logo);
+
+  /* ---------- Typographie ---------- */
+  --font-serif: Cinzel, Georgia, "Times New Roman", serif;
+  --font-sans: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-base: 16px;
+  --fs-base-mobile: 15px;
+  --fs-3xs: .7rem;
+  --fs-2xs: .75rem;
+  --fs-xs: .8rem;
+  --fs-sm: .84rem;
+  --fs-sm-plus: .88rem;
+  --fs-md-minus: .9rem;
+  --fs-md: .94rem;
+  --fs-lg: 1rem;
+  --fs-xl: 1.08rem;
+  --fs-2xl: 1.15rem;
+  --fs-3xl: 1.25rem;
+  --fs-4xl: 1.4rem;
+  --fs-h1: clamp(2.2rem, 7vw, 4.5rem);
+  --fs-h2: clamp(1.5rem, 4vw, 2.2rem);
+  --fs-h1-ligne2: .34em;
+  --fs-chevron: .75em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-heavy: 800;
+
+  --lh-tight: 1.1;
+  --lh-heading: 1.2;
+  --lh-snug: 1.55;
+  --lh-body: 1.7;
+  --lh-reset: 1;
+
+  --ls-heading: .02em;
+  --ls-small: .07em;
+  --ls-brand: .08em;
+  --ls-ligne2: .16em;
+  --ls-devise: .2em;
+
+  /* ---------- Espacements ---------- */
+  --space-0: 0;
+  --space-4xs: .15rem;
+  --space-3xs: .25rem;
+  --space-2xs: .4rem;
+  --space-xs: .5rem;
+  --space-sm: .75rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+  --space-3xl: 3rem;
+  --space-4xl: 4rem;
+  --space-section: clamp(2.5rem, 6vw, 4.5rem);
+  --space-hero-top: clamp(3rem, 8vw, 6.5rem);
+  --space-hero-bottom: clamp(2.5rem, 6vw, 4rem);
+  --space-columns: clamp(2rem, 5vw, 4rem);
+
+  /* ---------- Rayons ---------- */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+
+  /* ---------- Bordures ---------- */
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-thick: 3px;
+
+  /* ---------- Gabarit ---------- */
+  --wrap-width: min(1100px, 92vw);
+  --prose-width: 66ch;
+  --hero-text-width: 58ch;
+  --header-min-height: 76px;
+  --emblem-size: 42px;
+  --theme-toggle-size: 2.65rem;
+  --nav-item-min-height: 2.45rem;
+  --nav-menu-min-width: 13rem;
+  --nav-submenu-min-width: 190px;
+  --logo-width: min(470px, 82vw);
+  --seal-size: 92px;
+  --crest-width: 104px;
+  --hero-rule-width: min(700px, 90vw);
+  --header-blur: 16px;
+  --header-glass: 86%;
+  --ghost-glass: 75%;
+
+  /* ---------- Plans d'empilement ---------- */
+  --z-raised: 2;
+  --z-content: 10;
+  --z-header: 50;
+  --z-menu: 60;
+  --z-tooltip: 100;
+  --z-toast: 101;
+
+  /* ---------- Mouvement ---------- */
+  --dur-fast: .15s;
+  --dur-base: .2s;
+  --dur-theme: .25s;
+  --dur-none: .01ms;
+  --ease: ease;
+  --lift: -2px;
+}
+
+/* ---------- Thème nuit : automatique, sauf choix « jour » ---------- */
+@media (--prefers-dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --blanc: #09080d;
+    --voile: #100d16;
+    --carte: #13101b;
+    --argent: #453b52;
+    --argent-fonce: #aaa0b8;
+    --or: #d0aa59;
+    --or-clair: #f0d58d;
+    --bleu: #b99ae2;
+    --bleu-vif: #9b70d1;
+    --bleu-pale: #1c1428;
+    --encre: #f2edf8;
+    --encre-doux: #c0b7cc;
+    --ligne: #2e2638;
+    --ok: #5cc46f;
+    --danger: #ff6b6b;
+    --ombre: 0 18px 55px -22px rgb(96 48 145 / 46%), 0 0 22px rgb(96 48 145 / 12%);
+  }
+}
+
+/* ---------- Thème nuit : choisi manuellement ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --blanc: #09080d;
+  --voile: #100d16;
+  --carte: #13101b;
+  --argent: #453b52;
+  --argent-fonce: #aaa0b8;
+  --or: #d0aa59;
+  --or-clair: #f0d58d;
+  --bleu: #b99ae2;
+  --bleu-vif: #9b70d1;
+  --bleu-pale: #1c1428;
+  --encre: #f2edf8;
+  --encre-doux: #c0b7cc;
+  --ligne: #2e2638;
+  --ok: #5cc46f;
+  --danger: #ff6b6b;
+  --ombre: 0 18px 55px -22px rgb(96 48 145 / 46%), 0 0 22px rgb(96 48 145 / 12%);
+}

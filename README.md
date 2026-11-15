@@ -1,44 +1,71 @@
-# TalentCalculatorForever
+# Site Former Hope
 
-Site de la guilde **Former Hope** (WoW Forever) : copie du site former-hope.fr (accueil, recrutement, guide des boss, addon de guilde) intégrée avec le calculateur de talents et l'armurerie.
+Site de la guilde **Former Hope** (WoW Forever) : accueil, recrutement, guide des boss, addon de guilde,
+calculateur de talents (avec progression par niveau, grimoire et traits raciaux) et armurerie des membres.
 
-- Pages de la guilde : `index.html`, `recrutement.html`, `boss.html`, `addon-guilde.html` (thème `css/style.css`).
-- Calculateur et armurerie : `talents.html` (`#armory` pour l'armurerie), styles `css/talents.css`, scripts `js/`.
-- Le formulaire de recrutement passe par `POST /api/recrutement` : le webhook Discord reste sur le serveur (`DISCORD_WEBHOOK_URL` dans `.env`). Sans webhook, la page passe en mode manuel (texte à copier dans Discord).
-- Préproduction : https://talents.warpvault.com (VPS Hostinger). La production former-hope.fr (o2switch) n'est pas touchée.
+Construit avec **Vite + TypeScript**, sans framework. Aucun texte affiché ni aucun nombre n'est écrit dans le
+code : tout se règle dans les fichiers de configuration, de textes et de jetons de design.
 
-## Calculateur de talents
+- Préproduction : https://talents.warpvault.com (VPS Hostinger, Docker Compose derrière le Caddy partagé).
+- La production actuelle former-hope.fr (o2switch) n'est pas concernée.
 
-Calculateur de talents pour WoW Forever / Classic+, en HTML5, CSS3 et JavaScript (sans dépendance).
+## Où modifier quoi
 
-- 9 classes, 3 arbres chacune, textes en français
-- Niveau 10 à 60 (51 points au niveau 60)
-- Règles du jeu : 5 points par rangée, prérequis (flèches), retrait impossible s'il casse le build
-- Clic gauche pour ajouter, clic droit ou Maj+clic pour retirer (bouton « −1 » sur mobile)
-- Recherche, ordre des talents par niveau, build partageable dans l'URL (`#druid/5032003-05-05/r4`, `r4` = race)
-- Traits raciaux selon la race (races jouables par classe dans Forever, dont les deux Éolides)
-- Progression par niveau : sorts et rangs appris à chaque niveau (description, école, nouveautés Forever) et point de talent du build
-- Grimoire au niveau choisi : plus haut rang connu de chaque sort, par école
+| Je veux changer… | Fichier |
+|---|---|
+| Le nom de la guilde, le Discord, les pages, le menu, la clé du thème | `config/site.config.ts` |
+| Un texte du site (n'importe lequel) | `src/locales/fr/<zone>.ts` (`common`, `home`, `recruitment`, `boss`, `addon`, `talents`, `leveling`, `armory`) |
+| Une couleur, un espacement, une taille, une ombre | `src/styles/tokens/*.css` (`core` pour tout le site, puis `guild`, `addon`, `talents`) |
+| Les règles du calculateur (niveaux, points par rangée…) | `config/talents.config.ts` |
+| Le formulaire de recrutement (champs, limites anti-spam) | `config/recruitment.config.ts` (partagé avec le serveur) et `config/recruitment-page.config.ts` |
+| La fiche de l'armurerie (emplacements, caractéristiques) | `config/armory.config.ts` |
+| L'API (cache, Blizzard, statuts HTTP) | `config/server.config.ts`, textes du serveur dans `server/src/locales/fr.ts` |
+| Les réglages de la page addon | `config/addon.config.ts` |
 
-## Armurerie de guilde
+Les conventions de code (gabarits, partiels, imports) sont décrites dans [docs/conventions.md](docs/conventions.md).
 
-Onglet « Armurerie » (`#armory`) : membres de la guilde **Former Hope** (liste filtrable), fiche de chaque personnage (équipement avec infobulles, rendu, caractéristiques, talents) et bouton « Ouvrir dans le calculateur ». Seuls les personnages de la guilde sont accessibles : le serveur renvoie 403 pour les autres.
+## Organisation
 
-- La guilde se change dans `server/config.mjs` (`GUILD_NAME`, `GUILD_SLUG`).
-- Le serveur `server/` (Node 22, sans dépendance) appelle l'API Blizzard avec le namespace `profile-forever-eu`. Forever n'est pas encore dans la doc officielle ; `node server/probe.mjs` vérifie ce que l'API renvoie.
-- Il faut un client API créé sur https://develop.battle.net/access/clients, dont l'id et le secret vont dans `.env` (voir `.env.example`), jamais dans le dépôt.
-- Un personnage n'apparaît qu'à partir du niveau 10, après une déconnexion.
-
-Données : `data.js` (talents) et `leveling.js` (sorts, races, traits raciaux), extraites de Wowhead (WoW Forever, FR).
-
-## Lancer en local
-
-La page doit être servie par un serveur HTTP (pas en double-cliquant sur le fichier) :
-
-```bash
-npx http-server -p 8080
+```
+config/          réglages typés (site, pages, règles du jeu, API…)
+src/*.html       gabarits des pages, sans texte : {{t clé}}, {{cfg chemin}}, {{> partiel}}
+src/entries/     un point d'entrée TypeScript par page
+src/features/    calculateur, progression, armurerie, recrutement, addon
+src/shared/      i18n, thème, menu, infobulle…
+src/locales/     textes (français)
+src/styles/      feuilles de style ; valeurs dans src/styles/tokens/
+src/data/        données du jeu (talents, sorts, races), extraites de Wowhead (WoW Forever, FR)
+plugins/         plugin Vite qui remplit les gabarits à la compilation, et les partiels
+server/src/      API Node (armurerie via l'API Blizzard, relais des candidatures vers Discord)
+public/img/      images
 ```
 
-puis ouvrir http://localhost:8080.
+## Commandes
 
-Les icônes sont chargées depuis le CDN d'images de Wowhead : une connexion internet est nécessaire.
+```bash
+npm install
+npm run dev          # site en développement (http://localhost:5173), /api relayé vers le port 8080
+npm run server:dev   # API en développement (variables BNET_* dans l'environnement)
+npm run check        # lint (dont « aucun texte ni nombre en dur »), lint CSS, types et compilation
+npm run build        # compilation du site dans dist/
+```
+
+## Déploiement (préprod)
+
+Sur le VPS, dans `/opt/talentcalculator` :
+
+```bash
+git pull && docker compose up -d --build
+```
+
+- `web` : image Node qui compile le site, puis nginx qui sert `dist/`.
+- `api` : serveur TypeScript compilé.
+- Les deux services sont sur le réseau `proxy`. Le Caddy partagé envoie `/api/*` à l'API et le reste au site (`deploy/talentcalculator.caddy`).
+
+Secrets dans `/opt/talentcalculator/.env`, jamais dans le dépôt (voir `.env.example`) :
+- `BNET_CLIENT_ID`, `BNET_CLIENT_SECRET` : client créé sur https://develop.battle.net/access/clients ;
+- `DISCORD_WEBHOOK_URL` : webhook du salon #candidatures. Sans webhook, le formulaire passe en mode manuel.
+
+## Armurerie
+
+L'API Blizzard de WoW Forever n'est pas encore documentée officiellement, mais elle fonctionne avec le namespace `profile-forever-eu`. Les personnages n'ont pas de royaume (`/profile/wow/character/{prénom}-{nom}`), et un personnage n'apparaît qu'à partir du niveau 10, après une déconnexion. Seuls les membres de la guilde configurée sont accessibles : le serveur renvoie 403 pour les autres. Pour vérifier les réponses de l'API, lancer `node server/dist/server/src/probe.js` après `npm run server:build`.

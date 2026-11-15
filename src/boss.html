@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{cfg lang}}">
+<head>
+  {{> head page=boss}}
+  <script type="module" src="./entries/boss.ts"></script>
+</head>
+<body>
+
+{{> header page=boss}}
+
+<main>
+  <div class="heros">
+    <div class="wrap">
+      <img class="sceau" src="{{cfg assets.seal}}" alt="">
+      <p class="devise">{{t boss.hero.devise}}</p>
+      <h1>{{t boss.hero.title}}</h1>
+      <p>{{t boss.hero.intro}}</p>
+    </div>
+  </div>
+
+  <section class="chantier wrap">
+    <div class="atelier" aria-hidden="true"></div>
+    <h2>{{t boss.wip.title}}</h2>
+    <p>{{t boss.wip.text}}</p>
+    <div class="actions">
+      <a class="btn fantome" href="{{cfg pages.home.file}}">{{t boss.wip.back}}</a>
+    </div>
+  </section>
+</main>
+
+{{> footer}}
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* ---------- Base commune ---------- */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: var(--space-0);
+  background:
+    radial-gradient(ellipse at 50% -25%, var(--bleu-pale), transparent 55%),
+    var(--blanc);
+  color: var(--encre);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--dur-theme) var(--ease), color var(--dur-theme) var(--ease);
+}
+
+img { max-width: 100%; }
+
+h1, h2, h3, h4 {
+  margin: var(--space-0);
+  font-family: var(--font-serif);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-xl); font-weight: var(--fw-semibold); }
+
+p { margin: var(--space-0) var(--space-0) var(--space-md); }
+a { color: var(--bleu-vif); }
+
+.wrap { width: var(--wrap-width); margin-inline: auto; }
+.prose { max-width: var(--prose-width); }
+
+::selection { color: var(--blanc-pur); background: var(--selection-bg); }
+:focus-visible { outline: var(--border-medium) solid var(--or); outline-offset: var(--border-thick); }
+
+@media (--bp-mobile) {
+  body { font-size: var(--fs-base-mobile); }
+}
+
+@media (--reduced-motion) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: var(--dur-none) !important;
+    animation: none !important;
+  }
+}

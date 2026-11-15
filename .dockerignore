@@ -1,7 +1,11 @@
 .git
-README.md
-docker-compose.yml
-deploy/
-server/
+node_modules
+dist
+server/dist
+server/samples
 .env
 .env.example
+README.md
+docs/
+deploy/
+docker-compose.yml
