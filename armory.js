@@ -187,7 +187,10 @@
   // Convertit les talents du perso (ids « définition ») en hash du calculateur.
   function talentHash(ch) {
     const cls = classOf(ch.classKey);
-    const group = ch.talentGroups.find((g) => g.active) || ch.talentGroups[0];
+    // L'API marque parfois actif un groupe vide (double spé) : on prend alors celui qui a le plus de points.
+    const pts = (g) => g.talents.reduce((s, [, r]) => s + r, 0);
+    const active = ch.talentGroups.find((g) => g.active);
+    const group = active && pts(active) ? active : [...ch.talentGroups].sort((a, b) => pts(b) - pts(a))[0];
     if (!cls || !group) return null;
     const ranks = new Map(group.talents);
     const points = cls.trees.map((tr) => tr.talents.reduce((s, t) => s + (ranks.get(t.def) || 0), 0));
