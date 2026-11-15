@@ -1,0 +1,13 @@
+# Aucun port publié : le site est servi par le Caddy d'Entracte via le réseau entracte_default.
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    networks:
+      entracte_default:
+        aliases:
+          - talentcalculator   # nom visé par le reverse_proxy du Caddyfile
+
+networks:
+  entracte_default:
+    external: true
