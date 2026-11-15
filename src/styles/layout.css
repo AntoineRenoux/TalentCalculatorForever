@@ -207,6 +207,7 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-ligne2);
 }
+.heros .heros-lede { color: var(--bleu); font-weight: var(--fw-semibold); }
 .heros p {
   max-width: var(--hero-text-width);
   margin-inline: auto;

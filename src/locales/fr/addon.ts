@@ -34,10 +34,6 @@ export const addon = {
     },
   },
 
-  strip: {
-    title: 'La guilde qui l’utilise',
-    text: 'Quelques personnages de Former Hope, en direct depuis l’armurerie.',
-  },
   how: {
     title: 'Trois pièces, un annuaire',
     copy: 'Un addon ne peut ni accéder à Internet ni écrire sur ton disque. GuildProfessions relie donc le jeu, ton ordinateur et Discord pour partager les métiers de la guilde.',
@@ -55,7 +51,6 @@ export const addon = {
         text: 'Trouve un artisan avec <code>/metier who</code>, passe une commande avec <code>/craft order</code> ou déclare un métier manuellement avec <code>/metier set</code>.',
       },
     },
-    workshopAlt: 'Atelier d’un ingénieur gnome, illustration de la guilde',
     flowLabel: 'Étapes de synchronisation',
     flow: {
       play: 'Tu joues',
@@ -206,8 +201,4 @@ export const addon = {
     },
   },
 
-  cta: {
-    lead: 'Le pack tout-en-un installe l’addon et son compagnon en une fois.',
-    word: 'Installer',
-  },
 } as const;

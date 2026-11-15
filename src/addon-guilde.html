@@ -10,42 +10,35 @@
 {{> header page=addon}}
 
 <main>
-  <section class="addon-heros" id="{{> addonCfg sections.home}}">
-    <div class="wrap addon-heros-grille">
-      <h1 class="addon-heros-titre">{{t addon.hero.title}}</h1>
-      <div class="addon-heros-texte" data-reveal>
-        <p class="addon-lede">{{t addon.hero.lede}}</p>
-        <p class="addon-description">{{t addon.hero.description}}</p>
-        <div class="actions actions-gauche">
-          <a class="btn" href="#{{> addonCfg sections.downloads}}">{{t addon.hero.download}}</a>
-          <a class="btn fantome" href="#{{> addonCfg sections.install}}">{{t addon.hero.guide}}</a>
-        </div>
-      </div>
-      <div class="addon-scene" aria-hidden="true">
-        <div class="addon-scene-ecu"></div>
-        <div class="addon-ui" data-ui>
-          <div class="addon-ui-tete">
-            <strong>{{t addon.hero.art.title}}</strong>
-            <span class="addon-ui-etat">{{t addon.hero.art.status}}</span>
-          </div>
-          {{> addonArtRows}}
-        </div>
+  <div class="heros" id="{{> addonCfg sections.home}}">
+    <div class="wrap" data-reveal>
+      <img class="sceau" src="{{cfg assets.seal}}" alt="">
+      <h1>{{t addon.hero.title}}</h1>
+      <p class="heros-lede">{{t addon.hero.lede}}</p>
+      <p>{{t addon.hero.description}}</p>
+      <div class="actions">
+        <a class="btn" href="#{{> addonCfg sections.downloads}}">{{t addon.hero.download}}</a>
+        <a class="btn fantome" href="#{{> addonCfg sections.install}}">{{t addon.hero.guide}}</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <nav class="addon-sommaire wrap" aria-label="{{t addon.nav.ariaLabel}}" data-reveal>
     {{> addonNav}}
   </nav>
 
   <section class="addon-section wrap" id="{{> addonCfg sections.how}}" aria-labelledby="titre-fonctionnement">
-    <div class="addon-fonctionnement-tete">
+    <div class="colonnes addon-fonctionnement">
       <div class="addon-section-tete" data-reveal>
         <h2 id="titre-fonctionnement">{{t addon.how.title}}</h2>
         <p>{{t addon.how.copy}}</p>
       </div>
-      <div class="ecu-cadre addon-atelier" data-reveal>
-        <img src="{{cfg assets.loadingBanner}}" alt="{{t addon.how.workshopAlt}}" width="480" height="576" loading="lazy">
+      <div class="addon-ui" data-ui aria-hidden="true">
+        <div class="addon-ui-tete">
+          <strong>{{t addon.hero.art.title}}</strong>
+          <span class="addon-ui-etat">{{t addon.hero.art.status}}</span>
+        </div>
+        {{> addonArtRows}}
       </div>
     </div>
     <ul class="addon-pieces" data-reveal>
@@ -55,8 +48,6 @@
       {{> addonFlow}}
     </p>
   </section>
-
-  {{> memberStrip zone=addon}}
 
   <section class="addon-section addon-manuel" aria-labelledby="titre-manuel">
     <div class="wrap">
@@ -88,7 +79,7 @@
     </div>
 
     <div class="wrap">
-      <div class="panneau-sombre addon-pack">
+      <div class="colonnes addon-pack">
         <div data-reveal>
           <h3 class="addon-pack-titre">{{t addon.downloads.featured.title}}</h3>
           <p>{{t addon.downloads.featured.badge}}. {{t addon.downloads.featured.text}}</p>
@@ -171,10 +162,6 @@
     </div>
   </section>
 
-  <a class="bande-appel" href="#{{> addonCfg sections.platforms}}">
-    <span class="bande-appel-phrase">{{t addon.cta.lead}} <span class="bande-appel-fleche">{{> icon arrow}}</span></span>
-    <span class="bande-appel-mot">{{t addon.cta.word}}</span>
-  </a>
 </main>
 
 {{> footer}}

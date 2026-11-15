@@ -4,10 +4,6 @@ export const boss = {
     title: 'Guide des boss de raid',
     intro: 'Un aperçu clair des mécaniques, des placements et des rôles essentiels pour réussir chaque rencontre en équipe.',
   },
-  strip: {
-    title: 'La guilde se prépare',
-    text: 'En attendant les guides, voici quelques-uns des personnages qui feront les essais.',
-  },
   wip: {
     title: 'Travail en cours',
     text: 'Notre gnome ingénieur, surchargé de caféine et d’idées farfelues, assemble et bidouille entre deux try de boss pour préparer les guides des boss et des raids. Reviens la prochaine fois, il aura sûrement fini de resserrer quelques boulons… ou d’en perdre d’autres.',

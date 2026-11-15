@@ -20,37 +20,7 @@ code {
   mask: var(--ecu-mask) center / 100% 100% no-repeat;
 }
 
-/* ---------- Héros : la fenêtre de l'addon sur un écu violet ---------- */
-.addon-heros { overflow: hidden; background: var(--voile); }
-.addon-heros-grille {
-  display: grid;
-  grid-template-columns: var(--addon-heros-colonnes);
-  align-items: center;
-  gap: var(--space-2xl);
-  padding: var(--space-3xl) var(--space-0);
-}
-.addon-heros h1 {
-  color: var(--bleu);
-  font-size: var(--addon-titre);
-  line-height: var(--lh-display);
-  letter-spacing: var(--ls-display);
-  white-space: nowrap;
-}
-.addon-heros-titre { grid-column: 1 / -1; animation: menu-in var(--dur-slow) var(--ease-out) both; }
-.addon-lede { margin: var(--space-0) var(--space-0) var(--space-sm); color: var(--encre); font-size: var(--fs-display-sub); line-height: var(--lh-snug); }
-.addon-description { max-width: var(--prose-width); color: var(--encre); }
-.actions.actions-gauche { justify-content: flex-start; }
-
-.addon-scene { position: relative; display: grid; place-items: center; min-height: var(--addon-scene-height); }
-.addon-scene-ecu {
-  position: absolute;
-  width: var(--addon-ecu-width);
-  aspect-ratio: var(--ecu-ratio);
-  background: var(--bleu);
-  -webkit-mask: var(--ecu-mask) center / 100% 100% no-repeat;
-  mask: var(--ecu-mask) center / 100% 100% no-repeat;
-  animation: ecu-entree var(--dur-hero) var(--ease-out) both;
-}
+/* ---------- Fenêtre de l'addon (fragment d'interface, data-ui) ---------- */
 .addon-ui {
   position: relative;
   width: var(--addon-ui-width);
@@ -61,11 +31,6 @@ code {
   box-shadow: var(--addon-ui-ombre);
   color: var(--addon-ui-texte);
   font-size: var(--fs-addon-ui);
-  transform: translateY(var(--addon-ui-shift)) rotate(var(--addon-ui-tilt));
-  animation: addon-ui-entree var(--dur-addon-ui) var(--ease-out) both;
-}
-@keyframes addon-ui-entree {
-  from { opacity: 0; transform: translateY(calc(var(--addon-ui-shift) + var(--addon-ui-entry))) rotate(var(--addon-ui-tilt)); }
 }
 .addon-ui-tete { display: flex; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-sm); }
 .addon-ui-tete strong { color: var(--addon-ui-or); font-family: var(--font-serif); }
@@ -108,9 +73,9 @@ code {
 .addon-sous-titre { margin: var(--space-0) var(--space-0) var(--space-xl); }
 .addon-section h3 { margin-bottom: var(--space-xs); color: var(--bleu); font-size: var(--fs-2xl); }
 
-/* Fonctionnement : texte et illustration côte à côte */
-.addon-fonctionnement-tete { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); gap: var(--space-2xl); align-items: center; margin-bottom: var(--space-2xl); }
-.addon-atelier { width: 100%; }
+/* Fonctionnement : texte à gauche, fenêtre de l'addon à droite */
+.addon-fonctionnement { align-items: center; margin-bottom: var(--space-2xl); }
+.addon-fonctionnement .addon-section-tete { margin-bottom: var(--space-0); }
 
 /* Les trois pièces : liste à puces en écu */
 .addon-pieces { display: grid; grid-template-columns: var(--addon-pieces-colonnes); gap: var(--space-2xl); margin: var(--space-0); padding: var(--space-0); list-style: none; }
@@ -128,12 +93,12 @@ code {
 .addon-etapes, .addon-panneau ol { display: grid; gap: var(--space-sm); margin: var(--space-0); padding-left: var(--space-xl); color: var(--encre); }
 
 /* Téléchargements */
-.addon-pack { margin-bottom: var(--space-2xl); }
-.addon-pack .addon-pack-titre { color: var(--panneau-encre); font-size: var(--fs-section); }
-.addon-version { color: var(--or-clair); }
+.addon-pack { margin-bottom: var(--space-2xl); padding: var(--panneau-padding); background: var(--voile); }
+.addon-pack .addon-pack-titre { color: var(--bleu); font-size: var(--fs-section); }
+.addon-pack p { color: var(--encre); }
+.addon-version { color: var(--or-texte); }
 .addon-points { display: grid; gap: var(--space-sm); margin: var(--space-0) var(--space-0) var(--space-xl); padding: var(--space-0); list-style: none; }
-.addon-points li { display: flex; align-items: center; gap: var(--space-sm); color: var(--panneau-encre); }
-.addon-pack code { background: var(--panneau-ligne-fiche); color: var(--panneau-encre); }
+.addon-points li { display: flex; align-items: center; gap: var(--space-sm); color: var(--encre); }
 .addon-systemes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs) var(--space-2xl); margin: var(--space-0); padding: var(--space-0); list-style: none; }
 .addon-systemes li {
   display: flex;
@@ -181,12 +146,10 @@ code {
 
 /* ---------- Écrans étroits ---------- */
 @media (--bp-tablet) {
-  .addon-heros-grille, .addon-deux-colonnes, .addon-installation-grille, .addon-fonctionnement-tete { grid-template-columns: 1fr; }
-  .addon-atelier { width: var(--sceau-width-mobile); }
+  .addon-deux-colonnes, .addon-installation-grille { grid-template-columns: 1fr; }
   .addon-pieces, .addon-systemes, .addon-commandes { grid-template-columns: 1fr; }
   .addon-onglets { flex-direction: row; flex-wrap: wrap; }
-  .addon-scene-ecu { width: var(--sceau-width-mobile); }
 }
 @media (--reduced-motion) {
-  .addon-scene-ecu, .addon-ui, .addon-panneau { animation: none; }
+  .addon-panneau { animation: none; }
 }

@@ -1,17 +1,7 @@
 /* Jetons de la page « GuildProfessions ». */
 :root {
-  /* Héros */
-  --addon-titre: clamp(1.9rem, 6.6vw, 6.4rem);
-  --addon-heros-colonnes: minmax(0, 1fr) minmax(0, 1fr);
-  --addon-scene-height: clamp(300px, 34vw, 460px);
-  --addon-ecu-width: min(36vw, 400px);
-  --addon-ui-width: min(100%, 360px);
-  --addon-ui-shift: 12%;
-  --addon-ui-tilt: -2deg;
-  --addon-ui-entry: 32px;
-  --dur-addon-ui: .9s;
-
   /* Fragment d'interface de l'addon (data-ui : bordures autorisées) */
+  --addon-ui-width: min(100%, 360px);
   --addon-ui-fond: #191420;
   --addon-ui-fond-ligne: #211a2b;
   --addon-ui-texte: #f5f0e8;

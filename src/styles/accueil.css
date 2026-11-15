@@ -1,6 +1,5 @@
 /* ---------- Accueil : héros centré, la guilde en deux colonnes ---------- */
 .heros .logo-guilde { animation: ecu-entree var(--dur-hero) var(--ease-out) both; }
-.heros-lede { color: var(--bleu); font-weight: var(--fw-semibold); }
 
 .accueil-guilde-texte h2, .accueil-fiche h2 { margin-bottom: var(--space-xl); color: var(--bleu); }
 .accueil-guilde-texte h3 { margin: var(--space-xl) var(--space-0) var(--space-xs); color: var(--bleu); }

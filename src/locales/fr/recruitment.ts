@@ -4,10 +4,6 @@ export const recruitment = {
     title: 'Rejoindre Former Hope',
     intro: 'On recrute, mais on recrute bien. Lis les postes ouverts, remplis la candidature, et on se parle sur Discord dans les jours qui suivent.',
   },
-  strip: {
-    title: 'Ils jouent déjà avec nous',
-    text: 'Quelques personnages de la guilde, en direct depuis l’armurerie.',
-  },
   posts: {
     title: 'Postes ouverts',
     items: {
