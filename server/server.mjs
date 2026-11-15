@@ -117,7 +117,7 @@ async function character(slug) {
 
     const groups = (specs?.specialization_groups || []).map((grp) => ({
       active: !!grp.is_active,
-      talents: grp.specializations.flatMap((sp) => (sp.talents || []).map((t) => [t.talent?.id, t.talent_rank])).filter(([id]) => id),
+      talents: (grp.specializations || []).flatMap((sp) => (sp.talents || []).map((t) => [t.talent?.id, t.talent_rank])).filter(([id]) => id),
     }));
     const assets = Object.fromEntries((media?.assets || []).map((a) => [a.key, a.value]));
 
