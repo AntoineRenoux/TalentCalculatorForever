@@ -113,36 +113,8 @@ function recruitmentFields(): string {
 }
 
 
-/** {{> homeCfg chemin}} : valeur de config/home.config.ts. */
-function homeCfg({ positional }: PartialArgs): string {
-  const [path] = positional;
-  if (!path) throw new Error('homeCfg : chemin manquant');
-  const value = path.split('.').reduce<unknown>((n, k) => (n && typeof n === 'object' ? (n as Record<string, unknown>)[k] : undefined), homeConfig);
-  if (value === undefined) throw new Error(`homeCfg : réglage inconnu « ${path} »`);
-  return escapeHtml(value);
-}
 
-/** Phrase d'accroche de l'accueil : chaque emplacement devient un petit écu rempli par un avatar de membre. */
-function homeStatement(): string {
-  const parts = t('home.statement').split(homeConfig.statementSlot);
-  const html = parts.map((part, i) => escapeHtml(part) + (i < parts.length - 1
-    ? `<span class="ecu-vignette" data-statement-slot="${i}"><img alt="${escapeHtml(t('home.statementSlotAlt'))}" width="64" height="77" hidden></span>`
-    : '')).join('');
-  return `<p class="accueil-phrase-texte">${html}</p>`;
-}
 
-/** Quatre champs de couleur : une semaine de la guilde. */
-function homeWeek(): string {
-  const fields = homeConfig.weekFields.map((id, i) => `<div class="semaine-champ" data-reveal>
-        <div class="ecu-cadre semaine-ecu"><img data-week-render="${i}" alt="" width="240" height="288" loading="lazy" hidden></div>
-        <p class="semaine-clause">${escapeHtml(tDynamic(`home.week.fields.${id}.clause`))}</p>
-        <p class="semaine-texte">${escapeHtml(tDynamic(`home.week.fields.${id}.text`))}</p>
-      </div>`);
-  return `<div class="wrap semaine-tete" data-reveal><h2 id="titre-semaine">${escapeHtml(t('home.week.title'))}</h2></div>
-    <div class="semaine-champs">
-      ${fields.join('\n      ')}
-    </div>`;
-}
 
 /** {{> memberStrip zone=recruitment}} : bande de personnages de la guilde (rendus en écu, remplis par le JS). */
 function memberStrip({ named }: PartialArgs): string {
@@ -170,7 +142,4 @@ export const guildPartials: PartialRegistry = {
   recruitmentPosts,
   recruitmentSteps,
   recruitmentFields,
-  homeCfg,
-  homeStatement,
-  homeWeek,
 };

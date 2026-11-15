@@ -10,77 +10,45 @@
 {{> header page=home}}
 
 <main>
-  <section class="accueil-heros">
-    <div class="wrap accueil-heros-grille">
-      <div class="accueil-heros-texte" data-reveal>
-        <h1>{{cfg guild.name}}</h1>
-        <p class="accueil-lede">{{> tcfg home.hero.lede year=guild.foundedYear}}</p>
-        <div class="actions actions-gauche">
-          <a class="btn" href="{{cfg pages.recruitment.file}}">{{t home.hero.ctaRecruitment}}</a>
-          <a class="btn fantome" href="#{{> homeCfg rosterAnchor}}">{{t home.hero.ctaRoster}}</a>
-        </div>
-      </div>
-      <div class="ecu-geant" aria-hidden="true">
-        <div class="ecu-geant-forme">
-          <img class="ecu-geant-image" data-parallax src="{{cfg assets.logo}}" alt="" width="940" height="940" fetchpriority="high">
-        </div>
+  <div class="heros">
+    <div class="wrap" data-reveal>
+      <img class="logo-guilde" src="{{cfg assets.logo}}" alt="{{t home.hero.logoAlt}}" width="940" height="940" fetchpriority="high">
+      <h1>
+        {{cfg guild.name}}
+        <span class="ligne2">{{t home.hero.tagline}}</span>
+      </h1>
+      <p class="heros-lede">{{> tcfg home.hero.lede year=guild.foundedYear}}</p>
+      <p>{{t home.hero.intro}}</p>
+      <div class="actions">
+        <a class="btn" href="{{cfg pages.recruitment.file}}">{{t home.hero.ctaRecruitment}}</a>
+        <a class="btn fantome" href="{{cfg pages.boss.file}}">{{t home.hero.ctaBoss}}</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="accueil-phrase wrap" data-reveal>
-    {{> homeStatement}}
-  </section>
-
-  <section class="accueil-guilde" aria-labelledby="titre-guilde">
-    <div class="accueil-guilde-panneau">
-      <div class="accueil-guilde-gauche" data-reveal>
-        <h2 id="titre-guilde">{{t home.about.title}}</h2>
-        <div class="ecu-cadre accueil-sceau">
-          <img src="{{cfg assets.seal}}" alt="{{t home.about.sealAlt}}" width="320" height="320" loading="lazy">
-        </div>
+  <section class="bloc wrap" aria-labelledby="titre-guilde">
+    <div class="colonnes">
+      <div class="prose accueil-guilde-texte" data-reveal>
+        <h2 id="titre-guilde">{{t home.guild.title}}</h2>
+        <p>{{t home.guild.welcome}}</p>
+        <p>{{t home.guild.origins}}</p>
+        <h3>{{t home.guild.philosophyTitle}}</h3>
+        <p>{{t home.guild.values}}</p>
+        <p>{{t home.guild.environment}}</p>
+        <p>{{t home.guild.raids}}</p>
+        <p>{{t home.guild.outside}}</p>
+        <h2 class="entete-suite">{{t home.expectations.title}}</h2>
+        <p>{{t home.expectations.text}}</p>
       </div>
-      <div class="accueil-guilde-droite" data-reveal>
-        <div>
-          <h3>{{t home.about.origins.title}}</h3>
-          <p>{{t home.about.origins.text}}</p>
-        </div>
-        <div>
-          <h3>{{t home.about.values.title}}</h3>
-          <p>{{t home.about.values.text}}</p>
-        </div>
+      <aside class="accueil-fiche" data-reveal>
+        <h2>{{t home.sheet.title}}</h2>
         {{> guildSheet}}
-        <a class="btn" href="{{cfg pages.recruitment.file}}">{{t home.about.cta}}</a>
-      </div>
+        <img class="accueil-sceau" src="{{cfg assets.seal}}" alt="" width="320" height="320" loading="lazy">
+      </aside>
     </div>
   </section>
 
-  <section class="accueil-roster wrap" id="{{> homeCfg rosterAnchor}}" aria-labelledby="titre-roster">
-    <div class="accueil-roster-tete" data-reveal>
-      <h2 id="titre-roster">{{t home.roster.title}}</h2>
-      <p class="accueil-roster-compte" id="rosterCount"></p>
-    </div>
-    <p class="accueil-roster-intro">{{t home.roster.intro}}</p>
-    <div class="accueil-roster-corps">
-      <ul class="roster-liste" id="rosterList">
-        <li class="roster-attente">{{t home.roster.loading}}</li>
-      </ul>
-      <figure class="roster-apercu" aria-hidden="true">
-        <div class="ecu-cadre roster-apercu-ecu"><img id="rosterPreview" alt="" width="460" height="552"></div>
-        <figcaption id="rosterPreviewName"></figcaption>
-      </figure>
-    </div>
-    <p><a class="lien-fleche" href="{{cfg pages.talents.file}}#{{> talentsCfg hash.armory}}">{{t home.roster.all}} {{> icon arrow}}</a></p>
-  </section>
-
-  <section class="accueil-semaine" aria-labelledby="titre-semaine">
-    {{> homeWeek}}
-  </section>
-
-  <a class="accueil-appel" href="{{cfg pages.recruitment.file}}">
-    <span class="accueil-appel-phrase">{{t home.cta.lead}} <span class="accueil-appel-fleche">{{> icon arrow}}</span></span>
-    <span class="accueil-appel-mot">{{t home.cta.word}}</span>
-  </a>
+  {{> memberStrip zone=home}}
 </main>
 
 {{> footer}}

@@ -1,8 +1,8 @@
-/* Page « GuildProfessions » : socle commun, puis les blocs repris de l'accueil (panneau sombre, bande d'appel). */
+/* Page « GuildProfessions » : socle commun, blocs partagés (panneau sombre, bande d'appel), bande de membres. */
 @import "../shared.css";
-@import "../tokens/home.css";
+@import "../tokens/blocs.css";
 @import "../tokens/guild.css";
 @import "../tokens/addon.css";
+@import "../blocs.css";
 @import "../guild.css";
-@import "../home.css";
 @import "../addon.css";

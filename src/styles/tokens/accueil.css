@@ -1,0 +1,5 @@
+/* Jetons de l'accueil. */
+:root {
+  --fiche-top: calc(var(--header-min-height) + var(--space-xl));
+  --accueil-sceau-width: min(60%, 220px);
+}

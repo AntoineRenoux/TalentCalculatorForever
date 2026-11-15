@@ -65,19 +65,19 @@
 
 /* ---------- Fiche de la guilde ---------- */
 dl.fiche {
+  display: grid;
+  gap: var(--space-4xs);
   overflow: hidden;
   margin: var(--space-0);
-  background: var(--voile);
 }
 dl.fiche div {
   display: flex;
   justify-content: space-between;
   gap: var(--space-md);
   padding: var(--fiche-row-padding);
-  border-bottom: var(--border-thin) solid var(--ligne);
+  background: var(--voile);
 }
-dl.fiche div:last-child { border-bottom: 0; }
-dl.fiche dt { color: var(--argent-fonce); font-size: var(--fs-fiche-term); }
+dl.fiche dt { color: var(--encre-doux); font-size: var(--fs-fiche-term); }
 dl.fiche dd {
   margin: var(--space-0);
   color: var(--encre);

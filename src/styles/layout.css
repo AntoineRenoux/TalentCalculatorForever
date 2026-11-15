@@ -233,7 +233,6 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   margin: var(--space-0) auto var(--space-2xl);
   border: var(--border-thin) solid var(--or);
   border-radius: var(--radius-md);
-  box-shadow: var(--ombre-logo-cadre);
 }
 
 /* Pied de page */

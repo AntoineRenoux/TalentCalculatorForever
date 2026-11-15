@@ -46,7 +46,7 @@ section.bloc { padding: var(--space-section) var(--space-0); }
 .entete .trait { display: none; }
 
 /* Cadres en forme d'écu (photo, avatar, rendu) */
-.ecu-cadre, .ecu-vignette, .ecu-geant-forme {
+.ecu-cadre {
   -webkit-mask: var(--ecu-mask) center / 100% 100% no-repeat;
   mask: var(--ecu-mask) center / 100% 100% no-repeat;
 }
