@@ -5,232 +5,179 @@
   {{> addonMeta}}
   <script type="module" src="./entries/addon.ts"></script>
 </head>
+<body>
 
-<body class="gp-page">
+{{> header page=addon}}
 
-  <button
-    class="gp-menu-toggle"
-    id="{{> addonCfg ids.menuToggle}}"
-    type="button"
-    aria-controls="{{> addonCfg ids.sidebar}}"
-    aria-expanded="false"
-    aria-label="{{t addon.menu.open}}"
-  >
-    <span aria-hidden="true">{{> addonCfg icons.menu}}</span>
-    <span>{{t addon.menu.label}}</span>
-  </button>
-
-  <div class="gp-menu-overlay" id="{{> addonCfg ids.overlay}}" hidden></div>
-
-  <header class="gp-header" id="{{> addonCfg ids.sidebar}}">
-    <div class="gp-header-inner">
-      <a class="gp-brand" href="{{cfg pages.home.file}}">{{t addon.brand}}</a>
-
-      <nav class="gp-nav" aria-label="{{t addon.nav.ariaLabel}}">
-        <a class="gp-back-link" href="{{cfg pages.home.file}}">{{t addon.nav.back}}</a>
-        {{> addonNav}}
-      </nav>
-
-      <button class="gp-theme-toggle" id="{{> addonCfg ids.themeToggle}}" type="button" aria-label="{{t theme.defaultLabel}}" title="{{t theme.defaultLabel}}">
-        <span id="{{> addonCfg ids.themeIcon}}" aria-hidden="true">{{> icon moon}}</span>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <section class="gp-container gp-hero" id="{{> addonCfg sections.home}}">
-      <div class="gp-hero-content">
-        <p class="gp-eyebrow">{{t addon.hero.eyebrow}}</p>
-
-        <h1 class="gp-hero-title">
-          {{t addon.hero.titleLine1}}<br>
-          {{t addon.hero.titleLine2}}<br>
-          <span>{{t addon.hero.titleAccent}}</span>
-        </h1>
-
-        <p class="gp-hero-description">
-          {{t addon.hero.description}}
-        </p>
-
-        <div class="gp-actions">
-          <a class="gp-button" href="#{{> addonCfg sections.downloads}}">{{t addon.hero.download}}</a>
-          <a class="gp-button gp-button-secondary" href="#{{> addonCfg sections.install}}">
-            {{t addon.hero.guide}}
-          </a>
+<main>
+  <section class="addon-heros" id="{{> addonCfg sections.home}}">
+    <div class="wrap addon-heros-grille">
+      <h1 class="addon-heros-titre">{{t addon.hero.title}}</h1>
+      <div class="addon-heros-texte" data-reveal>
+        <p class="addon-lede">{{t addon.hero.lede}}</p>
+        <p class="addon-description">{{t addon.hero.description}}</p>
+        <div class="actions actions-gauche">
+          <a class="btn" href="#{{> addonCfg sections.downloads}}">{{t addon.hero.download}}</a>
+          <a class="btn fantome" href="#{{> addonCfg sections.install}}">{{t addon.hero.guide}}</a>
         </div>
       </div>
-
-      <div class="gp-hero-art" aria-hidden="true">
-        <div class="gp-art-card">
-          <div class="gp-art-top">
+      <div class="addon-scene" aria-hidden="true">
+        <div class="addon-scene-ecu"></div>
+        <div class="addon-ui" data-ui>
+          <div class="addon-ui-tete">
             <strong>{{t addon.hero.art.title}}</strong>
-            <span class="gp-art-status">{{t addon.hero.art.status}}</span>
+            <span class="addon-ui-etat">{{t addon.hero.art.status}}</span>
           </div>
           {{> addonArtRows}}
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="gp-container gp-section" id="{{> addonCfg sections.how}}">
-      <div class="gp-section-heading">
-        <p class="gp-eyebrow">{{t addon.how.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.how.titleLine1}}<br><span>{{t addon.how.titleAccent}}</span></h2>
-        <p class="gp-copy">
-          {{t addon.how.copy}}
-        </p>
+  <nav class="addon-sommaire wrap" aria-label="{{t addon.nav.ariaLabel}}" data-reveal>
+    {{> addonNav}}
+  </nav>
+
+  <section class="addon-section wrap" id="{{> addonCfg sections.how}}" aria-labelledby="titre-fonctionnement">
+    <div class="addon-fonctionnement-tete">
+      <div class="addon-section-tete" data-reveal>
+        <h2 id="titre-fonctionnement">{{t addon.how.title}}</h2>
+        <p>{{t addon.how.copy}}</p>
       </div>
-
-      <div class="gp-feature-grid">
-        {{> addonFeatureCards}}
+      <div class="ecu-cadre addon-atelier" data-reveal>
+        <img src="{{cfg assets.loadingBanner}}" alt="{{t addon.how.workshopAlt}}" width="480" height="576" loading="lazy">
       </div>
+    </div>
+    <ul class="addon-pieces" data-reveal>
+      {{> addonPieces}}
+    </ul>
+    <p class="addon-flux" aria-label="{{t addon.how.flowLabel}}" data-reveal>
+      {{> addonFlow}}
+    </p>
+  </section>
 
-      <div class="gp-flow" aria-label="{{t addon.how.flowLabel}}">
-        {{> addonFlow}}
+  {{> memberStrip zone=addon}}
+
+  <section class="addon-section addon-manuel" aria-labelledby="titre-manuel">
+    <div class="wrap">
+      <div class="addon-section-tete" data-reveal>
+        <h2 id="titre-manuel">{{t addon.manual.title}}</h2>
+        <p>{{t addon.manual.copy}}</p>
       </div>
-
-      <div class="gp-section-heading" style="margin-top: var(--gp-heading-offset-manual);">
-        <p class="gp-eyebrow">{{t addon.manual.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.manual.titleLine1}}<br><span>{{t addon.manual.titleAccent}}</span></h2>
-        <p class="gp-copy">
-          {{t addon.manual.copy}}
-        </p>
-      </div>
-
-      <div class="gp-manual-grid">
-        <article class="gp-manual-card">
+      <div class="addon-deux-colonnes" data-reveal>
+        <div>
           <h3>{{t addon.manual.export.title}}</h3>
-          <ol class="gp-steps">
+          <ol class="addon-etapes">
             {{> addonSteps export}}
           </ol>
-        </article>
-
-        <article class="gp-manual-card">
+        </div>
+        <div>
           <h3>{{t addon.manual.import.title}}</h3>
-          <ol class="gp-steps">
+          <ol class="addon-etapes">
             {{> addonSteps import}}
           </ol>
-        </article>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="gp-container gp-section" id="{{> addonCfg sections.downloads}}">
-      <div class="gp-section-heading">
-        <p class="gp-eyebrow">{{t addon.downloads.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.downloads.title}}</h2>
-        <p class="gp-copy">
-          {{t addon.downloads.copy}}
-        </p>
-      </div>
+  <section class="addon-section" id="{{> addonCfg sections.downloads}}" aria-labelledby="titre-telechargements">
+    <div class="wrap addon-section-tete" data-reveal>
+      <h2 id="titre-telechargements">{{t addon.downloads.title}}</h2>
+      <p>{{t addon.downloads.copy}}</p>
+    </div>
 
-      <article class="gp-download-featured">
-        <div>
-          <span class="gp-recommended">{{t addon.downloads.featured.badge}}</span>
-          <h3>{{t addon.downloads.featured.title}}</h3>
-          <p>
-            {{t addon.downloads.featured.text}}
-          </p>
-          <ul>
+    <div class="wrap">
+      <div class="accueil-guilde-panneau addon-pack">
+        <div data-reveal>
+          <h3 class="addon-pack-titre">{{t addon.downloads.featured.title}}</h3>
+          <p>{{t addon.downloads.featured.badge}}. {{t addon.downloads.featured.text}}</p>
+          <p class="addon-version">{{> addonVersion}}</p>
+        </div>
+        <div data-reveal>
+          <ul class="addon-points">
             {{> addonFeaturedPoints}}
           </ul>
+          <a class="btn" href="#{{> addonCfg sections.platforms}}">{{t addon.downloads.featured.choose}}</a>
         </div>
+      </div>
+    </div>
 
-        <a class="gp-button" href="#{{> addonCfg sections.platforms}}">
-          {{t addon.downloads.featured.choose}}
-        </a>
-      </article>
-
-      <p class="gp-version">
-        {{> addonVersion}}
-      </p>
-
-      <div class="gp-platform-grid" id="{{> addonCfg sections.platforms}}">
+    <div class="wrap">
+      <ul class="addon-systemes" id="{{> addonCfg sections.platforms}}" data-reveal>
         {{> addonPlatforms}}
-      </div>
+      </ul>
 
-      <div class="gp-section-heading" style="margin-top: var(--gp-heading-offset-separate);">
-        <p class="gp-eyebrow">{{t addon.downloads.separate.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.downloads.separate.titleLine1}}<br><span>{{t addon.downloads.separate.titleAccent}}</span></h2>
-      </div>
 
-      <div class="gp-manual-grid">
-        <article class="gp-card">
-          <span class="gp-card-number">{{> addonSeparateNumber addon}}</span>
+    </div>
+  </section>
+
+  <section class="addon-section" aria-labelledby="titre-carte">
+    <div class="wrap">
+      <h2 class="addon-sous-titre" id="titre-carte">{{t addon.downloads.separate.title}}</h2>
+      <div class="addon-deux-colonnes" data-reveal>
+        <div>
           <h3>{{t addon.downloads.separate.addon.title}}</h3>
-          <p>
-            {{h addon.downloads.separate.addon.text}}
-          </p>
-          <p><a class="gp-button gp-button-secondary" href="{{> addonCfg downloads.addon}}">{{t addon.downloads.separate.addon.download}}</a></p>
-        </article>
-
-        <article class="gp-card">
-          <span class="gp-card-number">{{> addonSeparateNumber companion}}</span>
+          <p>{{h addon.downloads.separate.addon.text}}</p>
+          <p><a class="btn fantome" href="{{> addonCfg downloads.addon}}">{{t addon.downloads.separate.addon.download}}</a></p>
+        </div>
+        <div>
           <h3>{{t addon.downloads.separate.companion.title}}</h3>
-          <p>
-            {{t addon.downloads.separate.companion.text}}
-          </p>
-          <p>
-            {{> addonCompanionLinks}}
-          </p>
-        </article>
+          <p>{{t addon.downloads.separate.companion.text}}</p>
+          <p class="addon-liens">{{> addonCompanionLinks}}</p>
+        </div>
       </div>
 
-      <p class="gp-copy">
+      <p class="addon-confidentialite">
         {{t addon.downloads.privacy}}
         <a href="{{> addonCfg downloads.sourceCode}}" target="_blank" rel="noopener">{{t addon.downloads.sourceCode}}</a>.
       </p>
-    </section>
+    </div>
+  </section>
 
-    <section class="gp-container gp-section" id="{{> addonCfg sections.install}}">
-      <div class="gp-section-heading">
-        <p class="gp-eyebrow">{{t addon.install.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.install.title}}</h2>
-        <p class="gp-copy">
-          {{t addon.install.copy}}
-        </p>
+  <section class="addon-section addon-installation" id="{{> addonCfg sections.install}}" aria-labelledby="titre-installation">
+    <div class="wrap">
+      <div class="addon-section-tete" data-reveal>
+        <h2 id="titre-installation">{{t addon.install.title}}</h2>
+        <p>{{t addon.install.copy}}</p>
       </div>
-
-      <div class="gp-install-grid">
-        <nav class="gp-tabs" aria-label="{{t addon.install.tabsLabel}}">
+      <div class="addon-installation-grille" data-reveal>
+        <nav class="addon-onglets" aria-label="{{t addon.install.tabsLabel}}">
           {{> addonTabs}}
         </nav>
-
-        <div>
+        <div class="addon-panneaux">
           {{> addonInstallPanels}}
         </div>
       </div>
-    </section>
-
-    <section class="gp-container gp-section" id="{{> addonCfg sections.discord}}">
-      <div class="gp-section-heading">
-        <p class="gp-eyebrow">{{t addon.discord.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.discord.titleLead}} <span>{{t addon.discord.titleAccent}}</span></h2>
-        <p class="gp-copy">
-          {{t addon.discord.copy}}
-        </p>
-      </div>
-
-      <div class="gp-command-list">
-        {{> addonCommands}}
-      </div>
-    </section>
-
-    <section class="gp-container gp-section" id="{{> addonCfg sections.faq}}">
-      <div class="gp-section-heading">
-        <p class="gp-eyebrow">{{t addon.faq.eyebrow}}</p>
-        <h2 class="gp-heading">{{t addon.faq.titleLead}} <span>{{t addon.faq.titleAccent}}</span></h2>
-      </div>
-
-      <div class="gp-command-list">
-        {{> addonFaq}}
-      </div>
-    </section>
-  </main>
-
-  <footer class="gp-footer">
-    <div class="gp-container">
-      <p>{{t addon.footer.text}}</p>
     </div>
-  </footer>
+  </section>
+
+  <section class="addon-section wrap" id="{{> addonCfg sections.discord}}" aria-labelledby="titre-discord">
+    <div class="addon-section-tete" data-reveal>
+      <h2 id="titre-discord">{{t addon.discord.title}}</h2>
+      <p>{{t addon.discord.copy}}</p>
+    </div>
+    <ul class="addon-commandes" data-reveal>
+      {{> addonCommands}}
+    </ul>
+  </section>
+
+  <section class="addon-section wrap" id="{{> addonCfg sections.faq}}" aria-labelledby="titre-faq">
+    <div class="addon-section-tete" data-reveal>
+      <h2 id="titre-faq">{{t addon.faq.title}}</h2>
+    </div>
+    <div class="addon-questions" data-reveal>
+      {{> addonFaq}}
+    </div>
+  </section>
+
+  <a class="accueil-appel" href="#{{> addonCfg sections.platforms}}">
+    <span class="accueil-appel-phrase">{{t addon.cta.lead}} <span class="accueil-appel-fleche">{{> icon arrow}}</span></span>
+    <span class="accueil-appel-mot">{{t addon.cta.word}}</span>
+  </a>
+</main>
+
+{{> footer}}
 
 </body>
 </html>

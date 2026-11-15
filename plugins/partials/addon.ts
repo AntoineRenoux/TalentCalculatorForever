@@ -1,15 +1,18 @@
 /** Partiels de la page « GuildProfessions » : blocs répétés générés depuis la config et les textes. */
 import { addonConfig } from '../../config/addon.config.ts';
+import { iconSvg } from '../../config/icons.config.ts';
 import { siteConfig } from '../../config/site.config.ts';
-import { formatNumber, t, tDynamic } from '../../src/shared/i18n.ts';
+import { t, tDynamic } from '../../src/shared/i18n.ts';
 import { attrs, escapeHtml } from '../html/escape.ts';
 import type { PartialArgs, PartialRegistry } from '../html/types.ts';
 
 const tx = (key: string) => escapeHtml(tDynamic(key));
 const anchor = (id: string) => `#${id}`;
 const join = (items: string[], indent: string) => items.join(`\n${indent}`);
+/** Puce en forme d'écu (motif du site). */
+const ECU_PUCE = '<span class="ecu-puce" aria-hidden="true"></span>';
 
-/** Valeur de la config de la page : {{> addonCfg ids.sidebar}}. */
+/** Valeur de la config de la page : {{> addonCfg sections.how}}. */
 function addonCfg(args: PartialArgs): string {
   const [path] = args.positional;
   if (!path) throw new Error('addonCfg : chemin manquant');
@@ -27,66 +30,53 @@ function addonMeta(): string {
   <meta${attrs({ name: 'description', content: t('addon.meta.description') })}>`;
 }
 
+/** Sommaire de la page (ancres des sections). */
 function addonNav(): string {
   return join(addonConfig.nav.map((key) =>
     `<a href="${escapeHtml(anchor(addonConfig.sections[key]))}">${tx(`addon.nav.${key}`)}</a>`), '        ');
 }
 
-function artRow(label: string, pill: string): string {
-  return `<div class="gp-art-row">
-            <b>${escapeHtml(label)}</b>
-            <span class="gp-art-pill">${escapeHtml(pill)}</span>
-          </div>`;
-}
-
+/** Lignes de la fenêtre de l'addon montrée dans le héros (fragment d'interface). */
 function addonArtRows(): string {
+  const row = (label: string, pill: string, found = false) => `<div class="addon-ui-ligne${found ? ' is-found' : ''}">
+            <b>${escapeHtml(label)}</b>
+            <span class="addon-ui-pastille">${escapeHtml(pill)}</span>
+          </div>`;
   const rows = addonConfig.heroArt.professions.map((p) =>
-    artRow(tDynamic(`addon.hero.art.professions.${p.key}`), t('addon.hero.art.crafters', { count: p.crafters })));
-  rows.push(artRow(t('addon.hero.art.found'), t('addon.hero.art.available')));
+    row(tDynamic(`addon.hero.art.professions.${p.key}`), t('addon.hero.art.crafters', { count: p.crafters })));
+  rows.push(row(t('addon.hero.art.found'), t('addon.hero.art.available'), true));
   return join(rows, '          ');
 }
 
-function cardNumber(n: number, digits: number): string {
-  return formatNumber(n, { minimumIntegerDigits: digits, useGrouping: false });
+/** Les trois pièces du système, en liste à puces en écu. */
+function addonPieces(): string {
+  return join(addonConfig.featureCards.map((key) => `<li>
+          ${ECU_PUCE}
+          <div>
+            <h3>${tx(`addon.how.cards.${key}.title`)}</h3>
+            <p>${tDynamic(`addon.how.cards.${key}.text`)}</p>
+          </div>
+        </li>`), '        ');
 }
 
-function addonFeatureCards(): string {
-  return join(addonConfig.featureCards.map((key, i) => `<article class="gp-card">
-          <span class="gp-card-number">${escapeHtml(cardNumber(i + 1, addonConfig.featureNumberDigits))}</span>
-          <h3>${tx(`addon.how.cards.${key}.title`)}</h3>
-          <p>
-            ${tDynamic(`addon.how.cards.${key}.text`)}
-          </p>
-        </article>`), '\n        ');
-}
-
-/** Numéro d'une carte « à la carte », selon l'ordre de la config : {{> addonSeparateNumber addon}}. */
-function addonSeparateNumber(args: PartialArgs): string {
-  const index = (addonConfig.separateCards as readonly string[]).indexOf(args.positional[0] ?? '');
-  if (index < 0) throw new Error(`addonSeparateNumber : carte inconnue « ${String(args.positional[0])} »`);
-  return escapeHtml(cardNumber(index + 1, addonConfig.separateNumberDigits));
-}
-
+/** Parcours de synchronisation : étapes reliées par des flèches. */
 function addonFlow(): string {
-  const arrow = `<span class="gp-flow-arrow">${escapeHtml(addonConfig.icons.flowArrow)}</span>`;
-  const steps = addonConfig.flow.map((key, i) => {
-    const label = tx(`addon.how.flow.${key}`);
-    return `<span>${i === 0 ? `<b>${label}</b>` : label}</span>`;
-  });
+  const arrow = `<span class="addon-flux-fleche" aria-hidden="true">${iconSvg('arrow')}</span>`;
+  const steps = addonConfig.flow.map((key) => `<span class="addon-flux-etape">${tx(`addon.how.flow.${key}`)}</span>`);
   return join(steps.flatMap((s, i) => (i === 0 ? [s] : [arrow, s])), '        ');
 }
 
-/** Étapes d'une carte du canal manuel : {{> addonSteps export}}. */
+/** Étapes d'une colonne du canal manuel : {{> addonSteps export}}. */
 function addonSteps(args: PartialArgs): string {
   const card = args.positional[0] as keyof typeof addonConfig.manual | undefined;
-  if (!card || !(card in addonConfig.manual)) throw new Error(`addonSteps : carte inconnue « ${String(card)} »`);
+  if (!card || !(card in addonConfig.manual)) throw new Error(`addonSteps : colonne inconnue « ${String(card)} »`);
   return join(addonConfig.manual[card].map((step) =>
     `<li>${tDynamic(`addon.manual.${card}.steps.${step}`)}</li>`), '            ');
 }
 
 function addonFeaturedPoints(): string {
   return join(addonConfig.featuredPoints.map((key) =>
-    `<li>${tDynamic(`addon.downloads.featured.points.${key}`)}</li>`), '            ');
+    `<li>${ECU_PUCE}<span>${tDynamic(`addon.downloads.featured.points.${key}`)}</span></li>`), '            ');
 }
 
 function addonVersion(): string {
@@ -95,12 +85,15 @@ function addonVersion(): string {
   return t('addon.downloads.version', { version: escapeHtml(version), date: escapeHtml(formatted) });
 }
 
+/** Un téléchargement du pack par système, en lignes. */
 function addonPlatforms(): string {
-  return join(addonConfig.downloads.platforms.map((p) => `<article class="gp-platform">
-          <h4>${tx(`addon.downloads.platforms.${p.key}.name`)}</h4>
-          <p>${tx(`addon.downloads.platforms.${p.key}.detail`)}</p>
-          <a href="${escapeHtml(p.pack)}">${tx('addon.downloads.downloadPack')}</a>
-        </article>`), '\n        ');
+  return join(addonConfig.downloads.platforms.map((p) => `<li>
+          <div>
+            <h3>${tx(`addon.downloads.platforms.${p.key}.name`)}</h3>
+            <p>${tx(`addon.downloads.platforms.${p.key}.detail`)}</p>
+          </div>
+          <a class="lien-fleche" href="${escapeHtml(p.pack)}">${tx('addon.downloads.downloadPack')} ${iconSvg('arrow')}</a>
+        </li>`), '        ');
 }
 
 function addonCompanionLinks(): string {
@@ -110,17 +103,16 @@ function addonCompanionLinks(): string {
 }
 
 function addonTabs(): string {
-  return join(addonConfig.install.map((tab) =>
-    `<a class="gp-tab" href="${escapeHtml(anchor(tab.id))}">${tx(`addon.install.panels.${tab.key}.tab`)}</a>`), '          ');
+  return join(addonConfig.install.map((tab, i) =>
+    `<a${attrs({ class: `addon-onglet${i === 0 ? ` ${addonConfig.tabs.activeClass}` : ''}`, href: anchor(tab.id) })}>${tx(`addon.install.panels.${tab.key}.tab`)}</a>`), '          ');
 }
 
 function addonInstallPanels(): string {
   return join(addonConfig.install.map((tab) => {
     const base = `addon.install.panels.${tab.key}`;
-    const offset = 'offsetToken' in tab ? `margin-top:var(${tab.offsetToken});` : undefined;
     const steps = tab.steps.map((s) => `<li>${tDynamic(`${base}.steps.${s}`)}</li>`);
-    const note = tab.note ? `\n            <p>${tDynamic(`${base}.note`)}</p>` : '';
-    return `<article${attrs({ class: 'gp-install-content', id: tab.id, style: offset })}>
+    const note = tab.note ? `\n            <p class="addon-note">${tDynamic(`${base}.note`)}</p>` : '';
+    return `<article class="addon-panneau" id="${escapeHtml(tab.id)}">
             <h3>${tx(`${base}.title`)}</h3>
             <ol>
               ${join(steps, '              ')}
@@ -131,15 +123,13 @@ function addonInstallPanels(): string {
 
 function addonCommands(): string {
   return join(addonConfig.discordCommands.map((key) =>
-    `<p class="gp-command"><code>${tx(`addon.discord.commands.${key}.command`)}</code> ${tx(`addon.discord.commands.${key}.text`)}</p>`), '        ');
+    `<li><code>${tx(`addon.discord.commands.${key}.command`)}</code><span>${tx(`addon.discord.commands.${key}.text`)}</span></li>`), '        ');
 }
 
 function addonFaq(): string {
-  return join(addonConfig.faq.map((key) => `<details class="gp-command">
+  return join(addonConfig.faq.map((key) => `<details class="addon-question">
           <summary>${tx(`addon.faq.items.${key}.question`)}</summary>
-          <p>
-            ${tDynamic(`addon.faq.items.${key}.answer`)}
-          </p>
+          <p>${tDynamic(`addon.faq.items.${key}.answer`)}</p>
         </details>`), '\n        ');
 }
 
@@ -148,8 +138,7 @@ export const addonPartials: PartialRegistry = {
   addonMeta,
   addonNav,
   addonArtRows,
-  addonFeatureCards,
-  addonSeparateNumber,
+  addonPieces,
   addonFlow,
   addonSteps,
   addonFeaturedPoints,

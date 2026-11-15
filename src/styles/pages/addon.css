@@ -1,6 +1,8 @@
-/* Page « GuildProfessions » : mise en page propre (sans le socle commun shared.css,
-   dont les titres h4 et les règles d'en-tête ne correspondent pas à cette page). */
-@import "../tokens/media.css";
-@import "../tokens/core.css";
+/* Page « GuildProfessions » : socle commun, puis les blocs repris de l'accueil (panneau sombre, bande d'appel). */
+@import "../shared.css";
+@import "../tokens/home.css";
+@import "../tokens/guild.css";
 @import "../tokens/addon.css";
+@import "../guild.css";
+@import "../home.css";
 @import "../addon.css";

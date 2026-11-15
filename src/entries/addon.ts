@@ -1,9 +1,9 @@
-/**
- * Page « GuildProfessions » (addon de guilde). Elle garde sa propre mise en page
- * (menu latéral, pied de page) : pas d'initSiteChrome(), seulement ses propres modules.
- */
+/** Page « GuildProfessions » (addon de guilde). */
 import '../styles/pages/addon.css';
-import { initAddonSidebar, initAddonTheme } from '../features/addon/index.ts';
+import { initSiteChrome } from '../shared/page.ts';
+import { initAddonTabs } from '../features/addon/index.ts';
+import { initMemberStrip } from '../features/home/strip.ts';
 
-initAddonTheme();
-initAddonSidebar();
+initSiteChrome();
+initAddonTabs();
+void initMemberStrip();

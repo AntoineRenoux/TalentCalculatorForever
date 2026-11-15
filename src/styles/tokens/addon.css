@@ -1,170 +1,37 @@
-/* Jetons de la page « GuildProfessions » (addon de guilde).
-   Cette page a sa propre palette : nuit par défaut, jour seulement quand le visiteur
-   choisit explicitement le thème jour (comportement repris de la page d'origine). */
-
+/* Jetons de la page « GuildProfessions ». */
 :root {
-  /* ---------- Couleurs : thème nuit (par défaut) ---------- */
-  --gp-bg: #100d16;
-  --gp-surface: #191420;
-  --gp-surface-2: #211a2b;
-  --gp-text: #f5f0e8;
-  --gp-muted: #b7adbd;
-  --gp-purple: #7654a6;
-  --gp-purple-light: #a78bd0;
-  --gp-gold: #d8b66a;
-  --gp-border: rgb(216 182 106 / 20%);
-  --gp-shadow: 0 24px 70px rgb(0 0 0 / 30%);
-  --gp-status: #9ed6a5;
-  --gp-featured-border: rgb(216 182 106 / 45%);
-  --gp-header-bg: rgb(16 13 22 / 96%);
-  --gp-overlay-bg: rgb(0 0 0 / 55%);
-  --gp-button-text: #17111c;
-  --gp-button-secondary-text: var(--gp-gold);
-  --gp-body-glow: rgb(118 84 166 / 16%);
-  --gp-body-glow-size: 32rem;
-  --gp-card-fade: rgb(25 20 32 / 60%);
-  --gp-featured-glow: rgb(118 84 166 / 23%);
+  /* Héros */
+  --addon-titre: clamp(1.9rem, 6.6vw, 6.4rem);
+  --addon-heros-colonnes: minmax(0, 1fr) minmax(0, 1fr);
+  --addon-scene-height: clamp(300px, 34vw, 460px);
+  --addon-ecu-width: min(36vw, 400px);
+  --addon-ui-width: min(100%, 360px);
+  --addon-ui-shift: 12%;
+  --addon-ui-tilt: -2deg;
+  --addon-ui-entry: 32px;
+  --dur-addon-ui: .9s;
 
-  /* Fonds composés */
-  --gp-body-bg: radial-gradient(ellipse at 80% 5%, var(--gp-body-glow), transparent var(--gp-body-glow-size)), var(--gp-bg);
-  --gp-art-card-bg: linear-gradient(145deg, var(--gp-surface-2), var(--gp-surface));
-  --gp-card-bg: linear-gradient(145deg, var(--gp-surface), var(--gp-card-fade));
-  --gp-featured-bg: radial-gradient(ellipse at 100% 0%, var(--gp-featured-glow), transparent 50%), var(--gp-surface);
-  --gp-hero-ring-shadow: 0 0 0 55px rgb(216 182 106 / 2.5%), 0 0 0 110px rgb(118 84 166 / 3.5%);
+  /* Fragment d'interface de l'addon (data-ui : bordures autorisées) */
+  --addon-ui-fond: #191420;
+  --addon-ui-fond-ligne: #211a2b;
+  --addon-ui-texte: #f5f0e8;
+  --addon-ui-doux: #b7adbd;
+  --addon-ui-or: #d8b66a;
+  --addon-ui-vert: #7dd38f;
+  --addon-ui-bord: rgb(216 182 106 / 22%);
+  --addon-ui-ombre: 0 24px 60px -24px rgb(0 0 0 / 55%);
+  --addon-ui-padding: 1.25rem;
+  --addon-ui-radius: 10px;
+  --fs-addon-ui: .9rem;
 
-  /* ---------- Typographie ---------- */
-  --gp-fs-nav: .93rem;
-  --gp-fs-eyebrow: .76rem;
-  --gp-fs-pill: .76rem;
-  --gp-fs-heading: clamp(2rem, 4vw, 3.2rem);
-  --gp-fs-hero-title: clamp(3rem, 7vw, 5.8rem);
-  --gp-fs-hero-title-sm: clamp(2.7rem, 13vw, 4.3rem);
-  --gp-fs-card-title: 1.2rem;
-  --gp-fs-featured-title: 1.65rem;
-  --gp-fs-theme-icon: 1.2rem;
-  --gp-lh-heading: 1.08;
-  --gp-lh-hero-title: .98;
-  --gp-lh-copy: 1.8;
-  --gp-lh-card: 1.75;
-  --gp-lh-command: 1.6;
-  --gp-ls-brand: .08em;
-  --gp-ls-eyebrow: .18em;
-  --gp-ls-recommended: .15em;
-  --gp-ls-heading: -.035em;
-  --gp-ls-hero-title: -.065em;
+  /* Puces en écu */
+  --ecu-puce-size: 1.6rem;
 
-  /* ---------- Gabarit ---------- */
-  --gp-container-width: min(1160px, calc(100% - 40px));
-  --gp-container-width-sm: min(100% - 28px, 1160px);
-  --gp-sidebar-width: 260px;
-  --gp-sidebar-width-mobile: min(300px, 86vw);
-  --gp-sidebar-hidden: translateX(-105%);
-  --gp-sidebar-shown: translateX(0);
-  --gp-nav-max-height: calc(100vh - 90px);
-  --gp-header-blur: 14px;
-  --gp-section-heading-width: 720px;
-  --gp-hero-columns: 1.1fr .9fr;
-  --gp-hero-min-height: 590px;
-  --gp-hero-ring-top: 9%;
-  --gp-hero-ring-right: -16%;
-  --gp-hero-ring-size: 520px;
-  --gp-hero-title-width: 700px;
-  --gp-hero-description-width: 580px;
-  --gp-hero-art-min-height: 350px;
-  --gp-hero-art-min-height-sm: 280px;
-  --gp-art-card-width: min(100%, 390px);
-  --gp-art-card-tilt: rotate(2deg);
-  --gp-button-min-height: 48px;
-  --gp-button-hover-lift: translateY(-2px);
-  --gp-button-hover-filter: brightness(1.08);
-  --gp-card-number-size: 38px;
-  --gp-featured-text-width: 680px;
-  --gp-platform-text-min-height: 42px;
-  --gp-install-tabs-width: 230px;
-  --gp-command-min-width: 125px;
-  --gp-control-min-height: 44px;
-  --gp-theme-toggle-size: 46px;
-  --gp-flow-arrow-turn: rotate(90deg);
-  --gp-step-marker: "→";
-  --gp-columns-1: 1fr;
-  --gp-columns-2: repeat(2, minmax(0, 1fr));
-  --gp-columns-3: repeat(3, minmax(0, 1fr));
-  --gp-columns-4: repeat(4, minmax(0, 1fr));
-  --gp-columns-tabs-sm: repeat(2, 1fr);
-  --gp-columns-featured: 1fr auto;
-  --gp-columns-install: var(--gp-install-tabs-width) minmax(0, 1fr);
-
-  /* ---------- Espacements ---------- */
-  --gp-space-3xs: 6px;
-  --gp-space-2xs: 7px;
-  --gp-space-xs: 8px;
-  --gp-space-sm: 9px;
-  --gp-space-10: 10px;
-  --gp-space-12: 12px;
-  --gp-space-13: 13px;
-  --gp-space-14: 14px;
-  --gp-space-15: 15px;
-  --gp-space-16: 16px;
-  --gp-space-17: 17px;
-  --gp-space-18: 18px;
-  --gp-space-20: 20px;
-  --gp-space-21: 21px;
-  --gp-space-22: 22px;
-  --gp-space-24: 24px;
-  --gp-space-25: 25px;
-  --gp-space-26: 26px;
-  --gp-space-28: 28px;
-  --gp-space-30: 30px;
-  --gp-space-32: 32px;
-  --gp-space-34: 34px;
-  --gp-space-40: 40px;
-  --gp-section-padding: 90px;
-  --gp-section-padding-sm: 58px;
-  --gp-hero-gap: 60px;
-  --gp-hero-gap-sm: 20px;
-  --gp-hero-padding: 80px;
-  --gp-hero-padding-sm: 65px;
-  --gp-sidebar-padding-top-mobile: 78px;
-  --gp-main-padding-top-mobile: 68px;
-  --gp-menu-toggle-offset: 14px;
-  --gp-scroll-padding: 24px;
-  --gp-tabs-sticky-top: 20px;
-  /* Espacements repris des attributs style de la page d'origine */
-  --gp-heading-offset-manual: 70px;
-  --gp-heading-offset-separate: 65px;
-  --gp-install-panel-offset: 16px;
-
-  /* ---------- Rayons ---------- */
-  --gp-radius-sm: 7px;
-  --gp-radius-md: 8px;
-  --gp-radius-lg: 10px;
-  --gp-radius-xl: 12px;
-  --gp-radius-2xl: 16px;
-  --gp-radius-3xl: 18px;
-  --gp-radius-pill: 99px;
-
-  /* ---------- Plans d'empilement ---------- */
-  --gp-z-hero-content: 1;
-  --gp-z-overlay: 90;
-  --gp-z-sidebar: 100;
-  --gp-z-menu-toggle: 120;
-
-  /* ---------- Mouvement ---------- */
-  --gp-dur: 180ms;
-  --gp-dur-menu: 220ms;
-}
-
-/* ---------- Thème jour : choisi manuellement ---------- */
-:root[data-theme="light"] {
-  --gp-bg: #f5f1f8;
-  --gp-surface: #fff;
-  --gp-surface-2: #eee7f4;
-  --gp-text: #241c2d;
-  --gp-muted: #655d6b;
-  --gp-border: rgb(85 57 112 / 20%);
-  --gp-shadow: 0 24px 70px rgb(44 28 59 / 10%);
-  --gp-body-glow: rgb(118 84 166 / 12%);
-  --gp-header-bg: rgb(245 241 248 / 97%);
-  --gp-button-text: #fff;
-  --gp-button-secondary-text: var(--gp-purple);
+  /* Sections */
+  --addon-pieces-colonnes: repeat(3, minmax(0, 1fr));
+  --addon-onglets-width: 200px;
+  --addon-systeme-hover-shift: 6px;
+  --addon-code-fond: var(--bleu-pale);
+  --addon-code-padding: .1rem .4rem;
+  --fs-addon-flux: clamp(1.05rem, 1.6vw, 1.35rem);
 }
