@@ -4,6 +4,7 @@ import { talentsConfig } from '../../config/talents.config.ts';
 import { classes } from '../../src/data/index.ts';
 import { t, tDynamic } from '../../src/shared/i18n.ts';
 import { attrs, escapeHtml } from '../html/escape.ts';
+import { iconSvg, type IconName } from '../../config/icons.config.ts';
 import type { PartialArgs, PartialRegistry } from '../html/types.ts';
 
 function toolTabs(): string {
@@ -13,8 +14,9 @@ function toolTabs(): string {
       </nav>`;
 }
 
-function iconButton(id: string, titleKey: string, iconKey: string, className = 'icon-btn'): string {
-  return `<button type="button"${attrs({ class: className || undefined, id, title: tDynamic(titleKey) })}>${escapeHtml(tDynamic(iconKey))}</button>`;
+function iconButton(id: string, titleKey: string, icon: IconName, className = 'icon-btn'): string {
+  const label = tDynamic(titleKey);
+  return `<button type="button"${attrs({ class: className || undefined, id, title: label, 'aria-label': label })}>${iconSvg(icon)}</button>`;
 }
 
 function toolbar(): string {
@@ -23,23 +25,23 @@ function toolbar(): string {
       <nav class="class-bar" id="classBar" aria-label="${escapeHtml(t('talents.toolbar.classesAria'))}"></nav>
       <div class="tools">
         <div class="level">
-          ${iconButton('lvlDown', 'talents.toolbar.levelDown', 'talents.toolbar.levelDownIcon', '')}
+          ${iconButton('lvlDown', 'talents.toolbar.levelDown', 'minus', '')}
           <input type="number" id="level"${attrs({ min: minLevel, max: maxLevel, value: maxLevel, 'aria-label': t('talents.toolbar.levelAria') })}>
-          ${iconButton('lvlUp', 'talents.toolbar.levelUp', 'talents.toolbar.levelUpIcon', '')}
+          ${iconButton('lvlUp', 'talents.toolbar.levelUp', 'plus', '')}
         </div>
-        ${iconButton('removeMode', 'talents.toolbar.removeMode', 'talents.toolbar.removeModeIcon')}
-        ${iconButton('resetAll', 'talents.toolbar.resetAll', 'talents.toolbar.resetAllIcon')}
-        ${iconButton('copyLink', 'talents.toolbar.copyLink', 'talents.toolbar.copyLinkIcon')}
+        ${iconButton('removeMode', 'talents.toolbar.removeMode', 'eraser')}
+        ${iconButton('resetAll', 'talents.toolbar.resetAll', 'reset')}
+        ${iconButton('copyLink', 'talents.toolbar.copyLink', 'link')}
       </div>
     </section>`;
 }
 
-/** {{> searchBox id=… placeholder=<clé> icon=<clé> small=true}} */
+/** {{> searchBox id=… placeholder=<clé> small=true}} */
 function searchBox({ named }: PartialArgs): string {
-  const { id, placeholder, icon, small } = named;
-  if (!id || !placeholder || !icon) throw new Error('searchBox : id, placeholder et icon sont requis');
+  const { id, placeholder, small } = named;
+  if (!id || !placeholder) throw new Error('searchBox : id et placeholder sont requis');
   return `<label class="search${small ? ' small' : ''}">
-            <span aria-hidden="true">${escapeHtml(tDynamic(icon))}</span>
+            ${iconSvg('search')}
             <input type="search"${attrs({ id, placeholder: tDynamic(placeholder) })}>
           </label>`;
 }
@@ -54,4 +56,20 @@ function legacyRedirect(): string {
   return `<script>if(/^#(${keys})\\b/.test(location.hash))location.replace(${target}+location.hash);</script>`;
 }
 
-export const talentsPartials: PartialRegistry = { toolTabs, toolbar, searchBox, legacyRedirect };
+/** {{> icon nom}} : icône SVG décorative. */
+function icon({ positional }: PartialArgs): string {
+  const [name] = positional;
+  if (!name) throw new Error('icon : nom manquant');
+  return iconSvg(name as IconName);
+}
+
+/** {{> talentsCfg chemin}} : valeur de config/talents.config.ts. */
+function talentsCfg({ positional }: PartialArgs): string {
+  const [path] = positional;
+  if (!path) throw new Error('talentsCfg : chemin manquant');
+  const value = path.split('.').reduce<unknown>((n, k) => (n && typeof n === 'object' ? (n as Record<string, unknown>)[k] : undefined), talentsConfig);
+  if (value === undefined) throw new Error(`talentsCfg : réglage inconnu « ${path} »`);
+  return escapeHtml(value);
+}
+
+export const talentsPartials: PartialRegistry = { toolTabs, toolbar, searchBox, legacyRedirect, icon, talentsCfg };

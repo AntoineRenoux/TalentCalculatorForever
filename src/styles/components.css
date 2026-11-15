@@ -20,8 +20,7 @@
   padding: var(--space-sm) var(--space-xl);
   border: var(--border-thin) solid var(--or);
   border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to));
-  box-shadow: var(--ombre-btn);
+  background: var(--btn-fond);
   color: var(--blanc-pur);
   cursor: pointer;
   font-family: var(--font-sans);
@@ -31,7 +30,7 @@
   text-decoration: none;
   transition: transform var(--dur-base) var(--ease), filter var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
-.btn:hover { filter: brightness(1.12); box-shadow: var(--ombre-btn-hover); transform: translateY(var(--lift)); }
+.btn:hover { background: var(--btn-fond-survol); }
 .btn.fantome {
   border-color: var(--ligne);
   background: color-mix(in srgb, var(--blanc) var(--ghost-glass), transparent);
@@ -44,7 +43,18 @@ section.bloc { padding: var(--space-section) var(--space-0); }
 
 .entete { display: flex; align-items: baseline; gap: var(--space-md); margin-bottom: var(--space-xl); }
 .entete h2 { color: var(--bleu); }
-.entete .trait { height: var(--border-thin); flex: 1; background: linear-gradient(90deg, var(--or), var(--ligne)); }
+.entete .trait { display: none; }
+
+/* Cadres en forme d'écu (photo, avatar, rendu) */
+.ecu-cadre, .ecu-vignette, .ecu-geant-forme {
+  -webkit-mask: var(--ecu-mask) center / 100% 100% no-repeat;
+  mask: var(--ecu-mask) center / 100% 100% no-repeat;
+}
+.ecu-cadre { aspect-ratio: var(--ecu-ratio); overflow: hidden; background: var(--bleu-pale); }
+.ecu-cadre img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Icônes SVG (config/icons.config.ts) */
+.icone { width: var(--icon-size); height: var(--icon-size); flex: none; vertical-align: middle; }
 
 .colonnes {
   display: grid;

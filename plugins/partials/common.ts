@@ -2,6 +2,7 @@
 import { siteConfig, pageHref, type NavLink, type PageId } from '../../config/site.config.ts';
 import { t, tDynamic } from '../../src/shared/i18n.ts';
 import { attrs, escapeHtml } from '../html/escape.ts';
+import { iconSvg } from '../../config/icons.config.ts';
 import type { PartialArgs, PartialRegistry } from '../html/types.ts';
 
 function pageOf(args: PartialArgs): PageId {
@@ -69,7 +70,7 @@ function header(args: PartialArgs): string {
       ${groups}
     </nav>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="${escapeHtml(t('theme.defaultLabel'))}" title="${escapeHtml(t('theme.defaultLabel'))}">
-      <span id="theme-icon" aria-hidden="true">${siteConfig.theme.icons.dark}</span>
+      <span id="theme-icon" aria-hidden="true">${iconSvg(siteConfig.theme.icons.dark)}</span>
     </button>
   </div>
 </header>`;
@@ -104,6 +105,7 @@ function footer(): string {
         </ul>
       </div>
     </div>
+    <p class="marque-geante" aria-hidden="true">${escapeHtml(siteConfig.guild.name)}</p>
     <div class="mentions">
       <span>${escapeHtml(t('footer.copyright', { year: siteConfig.guild.foundedYear }))}</span>
       <span>${escapeHtml(t('footer.signature'))}</span>

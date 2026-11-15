@@ -6,6 +6,7 @@ import { t } from '../../shared/i18n.ts';
 import { classIconUrl, iconUrl } from '../../shared/icons.ts';
 import { toast } from '../../shared/toast.ts';
 import { hideTooltip } from '../../shared/tooltip.ts';
+import { observeReveal } from '../../shared/motion.ts';
 import { encodeBuild, parseBuild } from './hash.ts';
 import { renderTrees, talentNodes } from './render.ts';
 import {
@@ -18,7 +19,7 @@ const ids = {
   classBar: 'classBar', level: 'level', levelDown: 'lvlDown', levelUp: 'lvlUp', removeMode: 'removeMode',
   resetAll: 'resetAll', copyLink: 'copyLink', calc: 'calc', welcome: 'welcome', heading: 'className',
   search: 'search', spread: 'spread', remaining: 'remaining', requiredLevel: 'reqLevel', trees: 'trees',
-  order: 'order', orderEmpty: 'orderEmpty',
+  order: 'order', orderEmpty: 'orderEmpty', picker: 'classPicker',
 } as const;
 
 // ---------- Mise à jour de l'affichage ----------
@@ -156,6 +157,26 @@ export function readHash(): boolean {
   return true;
 }
 
+/** Écran d'accueil : les classes en grands écus (un clic ouvre la classe). */
+function buildClassPicker(): void {
+  const list = document.getElementById(ids.picker);
+  if (!list) return;
+  classes.forEach((c) => {
+    const li = el('li');
+    const button = el('button', 'choix-classe', { type: 'button', 'data-key': c.key });
+    button.style.setProperty(cssVars.classColor, c.color);
+    const frame = el('span', 'ecu-cadre choix-classe-ecu');
+    frame.append(el('img', '', { src: classIconUrl(c.key, 'large'), alt: '', width: String(talentsConfig.picker.iconSize), height: String(talentsConfig.picker.iconSize) }));
+    const name = el('span', 'choix-classe-nom');
+    name.textContent = c.name;
+    button.append(frame, name);
+    button.addEventListener('click', () => selectClass(c.key));
+    li.append(button);
+    list.append(li);
+  });
+  observeReveal(list.parentElement ?? document);
+}
+
 function buildClassBar(): void {
   const bar = byId(ids.classBar);
   classes.forEach((c) => {
@@ -169,6 +190,7 @@ function buildClassBar(): void {
 
 export function initCalculator(): void {
   buildClassBar();
+  buildClassPicker();
   const levelInput = byId<HTMLInputElement>(ids.level);
   levelInput.min = String(rules.minLevel);
   levelInput.max = String(rules.maxLevel);

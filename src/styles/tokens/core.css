@@ -15,6 +15,7 @@
   --argent-fonce: #746e80;
   --or: #b8892a;
   --or-clair: #e3c473;
+  --or-texte: #7d5a14;
   --bleu: #3b245d;
   --bleu-vif: #68449a;
   --bleu-pale: #eee8f6;
@@ -24,12 +25,17 @@
   --ok: #2f8a43;
   --danger: #b3261e;
   --blanc-pur: #fff;
+  /* Couleurs de classe (--c posé par le JS), assombries de jour pour rester lisibles */
+  --cls-mix: 58%;
+  --cls-color: color-mix(in srgb, var(--c) var(--cls-mix), var(--encre));
   --noir: #000;
 
   /* Dégradé des boutons principaux (identique dans les deux thèmes) */
   --btn-grad-from: #7651a6;
   --btn-grad-to: #3b245d;
   --selection-bg: #68449a;
+  --btn-fond: #4f3080;
+  --btn-fond-survol: #3b245d;
 
   /* Ombres et halos violets (jour) */
   --ombre: 0 16px 50px -24px rgb(52 24 82 / 34%), 0 2px 8px rgb(52 24 82 / 8%);
@@ -56,9 +62,9 @@
 
   --fs-base: 16px;
   --fs-base-mobile: 15px;
-  --fs-3xs: .7rem;
+  --fs-3xs: .8125rem;
   --fs-2xs: .75rem;
-  --fs-xs: .8rem;
+  --fs-xs: .8125rem;
   --fs-sm: .84rem;
   --fs-sm-plus: .88rem;
   --fs-md-minus: .9rem;
@@ -124,7 +130,8 @@
   --border-thick: 3px;
 
   /* ---------- Gabarit ---------- */
-  --wrap-width: min(1100px, 92vw);
+  --page-margin: clamp(20px, 4vw, 40px);
+  --wrap-width: min(1100px, 100% - 2 * var(--page-margin));
   --prose-width: 66ch;
   --hero-text-width: 58ch;
   --header-min-height: 76px;
@@ -155,7 +162,32 @@
   --dur-theme: .25s;
   --dur-none: .01ms;
   --ease: ease;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
   --lift: -2px;
+  --dur-slow: .5s;
+  --dur-reveal: .7s;
+  --reveal-rise: 24px;
+  --reveal-stagger: 80ms;
+  --press-scale: .97;
+  --toggle-turn: 25deg;
+  --menu-rise: -6px;
+
+  /* ---------- Motif : l'écu de l'emblème (masque SVG mis à l'échelle de son cadre) ---------- */
+  --ecu-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V58C100 92 72 110 50 120C28 110 0 92 0 58Z'/%3E%3C/svg%3E");
+  --ecu-ratio: 5 / 6;
+
+  /* ---------- Icônes ---------- */
+  --icon-size: 1.15em;
+
+  /* ---------- Échelle d'affichage (héros et grands titres) ---------- */
+  --fs-display: clamp(3rem, 7.2vw, 7.5rem);
+  --fs-display-sub: clamp(1.15rem, 1.6vw, 1.45rem);
+  --fs-statement: clamp(1.5rem, 2.4vw, 2.25rem);
+  --fs-section: clamp(2rem, 4vw, 3.4rem);
+  --lh-display: .95;
+  --fs-wordmark: clamp(2.6rem, 10.4vw, 9.5rem);
+  --ls-display: -.01em;
+  --space-section-lg: clamp(5rem, 11vw, 9rem);
 }
 
 /* ---------- Thème nuit : automatique, sauf choix « jour » ---------- */
@@ -169,6 +201,7 @@
     --argent-fonce: #aaa0b8;
     --or: #d0aa59;
     --or-clair: #f0d58d;
+    --or-texte: #d0aa59;
     --bleu: #b99ae2;
     --bleu-vif: #9b70d1;
     --bleu-pale: #1c1428;
@@ -177,6 +210,7 @@
     --ligne: #2e2638;
     --ok: #5cc46f;
     --danger: #ff6b6b;
+    --cls-mix: 100%;
     --ombre: 0 18px 55px -22px rgb(96 48 145 / 46%), 0 0 22px rgb(96 48 145 / 12%);
   }
 }
@@ -191,6 +225,7 @@
   --argent-fonce: #aaa0b8;
   --or: #d0aa59;
   --or-clair: #f0d58d;
+  --or-texte: #d0aa59;
   --bleu: #b99ae2;
   --bleu-vif: #9b70d1;
   --bleu-pale: #1c1428;
@@ -199,5 +234,6 @@
   --ligne: #2e2638;
   --ok: #5cc46f;
   --danger: #ff6b6b;
+  --cls-mix: 100%;
   --ombre: 0 18px 55px -22px rgb(96 48 145 / 46%), 0 0 22px rgb(96 48 145 / 12%);
 }

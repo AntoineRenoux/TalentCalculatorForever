@@ -1,9 +1,12 @@
 /** Textes de la page « Guide des boss ». */
 export const boss = {
   hero: {
-    devise: 'Tableau de progression',
     title: 'Guide des boss de raid',
     intro: 'Un aperçu clair des mécaniques, des placements et des rôles essentiels pour réussir chaque rencontre en équipe.',
+  },
+  strip: {
+    title: 'La guilde se prépare',
+    text: 'En attendant les guides, voici quelques-uns des personnages qui feront les essais.',
   },
   wip: {
     title: 'Travail en cours',

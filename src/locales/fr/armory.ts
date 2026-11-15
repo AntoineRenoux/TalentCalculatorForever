@@ -3,7 +3,6 @@ export const armory = {
   documentTitle: 'Armurerie — Calculateur de talents',
   characterTitle: '{name} {surname} — Armurerie',
   list: {
-    searchIcon: '🔍',
     searchPlaceholder: 'Rechercher un membre',
     classesAria: 'Filtrer par classe',
     allClasses: 'Toutes',

@@ -23,6 +23,11 @@
   --poste-padding: 1.1rem 1rem;
   --poste-hover-bg: color-mix(in srgb, var(--bleu-pale) 60%, transparent);
   --pion-size: 30px;
+  --poste-hover-shift: 6px;
+  --bande-min: 150px;
+  --bande-zoom: 1.9;
+  --bande-zoom-hover: 2.05;
+  --bande-focus: 50% 38%;
   --statut-padding: .3rem .7rem;
   --statut-prio-bg: color-mix(in srgb, var(--or) 14%, transparent);
 

@@ -29,8 +29,7 @@ button { font: inherit; color: inherit; }
 .tab:hover { border-color: var(--or); background: var(--bleu-pale); color: var(--bleu); }
 .tab.on {
   border-color: var(--or);
-  background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to));
-  box-shadow: var(--ombre-btn);
+  background: var(--btn-fond);
   color: var(--blanc-pur);
 }
 .page { padding: var(--tc-page-top) var(--space-0) var(--tc-page-bottom); font-size: var(--fs-tc-md); line-height: var(--lh-tc-body); }
@@ -41,7 +40,6 @@ button { font: inherit; color: inherit; }
   border-radius: var(--radius-xl);
   background: var(--carte);
 }
-.toolbar, .panel, .doll, .side-box, .char-head { box-shadow: var(--ombre); }
 
 /* Recherche, puces, cases à cocher, bouton principal */
 .search {
@@ -87,8 +85,7 @@ button { font: inherit; color: inherit; }
   padding: var(--tc-5) var(--tc-10);
   border: var(--border-thin) solid var(--or);
   border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to));
-  box-shadow: var(--ombre-btn);
+  background: var(--btn-fond);
   color: var(--blanc-pur);
   cursor: pointer;
   font-weight: var(--fw-semibold);
@@ -149,7 +146,7 @@ button { font: inherit; color: inherit; }
 
 /* Arbres */
 .trees { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--tc-7); }
-.tree { display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--ombre); }
+.tree { display: flex; flex-direction: column; overflow: hidden; }
 .tree-head { display: flex; align-items: center; gap: var(--tc-6); padding: var(--tc-6) var(--tc-7); border-bottom: var(--border-thin) solid var(--ligne); }
 .tree-head img { width: var(--tc-tree-icon); height: var(--tc-tree-icon); border: var(--border-thin) solid var(--or); border-radius: var(--radius-round); }
 .tree-head .name { flex: 1; color: var(--bleu); font-family: var(--font-serif); font-weight: var(--fw-bold); }
@@ -274,7 +271,32 @@ button { font: inherit; color: inherit; }
 .order li img { width: var(--tc-order-icon); height: var(--tc-order-icon); border-radius: var(--radius-sm); }
 .order li .rk { margin-left: auto; color: var(--argent-fonce); }
 
-.welcome { margin-top: var(--tc-page-bottom); color: var(--encre-doux); text-align: center; }
+.welcome { margin-top: var(--tc-page-bottom); text-align: center; }
+.welcome h2 { color: var(--bleu); font-size: var(--fs-section); }
+.welcome p { max-width: var(--prose-width); margin: var(--space-md) auto var(--space-2xl); color: var(--encre); }
+.choix-classes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--tc-choix-min), 1fr));
+  gap: var(--space-xl);
+  margin: var(--space-0);
+  padding: var(--space-0);
+  list-style: none;
+}
+.choix-classe {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-0);
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.choix-classe-ecu { width: var(--tc-choix-ecu); background: var(--c); transition: transform var(--dur-base) var(--ease-out); }
+.choix-classe-ecu img { transform: scale(var(--tc-choix-zoom)); }
+.choix-classe-nom { color: var(--cls-color); font-family: var(--font-serif); font-size: var(--fs-2xl); font-weight: var(--fw-bold); }
+.choix-classe:hover .choix-classe-ecu, .choix-classe:focus-visible .choix-classe-ecu { transform: translateY(var(--lift)) scale(var(--tc-choix-hover)); }
+.choix-classe:active .choix-classe-ecu { transform: scale(var(--press-scale)); }
 
 /* Traits raciaux */
 .racial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--tc-racial-min), 1fr)); gap: var(--tc-6); padding-bottom: var(--tc-9); }
@@ -412,6 +434,7 @@ button { font: inherit; color: inherit; }
 }
 @media (--bp-nav) {
   .tab { flex: 1; text-align: center; }
+  .toolbar, .class-bar { justify-content: center; }
 }
 @media (--bp-small) {
   .page { padding-top: var(--tc-page-top-mobile); }

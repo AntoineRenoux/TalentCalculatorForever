@@ -1,6 +1,27 @@
 /* ---------- Pages de la guilde (accueil, recrutement, boss) ---------- */
 
 /* Image « travaux en cours » */
+.chantier p { max-width: var(--prose-width); }
+
+/* ---------- Bande de membres (rendus en écu) ---------- */
+.bande-membres { padding: var(--space-section) var(--space-0); background: var(--voile); }
+.bande-membres-tete h2 { color: var(--bleu); font-size: var(--fs-section); }
+.bande-membres-tete p { max-width: var(--prose-width); color: var(--encre); }
+.bande-membres-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--bande-min), 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding: var(--space-0);
+  list-style: none;
+}
+.bande-membres figure { margin: var(--space-0); }
+.bande-membres .ecu-cadre { background: var(--bleu-pale); }
+.bande-membres .ecu-cadre img { transform: scale(var(--bande-zoom)); transform-origin: var(--bande-focus); transition: transform var(--dur-slow) var(--ease-out); }
+.bande-membres li:hover .ecu-cadre img { transform: scale(var(--bande-zoom-hover)); }
+.bande-membres figcaption { display: grid; margin-top: var(--space-sm); text-align: center; }
+.bande-nom { color: var(--bleu); font-family: var(--font-serif); font-weight: var(--fw-bold); }
+.bande-info { color: var(--encre-doux); font-size: var(--fs-sm); }
 .atelier {
   position: relative;
   width: 100%;
@@ -13,7 +34,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  box-shadow: var(--ombre);
 }
 .atelier::before {
   position: absolute;
@@ -47,11 +67,7 @@
 dl.fiche {
   overflow: hidden;
   margin: var(--space-0);
-  border: var(--border-thin) solid var(--ligne);
-  border-top: var(--border-medium) solid var(--or);
-  border-radius: var(--radius-md);
   background: var(--voile);
-  box-shadow: var(--ombre);
 }
 dl.fiche div {
   display: flex;
@@ -72,13 +88,11 @@ dl.fiche dd {
 
 /* ---------- Postes de recrutement ---------- */
 ul.postes {
+  display: grid;
+  gap: var(--space-xs);
   overflow: hidden;
   margin: var(--space-0);
   padding: var(--space-0);
-  border: var(--border-thin) solid var(--ligne);
-  border-radius: var(--radius-lg);
-  background: var(--voile);
-  box-shadow: var(--ombre);
   list-style: none;
 }
 ul.postes li {
@@ -87,9 +101,9 @@ ul.postes li {
   align-items: center;
   gap: var(--space-md);
   padding: var(--poste-padding);
-  border-bottom: var(--border-thin) solid var(--ligne);
+  transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-ul.postes li:last-child { border-bottom: 0; }
+ul.postes li:hover { background: var(--voile); transform: translateX(var(--poste-hover-shift)); }
 ul.postes li:hover { background: var(--poste-hover-bg); }
 .pion { width: var(--pion-size); height: var(--pion-size); flex: none; }
 .poste-nom { font-family: var(--font-serif); font-size: var(--fs-lg); font-weight: var(--fw-bold); }
@@ -104,9 +118,9 @@ ul.postes li:hover { background: var(--poste-hover-bg); }
   font-weight: var(--fw-bold);
   white-space: nowrap;
 }
-.statut.prio { border-color: var(--or); background: var(--statut-prio-bg); color: var(--or); }
+.statut.prio { border-color: var(--or); background: var(--statut-prio-bg); color: var(--or-texte); }
 .statut.ouvert { border-color: var(--bleu-vif); background: var(--bleu-pale); color: var(--bleu); }
-.statut.ferme { border-color: var(--ligne); background: var(--voile); color: var(--argent-fonce); }
+.statut.ferme { border-color: var(--ligne); background: var(--voile); color: var(--encre-doux); }
 
 /* ---------- Étapes ---------- */
 ol.etapes {
@@ -122,10 +136,8 @@ ol.etapes li {
   grid-template-columns: auto 1fr;
   gap: var(--space-lg);
   padding: var(--etape-padding);
-  border-bottom: var(--border-thin) solid var(--ligne);
   counter-increment: etape;
 }
-ol.etapes li:first-child { border-top: var(--border-thin) solid var(--ligne); }
 ol.etapes li::before {
   display: grid;
   width: var(--etape-pastille-size);
@@ -186,7 +198,6 @@ textarea:focus {
   border-top: var(--border-thick) solid var(--or);
   border-radius: var(--radius-md);
   background: var(--bleu-pale);
-  box-shadow: var(--ombre);
 }
 .recap[hidden] { display: none; }
 .recap h3 { margin-bottom: var(--space-xs); color: var(--bleu); font-family: var(--font-serif); }

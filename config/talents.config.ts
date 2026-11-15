@@ -46,6 +46,9 @@ export const talentsConfig = {
 
   toastMs: 2200,
 
+  /** Écran de choix de classe : taille d'affichage des icônes de classe (px). */
+  picker: { iconSize: 120 },
+
   /** Liens partagés : #<classe>/<rangs-arbre1>-<arbre2>-<arbre3>/r<race> */
   hash: {
     segmentSeparator: '/',

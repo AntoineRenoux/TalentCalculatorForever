@@ -57,7 +57,8 @@ export const siteConfig = {
     storageKey: 'formerhope-theme',
     light: 'light',
     dark: 'dark',
-    icons: { light: '☀️', dark: '🌙' },
+    /** Icônes (config/icons.config.ts) du thème actif. */
+    icons: { light: 'sun', dark: 'moon' },
   },
 
   /** Requêtes média utilisées par le JavaScript. */
@@ -65,6 +66,7 @@ export const siteConfig = {
     prefersDark: '(prefers-color-scheme: dark)',
     fineHover: '(hover: hover) and (pointer: fine)',
     noHover: '(hover: none)',
+    reducedMotion: '(prefers-reduced-motion: reduce)',
   },
 
   api: {

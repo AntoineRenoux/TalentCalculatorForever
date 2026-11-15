@@ -1,0 +1,81 @@
+/* Jetons de l'accueil. */
+:root {
+  /* Héros : écu géant rogné par le bord droit */
+  --hero-min-height: calc(100svh - var(--header-min-height));
+  --hero-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  --ecu-geant-width: min(44vw, 680px);
+  --ecu-geant-overflow: -8vw;
+  --ecu-geant-entry-scale: 1.06;
+  --ecu-geant-entry-rise: 40px;
+  --dur-hero: 1.1s;
+  --lede-width: 34ch;
+
+  /* Phrase d'accroche */
+  --statement-width: 30ch;
+  --vignette-height: .95em;
+  --vignette-gap: .14em;
+  --vignette-shift: -.12em;
+
+  /* Panneau « la guilde » */
+  --panneau-inset: clamp(.75rem, 1.6vw, 1.25rem);
+  --panneau-padding: clamp(1.75rem, 4.5vw, 3.75rem);
+  --panneau-fond: #2a1a42;
+  --panneau-encre: #f2edf8;
+  --panneau-doux: #cfc3e0;
+  --panneau-ligne-fiche: rgb(255 255 255 / 8%);
+  --sceau-width: min(30vw, 360px);
+  --sceau-width-mobile: 62vw;
+
+  /* Roster */
+  --roster-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  --roster-item-gap: .35rem;
+  --roster-vignette: 3rem;
+  --roster-apercu-top: calc(var(--header-min-height) + var(--space-xl));
+  --roster-hover-shift: 6px;
+  --fs-roster-name: 1.08rem;
+  --render-zoom: 1.9;
+  --render-focus: 50% 38%;
+  --render-zoom-hover: 2.05;
+  --semaine-ecu-width: min(88%, 320px);
+
+  /* Semaine : quatre champs de couleur */
+  --semaine-height: min(84svh, 640px);
+  --semaine-1: #eee8f6;
+  --semaine-2: #ddd0ef;
+  --semaine-3: #c4b0e2;
+  --semaine-4: #4f3080;
+  --semaine-encre-fonce: #f2edf8;
+  --fs-clause: clamp(1.25rem, 1.9vw, 1.75rem);
+
+  /* Appel « Postuler » */
+  --appel-height: 60svh;
+  --appel-height-mobile: 46svh;
+  --fs-appel-mot: clamp(3.5rem, 16vw, 15rem);
+  --appel-fleche: 3rem;
+  --appel-fond: #4f3080;
+  --appel-encre: #f2edf8;
+}
+
+/* Nuit : le panneau et les champs gardent leur contraste */
+@media (--prefers-dark) {
+  :root:not([data-theme="light"]) {
+    --panneau-fond: #1c1428;
+    --semaine-1: #1c1428;
+    --semaine-2: #261b37;
+    --semaine-3: #34254b;
+    --semaine-4: #b99ae2;
+    --semaine-encre-fonce: #09080d;
+    --appel-fond: #b99ae2;
+    --appel-encre: #09080d;
+  }
+}
+:root[data-theme="dark"] {
+  --panneau-fond: #1c1428;
+  --semaine-1: #1c1428;
+  --semaine-2: #261b37;
+  --semaine-3: #34254b;
+  --semaine-4: #b99ae2;
+  --semaine-encre-fonce: #09080d;
+  --appel-fond: #b99ae2;
+  --appel-encre: #09080d;
+}

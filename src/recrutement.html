@@ -11,15 +11,16 @@
 <main>
 
   <div class="heros">
-    <div class="wrap">
+    <div class="wrap" data-reveal>
       <img class="sceau" src="{{cfg assets.seal}}" alt="">
-      <p class="devise">{{t recruitment.hero.devise}}</p>
       <h1>{{t recruitment.hero.title}}</h1>
       <p>{{t recruitment.hero.intro}}</p>
     </div>
   </div>
 
-  <section class="bloc wrap" id="postes-ouverts">
+  {{> memberStrip zone=recruitment}}
+
+  <section class="bloc wrap" data-reveal id="postes-ouverts">
     <div class="entete">
       <h2>{{t recruitment.posts.title}}</h2>
       <span class="trait"></span>
@@ -30,7 +31,7 @@
     <p class="aide postes-note">{{t recruitment.posts.note}}</p>
   </section>
 
-  <section class="bloc wrap" id="comment-ca-se-passe">
+  <section class="bloc wrap" data-reveal id="comment-ca-se-passe">
     <div class="entete">
       <h2>{{t recruitment.steps.title}}</h2>
       <span class="trait"></span>
@@ -39,7 +40,7 @@
     {{> recruitmentSteps}}
   </section>
 
-  <section class="bloc wrap" id="candidature-section">
+  <section class="bloc wrap" data-reveal id="candidature-section">
     <div class="entete">
       <h2>{{t recruitment.form.title}}</h2>
       <span class="trait"></span>

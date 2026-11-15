@@ -2,26 +2,68 @@
 export const home = {
   hero: {
     logoAlt: "Logo de la guilde Former Hope : écu bleu au lion d'argent, marteaux croisés et bannières",
-    devise: 'Fondée en {year} · Alliance · WOW FOREVER',
-    tagline: "Unis par l'aventure, guidés par l'envie.",
-    intro: "Une guilde stable d'adultes qui vise à clean chaque patch sans transformer le jeu en second travail. On progresse, on rigole, et on s’amuse. Notre objectif : un groupe soudé qui avance comme une vraie équipe.",
-    ctaRecruitment: 'Voir les postes ouverts',
-    ctaBoss: 'Guide des boss',
+    lede: "Guilde PvE francophone de l'Alliance sur WoW Forever, fondée en {year}. On clean chaque patch sans en faire un second travail.",
+    ctaRecruitment: 'Rejoindre la guilde',
+    ctaRoster: 'Voir le roster',
   },
-  guild: {
-    title: 'La guilde',
-    welcome: 'Bienvenue chez Former Hope, une guilde PvE chill qui souhaite avant tout construire une communauté soudée, mature et agréable, tout en avançant sérieusement dans le contenu PvE.',
-    origins: 'Former Hope est née d’un noyau de joueurs venus de serveurs privés, habitués à clean le contenu et à tenir bon là où d’autres abandonnent. Cette endurance, cette stabilité, c’est ce qui nous définit. Nous rejoindre, c’est rejoindre une équipe qui ne lâche jamais.',
-    philosophyTitle: 'Notre philosophie',
-    values: 'Chez Former Hope, nous attachons une grande importance à trois valeurs essentielles : Respect • Entraide • Bonne humeur.',
-    environment: 'Nous voulons créer un environnement où chacun peut jouer, progresser, échanger et prendre du plaisir sans pression inutile.',
-    raids: 'On raide le mardi et le dimanche, de 21h00 à 00h00, heure de Paris. Présence attendue sur deux soirs minimum. Les potions, les flacons et les nourritures de raid sont fournis par la banque de guilde : tu viens avec ton stuff optimisé et ta bonne humeur.',
-    outside: 'En dehors du raid, on fait des rerolls, des donjons, de l’optimisation, et j’en passe, très souvent avec des soirées qui durent bien plus longtemps que prévu.',
+
+  /** Phrase d'accroche : chaque {slot} est remplacé par l'avatar d'un membre, en forme d'écu. */
+  statement: "Des adultes {slot} qui raident deux soirs {slot}, rigolent beaucoup {slot} et ne lâchent rien.",
+  statementSlotAlt: 'Avatar d’un membre de la guilde',
+
+  about: {
+    title: 'Une équipe qui tient bon',
+    sealAlt: 'Sceau de la guilde Former Hope',
+    origins: {
+      title: 'D’où l’on vient',
+      text: 'Former Hope est née d’un noyau de joueurs venus de serveurs privés, habitués à clean le contenu et à tenir bon là où d’autres abandonnent. Cette endurance, cette stabilité, c’est ce qui nous définit.',
+    },
+    values: {
+      title: 'Respect, entraide, bonne humeur',
+      text: 'Nous voulons un environnement où chacun peut jouer, progresser, échanger et prendre du plaisir sans pression inutile. Une communauté soudée, mature et agréable, qui avance sérieusement dans le contenu PvE.',
+    },
+    cta: 'Voir les postes ouverts',
   },
-  expectations: {
-    title: "Ce qu'on attend",
-    text: "Connaître les tactiques avant le soir du raid, accepter les retours sans les prendre personnellement, et prévenir sur Discord quand tu ne peux pas venir. C'est tout. Le reste s'apprend en jeu.",
+
+  roster: {
+    title: 'Le roster',
+    count: { one: '{count} aventurier', other: '{count} aventuriers' },
+    intro: 'Les personnages de la guilde, en direct depuis l’armurerie. Survolez un nom pour voir le personnage.',
+    loading: 'Chargement du roster…',
+    error: 'Le roster est indisponible pour le moment.',
+    member: 'Niv. {level} · {className}',
+    previewAlt: 'Rendu du personnage {name}',
+    all: 'Ouvrir l’armurerie complète',
+    stripMember: 'Niv. {level} · {className}',
   },
+
+  week: {
+    title: 'Une semaine chez nous',
+    fields: {
+      before: {
+        clause: 'Avant le raid, on lit les tactiques.',
+        text: "Connaître les tactiques avant le soir du raid, accepter les retours sans les prendre personnellement, et prévenir sur Discord quand tu ne peux pas venir. C'est tout.",
+      },
+      tuesday: {
+        clause: 'Mardi, de 21h à minuit, on raide.',
+        text: 'Heure de Paris, vocal Discord obligatoire. Présence attendue sur deux soirs minimum.',
+      },
+      between: {
+        clause: 'Entre deux, on joue ensemble.',
+        text: 'Rerolls, donjons, optimisation, et des soirées qui durent bien plus longtemps que prévu.',
+      },
+      sunday: {
+        clause: 'Dimanche, on remet ça.',
+        text: 'Potions, flacons et nourritures de raid fournis par la banque de guilde : tu viens avec ton stuff optimisé et ta bonne humeur.',
+      },
+    },
+  },
+
+  cta: {
+    lead: 'Une candidature, un passage sur Discord, et on se retrouve en raid.',
+    word: 'Postuler',
+  },
+
   sheet: {
     title: 'Fiche',
     rows: {
