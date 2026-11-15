@@ -364,7 +364,8 @@
     if (!races.includes(state.race)) state.race = races[0] ?? null;
     document.querySelectorAll('.class-btn').forEach((b) => b.classList.toggle('active', b.dataset.key === key));
     $('className').textContent = `Talents — ${c.name}`;
-    $('className').style.color = c.color;
+    $('className').style.setProperty('--c', c.color);
+    $('className').classList.add('cls-text');
     $('calc').hidden = false;
     $('welcome').hidden = true;
     document.title = `Calculateur de talents — ${c.name}`;

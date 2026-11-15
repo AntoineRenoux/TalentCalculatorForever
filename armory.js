@@ -137,7 +137,7 @@
         ${ch.avatar ? `<img class="avatar" src="${esc(ch.avatar)}" alt="">` : `<img class="avatar" src="${ICON('classicon_' + ch.classKey, 'large')}" alt="">`}
         <div>
           <h2>${esc(ch.name)} <span class="muted">${esc(ch.surname)}</span></h2>
-          <p>Niveau ${ch.level} · ${esc(ch.race || '')} · <b style="color:${c?.color}">${esc(ch.className || '')}</b></p>
+          <p>Niveau ${ch.level} · ${esc(ch.race || '')} · <b class="cls-text">${esc(ch.className || '')}</b></p>
           <p class="muted">${esc(RANK_LABEL(ch.rank))} de ${esc(ch.guild)}</p>
         </div>
       </header>

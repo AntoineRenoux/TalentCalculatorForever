@@ -4,17 +4,47 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calculateur de talents</title>
+  <link rel="icon" href="img/emblem-formerhope.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <!-- Applique le thème enregistré avant l'affichage (même clé que former-hope.fr) -->
+  <script>
+    (() => {
+      try {
+        const t = localStorage.getItem('formerhope-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (_) {}
+    })();
+  </script>
 </head>
 <body>
-  <main class="page">
-    <header class="page-head">
-      <h1>Calculateur de talents</h1>
-      <p class="sub">WoW Forever / Classic+ — talents, sorts par niveau et traits raciaux des 9 classes</p>
+  <header class="site">
+    <div class="wrap bar">
+      <a class="marque" href="https://former-hope.fr/">
+        <img class="emblem" src="img/emblem-formerhope.png" alt="">
+        <span>
+          <span class="nom">Former Hope</span>
+          <span class="serveur">Unis par l'aventure, guidés par l'envie.</span>
+        </span>
+      </a>
       <nav class="tabs" aria-label="Sections">
         <a class="tab on" id="tabCalc" data-tab="calc" href="#">Calculateur</a>
-        <a class="tab" data-tab="armory" href="#armory">Armurerie Former Hope</a>
+        <a class="tab" data-tab="armory" href="#armory">Armurerie</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        <span id="themeIcon" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page wrap">
+    <header class="page-head">
+      <p class="devise">WoW Forever · Classic+</p>
+      <h1>Calculateur de talents</h1>
+      <p class="sub">Talents, sorts par niveau, traits raciaux et armurerie de la guilde.</p>
+      <hr class="filet">
     </header>
 
     <!-- Barre d'outils : classes + niveau + actions -->
@@ -112,6 +142,7 @@
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
   <div class="toast" id="toast" hidden></div>
 
+  <script src="theme.js"></script>
   <script src="data.js"></script>
   <script src="leveling.js"></script>
   <script src="app.js"></script>
