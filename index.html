@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculateur de talents</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-head">
+      <h1>Calculateur de talents</h1>
+      <p class="sub">WoW Forever / Classic+ — 9 classes, niveau 10 à 60</p>
+    </header>
+
+    <!-- Barre d'outils : classes + niveau + actions -->
+    <section class="toolbar">
+      <nav class="class-bar" id="classBar" aria-label="Classes"></nav>
+      <div class="tools">
+        <div class="level">
+          <button type="button" id="lvlDown" title="Niveau -1">−</button>
+          <input type="number" id="level" min="10" max="60" value="60" aria-label="Niveau du personnage">
+          <button type="button" id="lvlUp" title="Niveau +1">+</button>
+        </div>
+        <button type="button" class="icon-btn" id="removeMode" title="Mode retrait (mobile) : un clic retire un point">−1</button>
+        <button type="button" class="icon-btn" id="resetAll" title="Tout réinitialiser">⟲</button>
+        <button type="button" class="icon-btn" id="copyLink" title="Copier le lien du build">🔗</button>
+      </div>
+    </section>
+
+    <section class="calc" id="calc" hidden>
+      <div class="calc-head">
+        <h2 id="className">Talents</h2>
+        <label class="search">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="search" placeholder="Rechercher parmi tous les talents">
+        </label>
+      </div>
+      <div class="summary">
+        <span id="spread" class="spread">0 / 0 / 0</span>
+        <span>Niveau requis : <b id="reqLevel">—</b></span>
+        <span>Points restants : <b id="remaining">51</b></span>
+      </div>
+      <div class="trees" id="trees"></div>
+      <p class="hint">Clic gauche : ajouter un point · Clic droit ou Maj+clic : retirer un point</p>
+
+      <details class="panel" open>
+        <summary>Ordre des talents</summary>
+        <ol class="order" id="order"></ol>
+        <p class="empty" id="orderEmpty">Aucun point dépensé.</p>
+      </details>
+    </section>
+
+    <section class="welcome" id="welcome">
+      <p>Choisissez une classe ci-dessus pour commencer.</p>
+    </section>
+  </main>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
