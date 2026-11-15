@@ -1,13 +1,17 @@
-# Aucun port publié : le site est servi par le Caddy d'Entracte via le réseau entracte_default.
+# Déployé sur le VPS dans /opt/talentcalculator.
+# Aucun port publié : le Caddy partagé (/opt/infra/proxy) sert le site via le réseau "proxy",
+# avec deploy/talentcalculator.caddy copié dans /opt/infra/proxy/sites/.
+name: talentcalculator
+
 services:
   web:
     build: .
     restart: unless-stopped
     networks:
-      entracte_default:
-        aliases:
-          - talentcalculator   # nom visé par le reverse_proxy du Caddyfile
+      proxy:
+        aliases: [talentcalculator-web]
 
 networks:
-  entracte_default:
+  proxy:
+    name: proxy
     external: true

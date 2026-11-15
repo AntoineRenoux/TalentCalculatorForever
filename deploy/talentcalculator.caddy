@@ -1,0 +1,4 @@
+talents.warpvault.com {
+	encode gzip
+	reverse_proxy talentcalculator-web:80
+}
