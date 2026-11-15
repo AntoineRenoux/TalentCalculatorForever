@@ -45,6 +45,10 @@
     $('calc').hidden = inArmory || !TC.state.cls;
     $('welcome').hidden = inArmory || !!TC.state.cls;
     document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('on', (t.dataset.tab === 'armory') === inArmory));
+    // Entrée active du menu « Outils & Guides » du site
+    const [menuOn, menuOff] = inArmory ? ['menuArmory', 'menuCalc'] : ['menuCalc', 'menuArmory'];
+    $(menuOn)?.setAttribute('aria-current', 'page');
+    $(menuOff)?.removeAttribute('aria-current');
     TC.hideTooltip();
 
     if (!inArmory) {

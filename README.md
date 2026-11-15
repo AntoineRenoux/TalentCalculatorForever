@@ -1,5 +1,14 @@
 # TalentCalculatorForever
 
+Site de la guilde **Former Hope** (WoW Forever) : copie du site former-hope.fr (accueil, recrutement, guide des boss, addon de guilde) intégrée avec le calculateur de talents et l'armurerie.
+
+- Pages de la guilde : `index.html`, `recrutement.html`, `boss.html`, `addon-guilde.html` (thème `css/style.css`).
+- Calculateur et armurerie : `talents.html` (`#armory` pour l'armurerie), styles `css/talents.css`, scripts `js/`.
+- Le formulaire de recrutement passe par `POST /api/recrutement` : le webhook Discord reste sur le serveur (`DISCORD_WEBHOOK_URL` dans `.env`). Sans webhook, la page passe en mode manuel (texte à copier dans Discord).
+- Préproduction : https://talents.warpvault.com (VPS Hostinger). La production former-hope.fr (o2switch) n'est pas touchée.
+
+## Calculateur de talents
+
 Calculateur de talents pour WoW Forever / Classic+, en HTML5, CSS3 et JavaScript (sans dépendance).
 
 - 9 classes, 3 arbres chacune, textes en français

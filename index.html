@@ -1,152 +1,254 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <title>Former Hope — Guilde</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculateur de talents</title>
-  <link rel="icon" href="img/emblem-formerhope.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css">
-  <!-- Applique le thème enregistré avant l'affichage (même clé que former-hope.fr) -->
+
+  <!-- Applique le thème enregistré avant l'affichage de la page -->
+  <script>
+    // Anciens liens du calculateur (#mage/…, #armory…) : renvoyés vers talents.html
+    if (/^#(druid|hunter|mage|paladin|priest|rogue|shaman|warlock|warrior|armory)\b/.test(location.hash)) {
+      location.replace("talents.html" + location.hash);
+    }
+  </script>
   <script>
     (() => {
       try {
-        const t = localStorage.getItem('formerhope-theme');
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        const theme = localStorage.getItem("formerhope-theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
       } catch (_) {}
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <header class="site">
-    <div class="wrap bar">
-      <a class="marque" href="https://former-hope.fr/">
-        <img class="emblem" src="img/emblem-formerhope.png" alt="">
-        <span>
-          <span class="nom">Former Hope</span>
-          <span class="serveur">Unis par l'aventure, guidés par l'envie.</span>
-        </span>
-      </a>
-      <nav class="tabs" aria-label="Sections">
-        <a class="tab on" id="tabCalc" data-tab="calc" href="#">Calculateur</a>
-        <a class="tab" data-tab="armory" href="#armory">Armurerie</a>
-      </nav>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
-        <span id="themeIcon" aria-hidden="true">☀️</span>
-      </button>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="marque" href="index.html">
+      <img class="emblem" src="img/emblem-formerhope.png" alt="Emblème de Former Hope">
+      <span>
+        <span class="nom">Former Hope</span>
+        <span class="serveur">Unis par l'aventure, guidés par l'envie.</span>
+      </span>
+    </a>
+
+    <nav class="site" aria-label="Navigation principale">
+      <a class="nav-accueil" href="index.html" aria-current="page">Accueil</a>
+      <a class="nav-parent" href="recrutement.html">Recrutement</a>
+      <div class="nav-groupe">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-guides">Outils &amp; Guides <span class="chevron" aria-hidden="true">▾</span></button>
+        <ul class="nav-menu" id="menu-guides" hidden>
+          <li><a href="boss.html">Guide des boss</a></li>
+          <li><a href="addon-guilde.html">Addon de guilde</a></li>
+          <li><a href="talents.html">Calculateur de talents</a></li>
+          <li><a href="talents.html#armory">Armurerie</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Changer le thème" title="Changer le thème">
+      <span id="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="vue active" id="accueil">
+    <div class="heros">
+      <div class="wrap">
+        <img
+          class="logo-guilde"
+          src="img/logo-formerhope.jpg"
+          alt="Logo de la guilde Former Hope : écu bleu au lion d'argent, marteaux croisés et bannières"
+        >
+
+        <p class="devise">Fondée en 2026 · Alliance · WOW FOREVER</p>
+
+        <h1>
+          Former Hope
+          <span class="ligne2">Unis par l'aventure, guidés par l'envie.</span>
+        </h1>
+
+        <p>
+          Une guilde stable d'adultes qui vise à clean chaque patch sans
+          transformer le jeu en second travail. On progresse, on rigole,
+          et on s’amuse. Notre objectif : un groupe soudé qui avance comme
+          une vraie équipe.
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="recrutement.html">Voir les postes ouverts</a>
+          <a class="btn fantome" href="boss.html">Guide des boss</a>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <main class="page wrap">
-    <header class="page-head">
-      <p class="devise">WoW Forever · Classic+</p>
-      <h1>Calculateur de talents</h1>
-      <p class="sub">Talents, sorts par niveau, traits raciaux et armurerie de la guilde.</p>
-      <hr class="filet">
-    </header>
-
-    <!-- Barre d'outils : classes + niveau + actions -->
-    <section class="toolbar">
-      <nav class="class-bar" id="classBar" aria-label="Classes"></nav>
-      <div class="tools">
-        <div class="level">
-          <button type="button" id="lvlDown" title="Niveau -1">−</button>
-          <input type="number" id="level" min="10" max="60" value="60" aria-label="Niveau du personnage">
-          <button type="button" id="lvlUp" title="Niveau +1">+</button>
-        </div>
-        <button type="button" class="icon-btn" id="removeMode" title="Mode retrait (mobile) : un clic retire un point">−1</button>
-        <button type="button" class="icon-btn" id="resetAll" title="Tout réinitialiser">⟲</button>
-        <button type="button" class="icon-btn" id="copyLink" title="Copier le lien du build">🔗</button>
-      </div>
-    </section>
-
-    <section class="calc" id="calc" hidden>
-      <div class="calc-head">
-        <h2 id="className">Talents</h2>
-        <label class="search">
-          <span aria-hidden="true">🔍</span>
-          <input type="search" id="search" placeholder="Rechercher parmi tous les talents">
-        </label>
-      </div>
-      <div class="summary">
-        <span id="spread" class="spread">0 / 0 / 0</span>
-        <span>Niveau requis : <b id="reqLevel">—</b></span>
-        <span>Points restants : <b id="remaining">51</b></span>
-      </div>
-      <div class="trees" id="trees"></div>
-      <p class="hint">Clic gauche : ajouter un point · Clic droit ou Maj+clic : retirer un point</p>
-
-      <details class="panel" open>
-        <summary>Ordre des talents</summary>
-        <ol class="order" id="order"></ol>
-        <p class="empty" id="orderEmpty">Aucun point dépensé.</p>
-      </details>
-
-      <section class="panel racials">
-        <div class="panel-head">
-          <h3>Traits raciaux</h3>
-          <select id="raceSelect" aria-label="Race"></select>
-        </div>
-        <div class="racial-grid" id="racials"></div>
-      </section>
-
-      <details class="panel" id="levelingPanel" open>
-        <summary>Progression par niveau</summary>
-        <div class="filters">
-          <div class="chips" id="schoolChips" aria-label="Écoles"></div>
-          <label class="check"><input type="checkbox" id="foreverOnly"> Nouveautés Forever uniquement</label>
-          <label class="check"><input type="checkbox" id="untilLevel"> Jusqu'à mon niveau</label>
-          <label class="search small">
-            <span aria-hidden="true">🔍</span>
-            <input type="search" id="spellSearch" placeholder="Rechercher un sort">
-          </label>
-        </div>
-        <ol class="timeline" id="timeline"></ol>
-      </details>
-
-      <details class="panel" id="bookPanel" open>
-        <summary>Grimoire au niveau <span id="bookLevel">60</span></summary>
-        <div class="filters">
-          <div class="chips" id="bookTabs" aria-label="Écoles du grimoire"></div>
-          <label class="check"><input type="checkbox" id="allRanks"> Afficher tous les rangs</label>
-        </div>
-        <div class="book" id="book"></div>
-      </details>
-    </section>
-
-    <section class="armory" id="armory" hidden>
-      <div id="armoryList">
-        <div class="calc-head">
-          <div>
-            <h2 id="guildName">Former Hope</h2>
-            <p class="muted" id="guildMeta"></p>
+    <section class="bloc wrap">
+      <div class="colonnes">
+        <div class="prose">
+          <div class="entete">
+            <h2>La guilde</h2>
+            <span class="trait"></span>
           </div>
-          <label class="search">
-            <span aria-hidden="true">🔍</span>
-            <input type="search" id="memberSearch" placeholder="Rechercher un membre">
-          </label>
+
+          <p>
+            Bienvenue chez Former Hope, une guilde PvE chill qui souhaite avant
+            tout construire une communauté soudée, mature et agréable, tout en
+            avançant sérieusement dans le contenu PvE.
+          </p>
+
+          <p>
+            Former Hope est née d’un noyau de joueurs venus de serveurs privés,
+            habitués à clean le contenu et à tenir bon là où d’autres
+            abandonnent. Cette endurance, cette stabilité, c’est ce qui nous
+            définit. Nous rejoindre, c’est rejoindre une équipe qui ne lâche
+            jamais.
+          </p>
+
+          <p><strong>Notre philosophie</strong></p>
+
+          <p>
+            Chez Former Hope, nous attachons une grande importance à trois
+            valeurs essentielles : Respect • Entraide • Bonne humeur.
+          </p>
+
+          <p>
+            Nous voulons créer un environnement où chacun peut jouer, progresser,
+            échanger et prendre du plaisir sans pression inutile.
+          </p>
+
+          <p>
+            On raide le mardi et le dimanche, de 21h00 à 00h00, heure de Paris.
+            Présence attendue sur deux soirs minimum. Les potions, les flacons
+            et les nourritures de raid sont fournis par la banque de guilde :
+            tu viens avec ton stuff optimisé et ta bonne humeur.
+          </p>
+
+          <p>
+            En dehors du raid, on fait des rerolls, des donjons, de
+            l’optimisation, et j’en passe, très souvent avec des soirées qui
+            durent bien plus longtemps que prévu.
+          </p>
+
+          <div class="entete" style="margin-top:2.5rem">
+            <h2>Ce qu'on attend</h2>
+            <span class="trait"></span>
+          </div>
+
+          <p>
+            Connaître les tactiques avant le soir du raid, accepter les retours
+            sans les prendre personnellement, et prévenir sur Discord quand tu
+            ne peux pas venir. C'est tout. Le reste s'apprend en jeu.
+          </p>
         </div>
-        <div class="chips member-classes" id="memberClasses" aria-label="Filtrer par classe"></div>
-        <div class="members" id="memberList"></div>
+
+        <div>
+          <div class="entete">
+            <h2>Fiche</h2>
+            <span class="trait"></span>
+          </div>
+
+          <dl class="fiche">
+            <div><dt>Faction</dt><dd>Alliance</dd></div>
+            <div><dt>Serveur</dt><dd>Inconnu pour l’instant</dd></div>
+            <div><dt>Soirs de raid</dt><dd>Mardi et dimanche</dd></div>
+            <div><dt>Horaires</dt><dd>21h00 – 00h00</dd></div>
+            <div><dt>Vocal</dt><dd>Discord obligatoire</dd></div>
+          </dl>
+        </div>
       </div>
-      <div id="armorySheet" hidden></div>
     </section>
+  </div>
+</main>
 
-    <section class="welcome" id="welcome">
-      <p>Choisissez une classe ci-dessus pour commencer.</p>
-    </section>
-  </main>
+<footer class="site">
+  <div class="wrap">
+    <div class="pieds">
+      <div>
+        <h3>Former Hope</h3>
+        <p>Guilde PvE francophone, Alliance. Raids mardi et dimanche, de 21h00 à 00h00.</p>
+      </div>
 
-  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
-  <div class="toast" id="toast" hidden></div>
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="boss.html">Guide boss raid</a></li>
+          <li><a href="talents.html">Calculateur de talents</a></li>
+          <li><a href="talents.html#armory">Armurerie</a></li>
+        </ul>
+      </div>
 
-  <script src="theme.js"></script>
-  <script src="data.js"></script>
-  <script src="leveling.js"></script>
-  <script src="app.js"></script>
-  <script src="leveling-ui.js"></script>
-  <script src="armory.js"></script>
+      <div>
+        <h3>Nous contacter</h3>
+        <ul>
+          <li>
+            Discord :
+            <a href="https://discord.gg/4CXctFZfJd" target="_blank" rel="noopener noreferrer">
+              discord.gg/formerhope
+            </a>
+          </li>
+          <li>Officiers recrutement : Auby et bloodtry</li>
+          <li>Réponse sous 48 heures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mentions">
+      <span>© 2026 Former Hope</span>
+      <span>Fait à la main, entre deux pulls.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const bouton = document.getElementById("theme-toggle");
+  const icone = document.getElementById("theme-icon");
+
+
+  if (!bouton || !icone) return;
+
+  const systemeSombre = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function estSombre() {
+    const choix = document.documentElement.dataset.theme;
+    return choix ? choix === "dark" : systemeSombre.matches;
+  }
+
+  function actualiserBouton() {
+    const sombre = estSombre();
+    icone.textContent = sombre ? "🌙" : "☀️";
+    bouton.setAttribute("aria-label", sombre ? "Thème nuit — activer le thème jour" : "Thème jour — activer le thème nuit");
+    bouton.setAttribute("title", sombre ? "Thème nuit — activer le thème jour" : "Thème jour — activer le thème nuit");
+    bouton.setAttribute("aria-pressed", String(sombre));
+  }
+
+  bouton.addEventListener("click", () => {
+    const nouveauTheme = estSombre() ? "light" : "dark";
+    document.documentElement.dataset.theme = nouveauTheme;
+
+    try {
+      localStorage.setItem("formerhope-theme", nouveauTheme);
+    } catch (_) {}
+
+    actualiserBouton();
+  });
+
+  actualiserBouton();
+})();
+</script>
+
+<script src="js/navigation.js" defer></script>
 </body>
 </html>

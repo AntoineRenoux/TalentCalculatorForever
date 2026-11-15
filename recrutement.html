@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Recrutement — Former Hope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Applique le thème enregistré avant l'affichage -->
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("formerhope-theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="marque" href="index.html">
+      <img class="emblem" src="img/emblem-formerhope.png" alt="Emblème de Former Hope">
+      <span>
+        <span class="nom">Former Hope</span>
+        <span class="serveur">Unis par l'aventure, guidés par l'envie.</span>
+      </span>
+    </a>
+
+    <nav class="site" aria-label="Navigation principale">
+      <a class="nav-accueil" href="index.html">Accueil</a>
+      <a class="nav-parent" href="recrutement.html" aria-current="page">Recrutement</a>
+      <div class="nav-groupe">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-guides">Outils &amp; Guides <span class="chevron" aria-hidden="true">▾</span></button>
+        <ul class="nav-menu" id="menu-guides" hidden>
+          <li><a href="boss.html">Guide des boss</a></li>
+          <li><a href="addon-guilde.html">Addon de guilde</a></li>
+          <li><a href="talents.html">Calculateur de talents</a></li>
+          <li><a href="talents.html#armory">Armurerie</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Changer le thème" title="Changer le thème">
+      <span id="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <div class="heros">
+    <div class="wrap">
+      <img class="sceau" src="img/sceau-formerhope.jpg" alt="">
+      <p class="devise">Recrutement ouvert</p>
+      <h1>Rejoindre Former Hope</h1>
+      <p>
+        On recrute, mais on recrute bien. Lis les postes ouverts, remplis la
+        candidature, et on se parle sur Discord dans les jours qui suivent.
+      </p>
+    </div>
+  </div>
+
+  <section class="bloc wrap" id="postes-ouverts">
+    <div class="entete">
+      <h2>Postes ouverts</h2>
+      <span class="trait"></span>
+    </div>
+
+    <ul class="postes">
+      <li>
+        <svg class="pion" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 21 5v8c0 5-4 8-9 9-5-1-9-4-9-9V5z"
+                fill="none" stroke="var(--bleu)" stroke-width="1.7"/>
+        </svg>
+        <span>
+          <span class="poste-nom">Tank</span>
+          <span class="poste-det">Nous ne recrutons plus de tank.</span>
+        </span>
+        <span class="statut ferme">Fermé</span>
+      </li>
+
+      <li>
+        <svg class="pion" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-8-4.7-8-10a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.3-8 10-8 10z"
+                fill="none" stroke="var(--bleu)" stroke-width="1.7"/>
+        </svg>
+        <span>
+          <span class="poste-nom">Soigneur</span>
+          <span class="poste-det">1 HPal.</span>
+        </span>
+        <span class="statut prio">Priorité</span>
+      </li>
+
+      <li>
+        <svg class="pion" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 4 9 15M4 20l4-1 1-4M6 14l4 4"
+                fill="none" stroke="var(--bleu)" stroke-width="1.7"
+                stroke-linecap="round"/>
+        </svg>
+        <span>
+          <span class="poste-nom">DPS corps à corps</span>
+          <span class="poste-det">Nous ne recrutons plus de cac.</span>
+        </span>
+        <span class="statut ferme">Fermé</span>
+      </li>
+
+      <li>
+        <svg class="pion" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"
+                fill="none" stroke="var(--bleu)" stroke-width="1.7"
+                stroke-linecap="round"/>
+        </svg>
+        <span>
+          <span class="poste-nom">DPS distance / cast</span>
+          <span class="poste-det">Nous ne recrutons plus de cast.</span>
+        </span>
+        <span class="statut ferme">Fermé</span>
+      </li>
+    </ul>
+
+    <p class="aide" style="margin-top:1rem">
+      Un poste est fermé ? Tu peux tout de même postuler si tu es très motivé :
+      nous répondons à tout le monde.
+    </p>
+  </section>
+
+  <section class="bloc wrap" id="comment-ca-se-passe">
+    <div class="entete">
+      <h2>Comment ça se passe</h2>
+      <span class="trait"></span>
+    </div>
+
+    <ol class="etapes prose">
+      <li>
+        <div>
+          <h3>Tu postules</h3>
+          <p>
+            Tu remplis le formulaire ci-dessous. Compte cinq minutes, et sois
+            honnête sur ton expérience : on préfère un débutant motivé à un
+            menteur.
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <h3>On échange sur Discord</h3>
+          <p>
+            Un officier te contacte sous 48 heures et on discute en vocal :
+            tes attentes, les nôtres, ton parcours et tes disponibilités.
+            C'est une conversation, pas un examen.
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <h3>Tu rejoins le projet de guilde</h3>
+          <p>
+            Si nous sommes d’accord, tu reçois tes accès Discord et ton
+            invitation en jeu à la sortie de WoW Forever. Pas de période
+            d’essai déguisée : tu es membre.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="bloc wrap" id="candidature-section">
+    <div class="entete">
+      <h2>Candidature</h2>
+      <span class="trait"></span>
+    </div>
+
+    <form id="candidature" class="prose" style="max-width:none" novalidate>
+      <div class="grille">
+
+        <div class="champ">
+          <label for="prenom">Prénom IRL</label>
+          <input id="prenom" name="prenom" type="text" required placeholder="Camille">
+        </div>
+
+        <div class="champ">
+          <label for="pseudo">Pseudo en jeu</label>
+          <input id="pseudo" name="pseudo" type="text" required placeholder="Kaeldrin-Hyjal">
+        </div>
+
+        <div class="champ">
+          <label for="classe">Classe</label>
+          <select id="classe" name="classe" required>
+            <option value="">Choisir une classe</option>
+            <option>Chaman</option>
+            <option>Chasseur</option>
+            <option>Démoniste</option>
+            <option>Druide</option>
+            <option>Guerrier</option>
+            <option>Mage</option>
+            <option>Paladin</option>
+            <option>Prêtre</option>
+            <option>Voleur</option>
+          </select>
+        </div>
+
+        <div class="champ">
+          <label for="spe">Spécialisation</label>
+          <input id="spe" name="spe" type="text" required placeholder="Élémentaire">
+        </div>
+
+        <div class="champ">
+          <label for="role">Rôle visé</label>
+          <select id="role" name="role" required>
+            <option value="">Choisir un rôle</option>
+            <option>Tank</option>
+            <option>Soigneur</option>
+            <option>DPS corps à corps</option>
+            <option>DPS distance / cast</option>
+          </select>
+        </div>
+
+        <div class="champ">
+          <label for="discord">Pseudo Discord</label>
+          <input id="discord" name="discord" type="text" required placeholder="camille_ael">
+          <span class="aide">Ton identifiant exact, c'est par là qu'on te contacte.</span>
+        </div>
+
+        <div class="champ large">
+          <label for="motivation">Pourquoi nous rejoindre ?</label>
+          <textarea id="motivation" name="motivation" required></textarea>
+        </div>
+
+        <div class="champ large">
+          <label for="experience">Expérience en jeu</label>
+          <textarea id="experience" name="experience" required></textarea>
+        </div>
+
+        <div class="champ large">
+          <label for="logs">
+            Lien de logs ou d’armurerie
+            <span class="opt">(facultatif)</span>
+          </label>
+          <input id="logs" name="logs" type="url" placeholder="https://">
+        </div>
+
+      </div>
+
+      <div class="pied-form">
+        <button class="btn" type="submit">Envoyer ma candidature</button>
+        <span class="aide" id="erreur" role="status"></span>
+      </div>
+    </form>
+
+    <div class="recap" id="recap" hidden>
+      <h3>Candidature prête</h3>
+      <p id="intro-recap">
+        Copie le texte ci-dessous et colle-le dans le salon
+        <strong>#candidatures</strong> de notre Discord.
+      </p>
+      <p class="aide" id="statut-envoi" role="status" style="font-weight:600"></p>
+      <pre id="texte-recap"></pre>
+
+      <div class="actions" style="justify-content:flex-start;margin-top:0">
+        <button class="btn" type="button" id="copier">Copier le texte</button>
+        <a
+          class="btn fantome"
+          href="https://discord.gg/4CXctFZfJd"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Ouvrir Discord</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="pieds">
+      <div>
+        <h3>Former Hope</h3>
+        <p>Guilde PvE francophone, Alliance. Raids mardi et dimanche, de 21h00 à 00h00.</p>
+      </div>
+
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="boss.html">Guide boss raid</a></li>
+          <li><a href="talents.html">Calculateur de talents</a></li>
+          <li><a href="talents.html#armory">Armurerie</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Nous contacter</h3>
+        <ul>
+          <li>
+            Discord :
+            <a href="https://discord.gg/4CXctFZfJd" target="_blank" rel="noopener noreferrer">
+              discord.gg/formerhope
+            </a>
+          </li>
+          <li>Officiers recrutement : Auby et bloodtry</li>
+          <li>Réponse sous 48 heures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mentions">
+      <span>© 2026 Former Hope</span>
+      <span>Fait à la main, entre deux pulls.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const bouton = document.getElementById("theme-toggle");
+  const icone = document.getElementById("theme-icon");
+
+
+  if (!bouton || !icone) return;
+
+  const systemeSombre = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function estSombre() {
+    const choix = document.documentElement.dataset.theme;
+    return choix ? choix === "dark" : systemeSombre.matches;
+  }
+
+  function actualiserBouton() {
+    const sombre = estSombre();
+    icone.textContent = sombre ? "🌙" : "☀️";
+    bouton.setAttribute("aria-label", sombre ? "Thème nuit — activer le thème jour" : "Thème jour — activer le thème nuit");
+    bouton.setAttribute("title", sombre ? "Thème nuit — activer le thème jour" : "Thème jour — activer le thème nuit");
+    bouton.setAttribute("aria-pressed", String(sombre));
+  }
+
+  bouton.addEventListener("click", () => {
+    const nouveauTheme = estSombre() ? "light" : "dark";
+    document.documentElement.dataset.theme = nouveauTheme;
+
+    try {
+      localStorage.setItem("formerhope-theme", nouveauTheme);
+    } catch (_) {}
+
+    actualiserBouton();
+  });
+
+  actualiserBouton();
+})();
+</script>
+
+<!-- SCRIPT -->
+<script>
+/* ============================================================
+   CANDIDATURE FORMER HOPE
+   ------------------------------------------------------------
+   Parcours : le candidat remplit le formulaire et clique sur
+   « Envoyer ma candidature ». Un pop-up s'ouvre : en cliquant sur
+   « Rejoindre le Discord et candidater », la candidature part
+   automatiquement dans #candidatures ET le lien d'invitation du
+   serveur s'ouvre dans un nouvel onglet.
+
+   À CONFIGURER :
+
+   WEBHOOK_URL
+      Discord > Paramètres du serveur > Intégrations > Webhooks >
+      Nouveau webhook > choisir #candidatures > Copier l'URL du
+      webhook, puis la coller entre les guillemets ci-dessous.
+
+   Tant que WEBHOOK_URL est vide, le bouton du pop-up ouvre le
+   Discord et affiche le texte à copier / coller à la main.
+============================================================ */
+// Le webhook Discord n'est plus dans la page : le serveur du site le garde (variable DISCORD_WEBHOOK_URL)
+// et relaie la candidature. S'il n'est pas configuré, la page repasse en mode manuel.
+const WEBHOOK_URL = "api/recrutement";
+const INVITE_URL  = "https://discord.gg/4CXctFZfJd";
+
+const COULEUR_EMBED = 0x2f63ad;      // bleu de la guilde
+const DELAI_ENTRE_ENVOIS_MIN = 10;   // anti-spam côté navigateur
+
+/* ---------- éléments de la page ---------- */
+const form          = document.getElementById('candidature');
+const recap         = document.getElementById('recap');
+const texte         = document.getElementById('texte-recap');
+const erreur        = document.getElementById('erreur');
+const boutonEnvoyer = form.querySelector('button[type="submit"]');
+const introRecap    = recap.querySelector('p');
+
+// ligne de statut dans le récap (créée si absente)
+let statutEnvoi = document.getElementById('statut-envoi');
+if(!statutEnvoi){
+  statutEnvoi = document.createElement('p');
+  statutEnvoi.id = 'statut-envoi';
+  statutEnvoi.className = 'aide';
+  statutEnvoi.setAttribute('role','status');
+  statutEnvoi.style.fontWeight = '600';
+  introRecap.after(statutEnvoi);
+}
+function afficherStatut(msg, couleur){
+  statutEnvoi.textContent = msg;
+  statutEnvoi.style.color = couleur || 'var(--argent-fonce)';
+}
+
+/* ============================================================
+   POP-UP « REJOINDRE LE DISCORD ET CANDIDATER »
+   (créé par le script : rien à ajouter dans le HTML)
+============================================================ */
+const css = document.createElement('style');
+css.textContent = `
+#popup-candidature{
+  width:min(460px,92vw);padding:1.75rem;margin:auto;
+  background:var(--blanc);color:var(--encre);
+  border:1px solid var(--bleu-vif);border-top:3px solid var(--or);border-radius:4px;
+  box-shadow:0 24px 60px -20px rgba(7,16,36,.6);
+}
+#popup-candidature::backdrop{background:rgba(15,23,32,.62)}
+#popup-candidature h3{
+  font-family:Cinzel,Georgia,serif;font-weight:700;font-size:1.25rem;
+  color:var(--bleu);margin:0 0 .6rem;
+}
+#popup-candidature p{color:var(--encre-doux);font-size:.95rem;margin:0 0 1.25rem}
+#popup-candidature .actions{justify-content:flex-start;margin-top:0}
+`;
+document.head.appendChild(css);
+
+const popup = document.createElement('dialog');
+popup.id = 'popup-candidature';
+popup.setAttribute('aria-labelledby','popup-titre');
+popup.innerHTML = `
+  <h3 id="popup-titre">Dernière étape</h3>
+  <p>Pour finaliser ta candidature, tu dois rejoindre notre serveur Discord : c'est là qu'un officier te contactera.
+     En cliquant ci-dessous, ta candidature est envoyée et le Discord s'ouvre dans un nouvel onglet.</p>
+  <div class="actions">
+    <button type="button" class="btn" id="popup-ok">Rejoindre le Discord et candidater</button>
+    <button type="button" class="btn fantome" id="popup-annuler">Annuler</button>
+  </div>`;
+document.body.appendChild(popup);
+const btnOk = popup.querySelector('#popup-ok');
+const btnAnnuler = popup.querySelector('#popup-annuler');
+
+function ouvrirPopup(){
+  btnOk.disabled = false;
+  if(typeof popup.showModal === 'function') popup.showModal();
+  else popup.setAttribute('open','');
+}
+function fermerPopup(){
+  if(typeof popup.close === 'function') popup.close();
+  else popup.removeAttribute('open');
+}
+btnAnnuler.addEventListener('click', fermerPopup);
+
+/* ============================================================
+   FORMULAIRE
+============================================================ */
+let candidature = null; // valeurs figées au moment du clic sur « Envoyer »
+
+function delaiRestantMin(){
+  try{
+    const dernier = +localStorage.getItem('fh_dernier_envoi') || 0;
+    const reste = DELAI_ENTRE_ENVOIS_MIN*60000 - (Date.now() - dernier);
+    return reste > 0 ? Math.ceil(reste/60000) : 0;
+  }catch(e){ return 0; }
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const manquants = [...form.querySelectorAll('[required]')].filter(c => !c.value.trim());
+  if(manquants.length){
+    erreur.textContent = 'Il reste ' + manquants.length + ' champ(s) à remplir.';
+    manquants[0].focus();
+    return;
+  }
+  erreur.textContent = '';
+
+  if(WEBHOOK_URL){
+    const attente = delaiRestantMin();
+    if(attente){
+      erreur.textContent = 'Une candidature vient déjà de partir. Réessaie dans ' + attente + ' min.';
+      return;
+    }
+  }
+
+  const v = id => document.getElementById(id).value.trim();
+  candidature = {
+    prenom: v('prenom'), pseudo: v('pseudo'), classe: v('classe'), spe: v('spe'),
+    role: v('role'), discord: v('discord'), logs: v('logs'),
+    motivation: v('motivation'), experience: v('experience')
+  };
+
+  const c = candidature;
+  texte.textContent = [
+    'Candidature — Former Hope',
+    'Prénom : ' + c.prenom,
+    'Pseudo en jeu : ' + c.pseudo,
+    'Classe / spé : ' + c.classe + ' — ' + c.spe,
+    'Rôle visé : ' + c.role,
+    'Discord : ' + c.discord,
+    c.logs ? 'Logs / armurerie : ' + c.logs : null,
+    '',
+    'Pourquoi nous rejoindre :',
+    c.motivation,
+    '',
+    'Expérience en jeu :',
+    c.experience
+  ].filter(l => l !== null).join('\n');
+
+  ouvrirPopup();
+});
+
+/* ---------- clic sur « Rejoindre le Discord et candidater » ---------- */
+btnOk.addEventListener('click', async () => {
+  if(!candidature) return;
+  btnOk.disabled = true;
+
+  // 1. on ouvre le Discord tout de suite (le navigateur n'autorise l'ouverture
+  //    d'un onglet que pendant le clic, avant tout envoi réseau)
+  window.open(INVITE_URL, '_blank', 'noopener');
+
+  fermerPopup();
+  recap.hidden = false;
+  recap.scrollIntoView({behavior:'smooth', block:'start'});
+
+  const consigneManuelle = "Copie le texte ci-dessous et colle-le dans le salon #candidatures de notre Discord. Un officier te répond sous 48 heures.";
+
+  // 2. mode manuel : pas de webhook configuré
+  if(!WEBHOOK_URL){
+    introRecap.textContent = consigneManuelle;
+    afficherStatut("Le Discord vient de s'ouvrir dans un nouvel onglet. L'envoi automatique n'est pas activé sur ce site.");
+    return;
+  }
+
+  // 3. envoi automatique dans #candidatures
+  introRecap.textContent = consigneManuelle;
+  afficherStatut('Envoi de ta candidature…');
+  boutonEnvoyer.disabled = true;
+
+  const c = candidature;
+
+  try{
+    const reponse = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(c)
+    });
+    if(!reponse.ok) throw new Error('HTTP ' + reponse.status);
+
+    try{ localStorage.setItem('fh_dernier_envoi', String(Date.now())); }catch(err){}
+    introRecap.textContent = "C'est envoyé ! Tu peux garder une copie du texte ci-dessous si tu le souhaites.";
+    afficherStatut('✅ Candidature envoyée dans #candidatures. Rejoins le Discord ouvert dans l\'autre onglet : un officier te contacte sous 48 heures.', 'var(--bleu)');
+    form.reset();
+    candidature = null;
+  }catch(err){
+    afficherStatut("⚠️ L'envoi automatique a échoué. Copie le texte ci-dessous et colle-le dans #candidatures sur le Discord.", 'var(--or)');
+  }finally{
+    boutonEnvoyer.disabled = false;
+  }
+});
+
+/* ---------- bouton « Copier le texte » ---------- */
+document.getElementById('copier').addEventListener('click', async e => {
+  try{
+    await navigator.clipboard.writeText(texte.textContent);
+    e.target.textContent = 'Texte copié';
+    setTimeout(() => e.target.textContent = 'Copier le texte', 2000);
+  }catch(err){
+    e.target.textContent = 'Copie impossible, sélectionne le texte';
+  }
+});
+</script>
+
+<script src="js/navigation.js" defer></script>
+</body>
+</html>

@@ -1,132 +1,64 @@
-/* Thème Former Hope : mêmes jetons que former-hope.fr (violet, or, lavande ; jour et nuit). */
+/* Calculateur de talents et armurerie : complète css/style.css (thème du site Former Hope).
+   Les jetons de couleur, la base, l'en-tête et le pied de page viennent de style.css. */
 
-/* ---------- Jetons ---------- */
+/* ---------- Jetons propres au calculateur ---------- */
 :root {
-  color-scheme: light;
-  --blanc: #f8f7fb;
-  --voile: #efedf4;
   --carte: #fdfcff;
-  --argent: #c9c3d4;
-  --argent-fonce: #746e80;
-  --or: #b8892a;
-  --or-clair: #e3c473;
-  --bleu: #3b245d;
-  --bleu-vif: #68449a;
-  --bleu-pale: #eee8f6;
-  --encre: #211b2b;
-  --encre-doux: #5f586b;
-  --ligne: #ddd8e5;
-  --ombre: 0 16px 50px -24px rgba(52, 24, 82, .34), 0 2px 8px rgba(52, 24, 82, .08);
   --ok: #2f8a43;
   --danger: #b3261e;
   --cls-mix: 58%;           /* couleurs de classe assombries pour rester lisibles sur fond clair */
-
-  /* Qualité des objets, ajustée au fond clair */
   --q-poor: #7d7d7d; --q-common: #3a3446; --q-uncommon: #1a8a00; --q-rare: #0062c4;
   --q-epic: #8a2bd0; --q-legendary: #c96500; --q-heirloom: #9a7b2e;
-
-  /* Panneaux « jeu » (arbres, infobulles) : toujours sombres */
-  --jeu: #15101f;
-  --jeu-ligne: #3a2f4d;
-
-  --cell: 64px;   /* pas de la grille des talents */
-  --icon: 44px;   /* taille d'une icône de talent */
+  --jeu: #15101f;           /* panneaux « jeu » (arbres, infobulles) : toujours sombres */
+  --cell: 64px;             /* pas de la grille des talents */
+  --icon: 44px;             /* taille d'une icône de talent */
   --serif: Cinzel, Georgia, "Times New Roman", serif;
   --sans: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 :root[data-theme="dark"] {
-  color-scheme: dark;
-  --blanc: #09080d; --voile: #100d16; --carte: #13101b; --argent: #453b52; --argent-fonce: #aaa0b8;
-  --or: #d0aa59; --or-clair: #f0d58d; --bleu: #b99ae2; --bleu-vif: #9b70d1; --bleu-pale: #1c1428;
-  --encre: #f2edf8; --encre-doux: #c0b7cc; --ligne: #2e2638;
-  --ombre: 0 18px 55px -22px rgba(96, 48, 145, .46), 0 0 22px rgba(96, 48, 145, .12);
-  --ok: #5cc46f; --danger: #ff6b6b; --cls-mix: 100%;
+  --carte: #13101b; --ok: #5cc46f; --danger: #ff6b6b; --cls-mix: 100%;
   --q-poor: #9d9d9d; --q-common: #ffffff; --q-uncommon: #1eff00; --q-rare: #3d8eff;
   --q-epic: #b552ff; --q-legendary: #ff8000; --q-heirloom: #e6cc80;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --blanc: #09080d; --voile: #100d16; --carte: #13101b; --argent: #453b52; --argent-fonce: #aaa0b8;
-    --or: #d0aa59; --or-clair: #f0d58d; --bleu: #b99ae2; --bleu-vif: #9b70d1; --bleu-pale: #1c1428;
-    --encre: #f2edf8; --encre-doux: #c0b7cc; --ligne: #2e2638;
-    --ombre: 0 18px 55px -22px rgba(96, 48, 145, .46), 0 0 22px rgba(96, 48, 145, .12);
-    --ok: #5cc46f; --danger: #ff6b6b; --cls-mix: 100%;
+    --carte: #13101b; --ok: #5cc46f; --danger: #ff6b6b; --cls-mix: 100%;
     --q-poor: #9d9d9d; --q-common: #ffffff; --q-uncommon: #1eff00; --q-rare: #3d8eff;
     --q-epic: #b552ff; --q-legendary: #ff8000; --q-heirloom: #e6cc80;
   }
 }
 
-/* ---------- Base ---------- */
-* { box-sizing: border-box; }
+/* ---------- Ajustements de base ---------- */
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: radial-gradient(ellipse at 50% -25%, var(--bleu-pale), transparent 55%), var(--blanc);
-  background-attachment: fixed;
-  color: var(--encre);
-  font: 15px/1.6 var(--sans);
-  -webkit-font-smoothing: antialiased;
-  transition: background-color .25s, color .25s;
+h4 { margin: 0; font-family: var(--serif); font-weight: 700; line-height: 1.2; letter-spacing: .02em; }
+button { font: inherit; color: inherit; }
+/* style.css donne 100 % de largeur et un fond aux champs de formulaire : on revient à la taille naturelle ici */
+.page input, .page select {
+  width: auto; padding: 0; border: 0; border-radius: 0; background: none; font-size: inherit;
 }
-h1, h2, h3, h4 { margin: 0; font-family: var(--serif); font-weight: 700; line-height: 1.2; letter-spacing: .02em; }
-a { color: var(--bleu-vif); }
-button, input, select { font: inherit; color: inherit; }
-::selection { color: #fff; background: #68449a; }
-:focus-visible { outline: 2px solid var(--or); outline-offset: 2px; }
-.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.page input:focus, .page select:focus { outline: none; background: none; }
+.page label { font-weight: 400; font-size: inherit; color: inherit; }
 .muted { color: var(--encre-doux); font-weight: 400; }
 .small { font-size: 12px; }
 .error { color: var(--danger); }
 .empty { color: var(--argent-fonce); margin: 0 0 14px; }
 .cls-text { color: color-mix(in srgb, var(--c, var(--bleu)) var(--cls-mix), var(--encre)); }
 
-/* Filet or et violet, signature du site */
-.filet {
-  height: 2px; margin: 0; border: 0;
-  background: linear-gradient(90deg, transparent, var(--bleu) 28%, var(--or) 50%, var(--bleu) 72%, transparent);
-}
-
-/* ---------- En-tête du site ---------- */
-header.site {
-  position: sticky; top: 0; z-index: 50;
-  border-bottom: 1px solid var(--ligne);
-  background: color-mix(in srgb, var(--blanc) 86%, transparent);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-}
-.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; min-height: 72px; padding: 10px 0; }
-.marque { display: flex; align-items: center; gap: 12px; margin-right: auto; color: inherit; text-decoration: none; }
-.marque .nom { display: block; font-family: var(--serif); font-size: 18px; font-weight: 700; line-height: 1.1; }
-.marque .serveur { display: block; margin-top: 3px; color: var(--argent-fonce); font-size: 11px; letter-spacing: .07em; }
-.emblem {
-  width: 42px; height: 42px; flex: none; border: 1px solid var(--or); border-radius: 50%;
-  object-fit: cover; box-shadow: 0 0 18px rgba(104, 68, 154, .25);
-}
-.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+/* ---------- Héros compact et onglets de l'outil ---------- */
+.heros-compact { padding: clamp(2rem, 5vw, 3.2rem) 0 clamp(1.4rem, 3vw, 2rem); }
+.heros-compact h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 1.2rem; }
 .tab {
-  padding: 8px 15px; border: 1px solid transparent; border-radius: 999px;
+  padding: 8px 18px; border: 1px solid var(--ligne); border-radius: 999px;
+  background: color-mix(in srgb, var(--blanc) 75%, transparent);
   color: var(--encre-doux); font-size: 14px; font-weight: 600; text-decoration: none; transition: .2s;
 }
-.tab:hover, .tab.on {
-  border-color: color-mix(in srgb, var(--or) 60%, var(--ligne)); background: var(--bleu-pale); color: var(--bleu);
+.tab:hover { border-color: var(--or); background: var(--bleu-pale); color: var(--bleu); }
+.tab.on {
+  border-color: var(--or); background: linear-gradient(135deg, #7651a6, #3b245d); color: #fff;
+  box-shadow: 0 8px 25px -12px rgba(72, 37, 111, .7);
 }
-.tab.on { box-shadow: 0 0 22px rgba(104, 68, 154, .13); }
-.theme-toggle {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 42px; height: 42px; padding: 0; border: 1px solid var(--or); border-radius: 999px;
-  background: var(--bleu-pale); font-size: 18px; cursor: pointer;
-}
-.theme-toggle:hover { background: color-mix(in srgb, var(--or) 16%, var(--bleu-pale)); }
-
-/* ---------- Titre de page ---------- */
-.page { padding: 28px 0 48px; }
-.page-head { text-align: center; margin-bottom: 24px; }
-.page-head .devise {
-  margin: 0 0 8px; color: var(--or); font-family: var(--serif); font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
-}
-.page-head h1 { font-size: clamp(30px, 5vw, 48px); }
-.page-head .sub { margin: 8px 0 22px; color: var(--encre-doux); }
+.page { padding: 28px 0 48px; font-size: 15px; line-height: 1.6; }
 
 /* ---------- Composants partagés ---------- */
 .carte-base, .toolbar, .panel, .tree, .member, .char-head, .doll, .side-box, .racial, .book-item {
@@ -440,10 +372,7 @@ ul.spread li b { margin-left: auto; color: var(--or); font-family: var(--serif);
   .char-body { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .bar { gap: 8px 12px; }
-  .tabs { order: 3; width: 100%; }
   .tab { flex: 1; text-align: center; }
-  .marque .serveur { display: none; }
 }
 @media (max-width: 600px) {
   .doll { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }

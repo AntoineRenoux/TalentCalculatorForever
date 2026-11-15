@@ -2,6 +2,7 @@
 import http from 'node:http';
 import { GUILD_NAME, GUILD_SLUG, NS_PROFILE, NS_STATIC, PORT, TTL } from './config.mjs';
 import { ApiError, cached, get, namespaceOf } from './blizzard.mjs';
+import { FormError, submitCandidature } from './recrutement.mjs';
 
 const CLASS_KEYS = { 1: 'warrior', 2: 'paladin', 3: 'hunter', 4: 'rogue', 5: 'priest', 7: 'shaman', 8: 'mage', 9: 'warlock', 11: 'druid' };
 
@@ -161,9 +162,40 @@ function send(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
+function readJson(req, limit = 20_000) {
+  return new Promise((resolve, reject) => {
+    let size = 0;
+    const chunks = [];
+    req.on('data', (c) => {
+      size += c.length;
+      if (size > limit) { reject(new FormError(413, 'Candidature trop longue.')); req.destroy(); return; }
+      chunks.push(c);
+    });
+    req.on('end', () => {
+      try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf8'))); } catch { reject(new FormError(400, 'Candidature illisible.')); }
+    });
+    req.on('error', reject);
+  });
+}
+
+// Caddy transmet l'IP du visiteur dans X-Forwarded-For.
+const clientIp = (req) => (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress;
+
 const server = http.createServer(async (req, res) => {
+  let path;
+  try { path = decodeURIComponent(new URL(req.url, 'http://x').pathname); } catch { return send(res, 400, { error: 'Adresse invalide' }); }
+
+  if (req.method === 'POST' && path === '/api/recrutement') {
+    try {
+      await submitCandidature(await readJson(req), clientIp(req));
+      return send(res, 200, { ok: true });
+    } catch (e) {
+      const status = e instanceof FormError ? e.status : 500;
+      if (status === 500) console.error(e);
+      return send(res, status, { error: e instanceof FormError ? e.message : 'Erreur interne' });
+    }
+  }
   if (req.method !== 'GET') return send(res, 405, { error: 'Méthode non autorisée' });
-  const path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   try {
     if (path === '/api/health') return send(res, 200, { ok: true });
     if (path === '/api/guild') return send(res, 200, await guild());
