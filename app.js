@@ -24,6 +24,7 @@
     order: [],          // ids talents dans l'ordre où les points ont été mis
     level: MAX_LEVEL,
     removeMode: false,
+    race: null,         // id de race (traits raciaux et sorts propres à une race)
   };
   const index = new Map(); // id talent -> { t, tree, treeIdx }
   const nodes = new Map(); // id talent -> bouton DOM
@@ -240,8 +241,11 @@
 
   let ttTimer = 0;
   function showTooltip(anchor, t, tree) {
+    positionTooltip(anchor, tooltipHTML(t, tree));
+  }
+  function positionTooltip(anchor, html) {
     const tt = $('tooltip');
-    tt.innerHTML = tooltipHTML(t, tree);
+    tt.innerHTML = html;
     tt.hidden = false;
     const r = anchor.getBoundingClientRect();
     const w = tt.offsetWidth, h = tt.offsetHeight;
@@ -287,6 +291,7 @@
     renderOrder();
     applySearch();
     writeHash();
+    document.dispatchEvent(new CustomEvent('tc:update'));
   }
 
   function renderOrder() {
@@ -319,18 +324,22 @@
   }
   const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-  // ---------- URL partageable : #classe/rangs-arbre1-arbre2-arbre3 ----------
+  // ---------- URL partageable : #classe[/rangs-arbre1-arbre2-arbre3][/r<race>] ----------
   function writeHash() {
     const enc = state.cls.trees.map((tr) => tr.talents.map((t) => rank(t.id)).join('').replace(/0+$/, ''));
     while (enc.length && !enc[enc.length - 1]) enc.pop();
-    const h = `#${state.cls.key}${enc.length ? '/' + enc.join('-') : ''}`;
+    let h = `#${state.cls.key}${enc.length ? '/' + enc.join('-') : ''}`;
+    if (state.race) h += `/r${state.race}`;
     if (location.hash !== h) history.replaceState(null, '', h); // ne déclenche pas hashchange
   }
   function readHash() {
-    const [key, build = ''] = location.hash.slice(1).split('/');
+    const [key, ...rest] = location.hash.slice(1).split('/');
     const c = DATA.find((x) => x.key === key);
     if (!c) return false;
+    const raceSeg = rest.find((s) => /^r\d+$/.test(s));
+    const build = rest.find((s) => !/^r\d+$/.test(s)) || '';
     selectClass(c.key, true);
+    if (raceSeg && allowedRaces(c).includes(+raceSeg.slice(1))) state.race = +raceSeg.slice(1);
     build.split('-').forEach((s, ti) => {
       const tree = c.trees[ti];
       if (!tree) return;
@@ -351,6 +360,8 @@
     state.cls = c;
     state.ranks.clear();
     state.order = [];
+    const races = allowedRaces(c);
+    if (!races.includes(state.race)) state.race = races[0] ?? null;
     document.querySelectorAll('.class-btn').forEach((b) => b.classList.toggle('active', b.dataset.key === key));
     $('className').textContent = `Talents — ${c.name}`;
     $('className').style.color = c.color;
@@ -407,6 +418,19 @@
       $('calc').hidden = true;
     }
   }
+
+  function allowedRaces(c) {
+    const lv = window.LEVELING_DATA;
+    return lv && lv.classes[c.key] ? lv.classes[c.key].races : [];
+  }
+
+  // API lue par leveling-ui.js
+  window.TC = {
+    state, index, ICON, MIN_LEVEL, cleanDesc, esc,
+    positionTooltip, hideTooltip,
+    setRace(r) { state.race = r; update(); },
+    setLevel,
+  };
 
   init();
 })();

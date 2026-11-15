@@ -145,6 +145,76 @@ button, input { font: inherit; color: inherit; }
 
 .welcome { margin-top: 40px; text-align: center; color: var(--muted); }
 
+/* ---------- Leveling : traits raciaux, progression, grimoire ---------- */
+.panel + .panel { margin-top: 12px; }
+.muted { color: var(--muted); font-weight: 400; }
+.panel-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 12px 0; }
+.panel-head h3 { margin: 0; font-size: 16px; }
+.panel-head select {
+  height: 32px; padding: 0 8px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px;
+}
+.racial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; padding-bottom: 12px; }
+.racial { display: flex; gap: 10px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 10px; }
+.racial img { width: 36px; height: 36px; border-radius: 4px; flex: none; }
+.racial h4 { margin: 0 0 2px; font-size: 14px; }
+.racial p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 15px; cursor: pointer; font-size: 13px;
+}
+.chip img { width: 18px; height: 18px; border-radius: 50%; }
+.chip:hover { background: #2f2f2f; }
+.chip.on { border-color: var(--gold); color: var(--gold); }
+.check { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; font-size: 13px; }
+.search.small { flex: 0 1 240px; }
+.search.small input { height: 30px; }
+
+.timeline { list-style: none; margin: 0 0 12px; padding: 0; }
+.lvl { display: flex; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); }
+.lvl.future { opacity: .55; }
+.lvl.current .lvl-num { background: var(--gold); color: #000; }
+.lvl-num {
+  flex: none; width: 46px; height: 46px; border-radius: 6px; background: var(--panel-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; line-height: 1;
+}
+.lvl-num span { font-size: 10px; font-weight: 400; opacity: .7; }
+.lvl-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.row { display: flex; gap: 10px; align-items: flex-start; }
+.row > img { width: 28px; height: 28px; border-radius: 4px; flex: none; border: 1px solid #000; }
+.row-main { flex: 1; min-width: 0; }
+.row .desc { margin: 2px 0 0; color: #cfc7a8; font-size: 13px; }
+.talent-pt { align-items: center; }
+.pt-dot {
+  width: 28px; height: 28px; border-radius: 4px; border: 1px dashed var(--green); color: var(--green);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex: none;
+}
+.tag {
+  display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 3px; font-size: 11px; line-height: 17px;
+  border: 1px solid var(--line); color: var(--muted); vertical-align: 1px;
+}
+.tag.tag-talent { border-color: var(--green); color: var(--green); }
+.tag.new { border-color: #ff8000; color: #ff8000; }
+.tag.train { border-color: var(--accent); color: var(--accent); }
+.tag.moved { border-color: #b48cff; color: #b48cff; }
+
+.book-school h4 { display: flex; align-items: center; gap: 8px; margin: 4px 0 8px; font-size: 15px; }
+.book-school h4 img { width: 22px; height: 22px; border-radius: 50%; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px; margin-bottom: 14px; }
+.book-item {
+  display: flex; gap: 8px; align-items: center; padding: 6px; border-radius: 4px; cursor: default;
+  background: var(--panel-2); border: 1px solid var(--line);
+}
+.book-item.forever { border-color: #6b4a1f; }
+.book-item:hover, .book-item:focus { border-color: var(--gold); outline: none; }
+.book-item img { width: 36px; height: 36px; border-radius: 4px; flex: none; }
+.book-item b { display: block; font-size: 13px; }
+.book-item .muted { font-size: 12px; }
+.tooltip .tt-forever { color: #ff8000; }
+
 /* Infobulle */
 .tooltip {
   position: fixed; z-index: 100; max-width: 340px; pointer-events: none;

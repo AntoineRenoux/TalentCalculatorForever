@@ -10,7 +10,7 @@
   <main class="page">
     <header class="page-head">
       <h1>Calculateur de talents</h1>
-      <p class="sub">WoW Forever / Classic+ — 9 classes, niveau 10 à 60</p>
+      <p class="sub">WoW Forever / Classic+ — talents, sorts par niveau et traits raciaux des 9 classes</p>
     </header>
 
     <!-- Barre d'outils : classes + niveau + actions -->
@@ -49,6 +49,37 @@
         <ol class="order" id="order"></ol>
         <p class="empty" id="orderEmpty">Aucun point dépensé.</p>
       </details>
+
+      <section class="panel racials">
+        <div class="panel-head">
+          <h3>Traits raciaux</h3>
+          <select id="raceSelect" aria-label="Race"></select>
+        </div>
+        <div class="racial-grid" id="racials"></div>
+      </section>
+
+      <details class="panel" id="levelingPanel" open>
+        <summary>Progression par niveau</summary>
+        <div class="filters">
+          <div class="chips" id="schoolChips" aria-label="Écoles"></div>
+          <label class="check"><input type="checkbox" id="foreverOnly"> Nouveautés Forever uniquement</label>
+          <label class="check"><input type="checkbox" id="untilLevel"> Jusqu'à mon niveau</label>
+          <label class="search small">
+            <span aria-hidden="true">🔍</span>
+            <input type="search" id="spellSearch" placeholder="Rechercher un sort">
+          </label>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </details>
+
+      <details class="panel" id="bookPanel" open>
+        <summary>Grimoire au niveau <span id="bookLevel">60</span></summary>
+        <div class="filters">
+          <div class="chips" id="bookTabs" aria-label="Écoles du grimoire"></div>
+          <label class="check"><input type="checkbox" id="allRanks"> Afficher tous les rangs</label>
+        </div>
+        <div class="book" id="book"></div>
+      </details>
     </section>
 
     <section class="welcome" id="welcome">
@@ -60,6 +91,8 @@
   <div class="toast" id="toast" hidden></div>
 
   <script src="data.js"></script>
+  <script src="leveling.js"></script>
   <script src="app.js"></script>
+  <script src="leveling-ui.js"></script>
 </body>
 </html>
