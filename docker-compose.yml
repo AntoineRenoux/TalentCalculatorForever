@@ -11,6 +11,15 @@ services:
       proxy:
         aliases: [talentcalculator-web]
 
+  # Armurerie : appelle l'API Blizzard avec le client défini dans .env (jamais commité).
+  api:
+    build: ./server
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      proxy:
+        aliases: [talentcalculator-api]
+
 networks:
   proxy:
     name: proxy

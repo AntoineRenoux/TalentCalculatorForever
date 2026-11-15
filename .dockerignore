@@ -2,3 +2,6 @@
 README.md
 docker-compose.yml
 deploy/
+server/
+.env
+.env.example

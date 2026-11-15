@@ -11,6 +11,15 @@ Calculateur de talents pour WoW Forever / Classic+, en HTML5, CSS3 et JavaScript
 - Progression par niveau : sorts et rangs appris à chaque niveau (description, école, nouveautés Forever) et point de talent du build
 - Grimoire au niveau choisi : plus haut rang connu de chaque sort, par école
 
+## Armurerie de guilde
+
+Onglet « Armurerie » (`#armory`) : membres de la guilde **Former Hope** (liste filtrable), fiche de chaque personnage (équipement avec infobulles, rendu, caractéristiques, talents) et bouton « Ouvrir dans le calculateur ». Seuls les personnages de la guilde sont accessibles : le serveur renvoie 403 pour les autres.
+
+- La guilde se change dans `server/config.mjs` (`GUILD_NAME`, `GUILD_SLUG`).
+- Le serveur `server/` (Node 22, sans dépendance) appelle l'API Blizzard avec le namespace `profile-forever-eu`. Forever n'est pas encore dans la doc officielle ; `node server/probe.mjs` vérifie ce que l'API renvoie.
+- Il faut un client API créé sur https://develop.battle.net/access/clients, dont l'id et le secret vont dans `.env` (voir `.env.example`), jamais dans le dépôt.
+- Un personnage n'apparaît qu'à partir du niveau 10, après une déconnexion.
+
 Données : `data.js` (talents) et `leveling.js` (sorts, races, traits raciaux), extraites de Wowhead (WoW Forever, FR).
 
 ## Lancer en local
