@@ -103,7 +103,10 @@
     box.innerHTML = list.map((m) => {
       const c = classOf(m.classKey);
       return `<a class="member" href="#armory/${encodeURIComponent(m.slug)}" style="--c:${c?.color || '#999'}">
-        <img src="${ICON('classicon_' + (m.classKey || 'warrior'), 'medium')}" alt="">
+        <span class="m-avatar">
+          <img src="${m.avatar ? esc(m.avatar) : ICON('classicon_' + (m.classKey || 'warrior'), 'large')}" alt="" loading="lazy">
+          ${m.avatar ? `<img class="m-class" src="${ICON('classicon_' + (m.classKey || 'warrior'), 'small')}" alt="">` : ''}
+        </span>
         <span class="m-name">${esc(m.name)} <span class="muted">${esc(m.surname)}</span></span>
         <span class="m-info">Niv. ${m.level} · ${esc(raceName(m.raceId))} ${esc(c?.name || '')}</span>
         <span class="m-rank">${esc(RANK_LABEL(m.rank))}</span>

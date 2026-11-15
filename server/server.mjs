@@ -21,6 +21,7 @@ async function guild() {
       raceId: c.playable_race?.id,
       rank,
     })).sort((a, b) => a.rank - b.rank || b.level - a.level || a.name.localeCompare(b.name));
+    await Promise.all(members.map(async (m) => { m.avatar = await avatar(m.slug); }));
     return {
       name: info.name || GUILD_NAME,
       faction: info.faction?.name,
@@ -30,6 +31,17 @@ async function guild() {
       updatedAt: new Date().toISOString(),
     };
   });
+}
+
+// Image du perso (null tant que Blizzard ne l'a pas générée ou si le perso est sous le niveau 10).
+async function characterMedia(slug) {
+  return cached(`media:${slug}`, TTL.roster, async () => {
+    const m = await get(`/profile/wow/character/${encodeURIComponent(slug)}/character-media`, NS_PROFILE);
+    return Object.fromEntries((m.assets || []).map((a) => [a.key, a.value]));
+  }, TTL.roster);
+}
+async function avatar(slug) {
+  try { return (await characterMedia(slug)).avatar || null; } catch { return null; }
 }
 
 async function itemIcon(item) {
@@ -98,10 +110,10 @@ async function character(slug) {
       if (e.status === 404) throw new ApiError(404, 'Personnage pas encore visible sur l’API Blizzard : il faut être niveau 10 ou plus et s’être déconnecté au moins une fois.');
       throw e;
     }
-    const [equipment, specs, media, stats] = await Promise.allSettled([
+    const [equipment, specs, assets, stats] = await Promise.allSettled([
       get(`${base}/equipment`, NS_PROFILE),
       get(`${base}/specializations`, NS_PROFILE),
-      get(`${base}/character-media`, NS_PROFILE),
+      characterMedia(slug),
       get(`${base}/statistics`, NS_PROFILE),
     ]).then((rs) => rs.map((r) => (r.status === 'fulfilled' ? r.value : null)));
 
@@ -119,8 +131,6 @@ async function character(slug) {
       active: !!grp.is_active,
       talents: (grp.specializations || []).flatMap((sp) => (sp.talents || []).map((t) => [t.talent?.id, t.talent_rank])).filter(([id]) => id),
     }));
-    const assets = Object.fromEntries((media?.assets || []).map((a) => [a.key, a.value]));
-
     return {
       slug,
       name: profile.name,
@@ -133,8 +143,8 @@ async function character(slug) {
       classKey: CLASS_KEYS[profile.character_class?.id] || member.classKey,
       rank: member.rank,
       guild: g.name,
-      avatar: assets['avatar'] || null,
-      render: assets['main-raw'] || null,
+      avatar: assets?.avatar || null,
+      render: assets?.['main-raw'] || null,
       items,
       talentGroups: groups,
       stats: pickStats(stats),
