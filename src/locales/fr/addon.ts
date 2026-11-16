@@ -4,9 +4,18 @@ export const addon = {
     description: 'Retrouve les métiers et recettes de la guilde FORMER HOPE en jeu et sur Discord grâce à GuildProfessions.',
   },
 
+  menu: {
+    open: 'Ouvrir le menu',
+    close: 'Fermer le menu',
+    label: 'Menu',
+  },
+
+  brand: 'FORMER HOPE',
+
   nav: {
-    ariaLabel: 'Sommaire de la page',
-    home: 'Présentation',
+    ariaLabel: 'Navigation de la page',
+    back: 'Retour à l’accueil',
+    home: 'GuildProfessions',
     how: 'Fonctionnement',
     downloads: 'Téléchargements',
     install: 'Installation',
@@ -15,9 +24,11 @@ export const addon = {
   },
 
   hero: {
-    title: 'GuildProfessions',
-    lede: 'L’addon de guilde de Former Hope : tous les métiers de la guilde, dans ta poche, en jeu comme sur Discord.',
-    description: 'Qui peut craft le Flacon des Titans ? Quel enchanteur connaît Croisé ? GuildProfessions répond tout de suite, et se met à jour tout seul.',
+    eyebrow: 'FORMER HOPE · WoW: Forever',
+    titleLine1: 'Tous les métiers',
+    titleLine2: 'de la guilde,',
+    titleAccent: 'dans ta poche.',
+    description: 'Qui peut craft le Flacon des Titans ? Quel enchanteur connaît Croisé ? GuildProfessions répond en jeu comme sur Discord — et se met à jour tout seul.',
     download: 'Télécharger',
     guide: 'Guide d’installation',
     art: {
@@ -30,12 +41,14 @@ export const addon = {
       },
       crafters: { one: '{count} artisan', other: '{count} artisans' },
       found: 'Recette trouvée',
-      available: 'disponible',
+      available: '✓ disponible',
     },
   },
 
   how: {
-    title: 'Trois pièces, un annuaire',
+    eyebrow: 'Simple, automatique, partagé',
+    titleLine1: 'Trois pièces,',
+    titleAccent: 'un annuaire.',
     copy: 'Un addon ne peut ni accéder à Internet ni écrire sur ton disque. GuildProfessions relie donc le jeu, ton ordinateur et Discord pour partager les métiers de la guilde.',
     cards: {
       addon: {
@@ -61,7 +74,9 @@ export const addon = {
   },
 
   manual: {
-    title: 'Le canal manuel',
+    eyebrow: 'Sans compagnon',
+    titleLine1: 'Le canal manuel,',
+    titleAccent: 'en deux commandes.',
     copy: 'Tu peux aussi synchroniser les données par copier-coller. Le compagnon automatise ces échanges, mais il n’est pas obligatoire.',
     export: {
       title: 'Envoyer tes métiers vers Discord',
@@ -82,11 +97,12 @@ export const addon = {
   },
 
   downloads: {
+    eyebrow: 'Choisis ton installation',
     title: 'Téléchargements',
     copy: 'Le pack tout-en-un installe l’addon et son compagnon. Tu peux aussi télécharger chaque élément séparément.',
     featured: {
-      badge: 'Le pack tout-en-un, recommandé',
-      title: 'Tout s’installe seul',
+      badge: 'Recommandé · Pack tout-en-un',
+      title: 'Une installation, et c’est prêt.',
       text: 'Le compagnon trouve ton dossier World of Warcraft, installe l’addon et synchronise tes métiers en arrière-plan. Il met également à jour l’addon et le compagnon.',
       points: {
         install: 'Installation automatique dans <code>Interface/AddOns</code>',
@@ -106,7 +122,9 @@ export const addon = {
     downloadPack: 'Télécharger le pack',
     linkSeparator: ' ·',
     separate: {
-      title: 'À la carte',
+      eyebrow: 'À la carte',
+      titleLine1: 'Addon et compagnon,',
+      titleAccent: 'séparément.',
       addon: {
         title: 'L’addon — obligatoire',
         text: 'Le même fichier pour tous les systèmes. Dézippe-le et place le dossier <code>GuildProfessions</code> dans <code>Interface/AddOns</code>.',
@@ -122,6 +140,7 @@ export const addon = {
   },
 
   install: {
+    eyebrow: 'Guide pas à pas',
     title: 'Installation',
     copy: 'Choisis ton système pour afficher les instructions correspondantes.',
     tabsLabel: 'Instructions d’installation',
@@ -160,7 +179,9 @@ export const addon = {
   },
 
   discord: {
-    title: 'Les commandes Discord',
+    eyebrow: 'L’annuaire, même hors du jeu',
+    titleLead: 'Les commandes',
+    titleAccent: 'Discord',
     copy: 'Trouve un artisan, consulte les recettes et suis tes commandes directement sur le serveur Discord de la guilde.',
     commands: {
       metierList: { command: '/metier list', text: 'Tous les métiers de la guilde.' },
@@ -180,7 +201,9 @@ export const addon = {
   },
 
   faq: {
-    title: 'Questions fréquentes',
+    eyebrow: 'Avant l’installation',
+    titleLead: 'Questions',
+    titleAccent: 'fréquentes',
     items: {
       safe: {
         question: 'Le compagnon est-il sûr ?',
@@ -201,4 +224,7 @@ export const addon = {
     },
   },
 
+  footer: {
+    text: 'GuildProfessions · Fait avec soin pour FORMER HOPE · WoW: Forever',
+  },
 } as const;

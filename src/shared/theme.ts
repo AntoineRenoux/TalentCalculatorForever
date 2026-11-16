@@ -1,6 +1,5 @@
 /** Bouton jour / nuit de l'en-tête (le thème enregistré est déjà appliqué par le script du <head>). */
 import { siteConfig } from '../../config/site.config.ts';
-import { iconSvg } from '../../config/icons.config.ts';
 import { t } from './i18n.ts';
 
 const { storageKey, light, dark, icons } = siteConfig.theme;
@@ -20,7 +19,7 @@ export function initThemeToggle(ids: ThemeToggleIds = DEFAULT_IDS): void {
   const paint = () => {
     const darkNow = isDark();
     const label = darkNow ? t('theme.toLight') : t('theme.toDark');
-    icon.innerHTML = iconSvg(darkNow ? icons.dark : icons.light);
+    icon.textContent = darkNow ? icons.dark : icons.light;
     button.setAttribute('aria-label', label);
     button.setAttribute('title', label);
     button.setAttribute('aria-pressed', String(darkNow));

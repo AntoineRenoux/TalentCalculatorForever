@@ -112,31 +112,7 @@ function recruitmentFields(): string {
       </div>`;
 }
 
-
-
-
-
-/** {{> memberStrip zone=recruitment}} : bande de personnages de la guilde (rendus en écu, remplis par le JS). */
-function memberStrip({ named }: PartialArgs): string {
-  const { zone } = named;
-  if (!zone) throw new Error('memberStrip : zone manquante');
-  const items = Array.from({ length: homeConfig.strip.count }, () => `<li><figure>
-          <div class="ecu-cadre"><img alt="" width="240" height="288" loading="lazy" hidden></div>
-          <figcaption><span class="bande-nom"></span><span class="bande-info"></span></figcaption>
-        </figure></li>`).join('\n        ');
-  return `<section class="bande-membres" aria-labelledby="titre-bande">
-    <div class="wrap bande-membres-tete" data-reveal>
-      <h2 id="titre-bande">${escapeHtml(tDynamic(`${zone}.strip.title`))}</h2>
-      <p>${escapeHtml(tDynamic(`${zone}.strip.text`))}</p>
-    </div>
-    <ul class="wrap bande-membres-liste" data-reveal data-member-strip>
-        ${items}
-    </ul>
-  </section>`;
-}
-
 export const guildPartials: PartialRegistry = {
-  memberStrip,
   tcfg,
   guildSheet,
   recruitmentPosts,

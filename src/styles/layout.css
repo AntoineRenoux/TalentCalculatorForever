@@ -5,7 +5,9 @@ header.site {
   position: sticky;
   z-index: var(--z-header);
   top: var(--space-0);
-  background: var(--blanc);
+  border-bottom: var(--border-thin) solid var(--ligne);
+  background: color-mix(in srgb, var(--blanc) var(--header-glass), transparent);
+  backdrop-filter: blur(var(--header-blur));
 }
 
 .bar {
@@ -46,6 +48,7 @@ header.site {
   border: var(--border-thin) solid var(--or);
   border-radius: var(--radius-round);
   object-fit: cover;
+  box-shadow: var(--glow-emblem);
 }
 
 /* Menu principal */
@@ -67,6 +70,7 @@ nav.site a[aria-current="page"] {
   background: var(--bleu-pale);
   color: var(--bleu);
 }
+nav.site a[aria-current="page"] { box-shadow: var(--glow-nav); }
 
 /* Menus déroulants */
 nav.site .nav-groupe { position: relative; display: flex; align-items: center; gap: var(--space-0); }
@@ -162,7 +166,11 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   position: relative;
   overflow: hidden;
   padding: var(--space-hero-top) var(--space-0) var(--space-hero-bottom);
-  background: var(--voile);
+  border-bottom: var(--border-thin) solid var(--ligne);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--bleu-vif) 18%, transparent), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--or) 9%, transparent), transparent 45%),
+    linear-gradient(180deg, var(--voile), var(--blanc));
   text-align: center;
 }
 .heros::before {
@@ -194,10 +202,8 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
 }
 .heros h1 {
   margin-bottom: var(--space-sm);
-  font-size: var(--fs-display);
-  line-height: var(--lh-display);
-  letter-spacing: var(--ls-display);
   color: var(--encre);
+  text-shadow: 0 0 34px color-mix(in srgb, var(--bleu-vif) 18%, transparent);
 }
 .heros h1 .ligne2 {
   display: block;
@@ -207,12 +213,10 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-ligne2);
 }
-.heros .heros-lede { color: var(--bleu); font-weight: var(--fw-semibold); }
 .heros p {
   max-width: var(--hero-text-width);
   margin-inline: auto;
-  color: var(--encre);
-  font-size: var(--fs-display-sub);
+  color: var(--encre-doux);
 }
 
 .crest { display: block; width: var(--crest-width); height: auto; margin: var(--space-0) auto var(--space-xl); }
@@ -221,11 +225,10 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   width: var(--seal-size);
   height: var(--seal-size);
   margin: var(--space-0) auto var(--space-lg);
-  height: auto;
-  aspect-ratio: var(--ecu-ratio);
+  border: var(--border-medium) solid var(--or);
+  border-radius: var(--radius-round);
   object-fit: cover;
-  -webkit-mask: var(--ecu-mask) center / 100% 100% no-repeat;
-  mask: var(--ecu-mask) center / 100% 100% no-repeat;
+  box-shadow: var(--ombre-sceau);
 }
 .logo-guilde {
   display: block;
@@ -234,6 +237,7 @@ nav.site .chevron { font-size: var(--fs-chevron); line-height: var(--lh-reset); 
   margin: var(--space-0) auto var(--space-2xl);
   border: var(--border-thin) solid var(--or);
   border-radius: var(--radius-md);
+  box-shadow: var(--ombre-logo-cadre);
 }
 
 /* Pied de page */
@@ -241,7 +245,10 @@ footer.site {
   position: relative;
   margin-top: var(--space-2xl);
   padding: var(--space-3xl) var(--space-0) var(--space-xl);
-  background: var(--voile);
+  border-top: var(--border-thin) solid var(--ligne);
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--bleu-vif) 12%, transparent), transparent 65%),
+    var(--voile);
 }
 footer.site::before {
   position: absolute;
@@ -264,16 +271,6 @@ footer.site li { color: var(--encre-doux); font-size: var(--fs-sm-plus); }
 footer.site ul { display: grid; gap: var(--space-2xs); margin: var(--space-0); padding: var(--space-0); list-style: none; }
 footer.site a { text-decoration: none; }
 footer.site a:hover { color: var(--or); text-decoration: underline; }
-footer.site .marque-geante {
-  margin: var(--space-3xl) var(--space-0) var(--space-0);
-  color: var(--bleu);
-  font-family: var(--font-serif);
-  font-size: var(--fs-wordmark);
-  font-weight: var(--fw-bold);
-  line-height: var(--lh-display);
-  letter-spacing: var(--ls-display);
-  white-space: nowrap;
-}
 .mentions {
   display: flex;
   flex-wrap: wrap;
@@ -281,13 +278,13 @@ footer.site .marque-geante {
   gap: var(--space-md);
   margin-top: var(--space-2xl);
   padding-top: var(--space-md);
-  color: var(--encre-doux);
+  border-top: var(--border-thin) solid var(--ligne);
+  color: var(--argent-fonce);
   font-size: var(--fs-xs);
 }
 
 /* Écrans étroits */
 @media (--bp-nav) {
-  header.site { position: static; }
   .bar { justify-content: center; gap: var(--space-xs); }
   .marque { width: 100%; margin-right: var(--space-0); }
   nav.site { width: 100%; gap: var(--space-4xs); justify-content: flex-start; }

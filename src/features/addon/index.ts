@@ -1,2 +1,3 @@
 /** Fonctionnalités de la page « GuildProfessions ». */
-export { initAddonTabs } from './tabs.ts';
+export { initAddonTheme } from './theme.ts';
+export { initAddonSidebar } from './sidebar.ts';

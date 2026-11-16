@@ -57,8 +57,7 @@ export const siteConfig = {
     storageKey: 'formerhope-theme',
     light: 'light',
     dark: 'dark',
-    /** Icônes (config/icons.config.ts) du thème actif. */
-    icons: { light: 'sun', dark: 'moon' },
+    icons: { light: '☀️', dark: '🌙' },
   },
 
   /** Requêtes média utilisées par le JavaScript. */
@@ -66,7 +65,6 @@ export const siteConfig = {
     prefersDark: '(prefers-color-scheme: dark)',
     fineHover: '(hover: hover) and (pointer: fine)',
     noHover: '(hover: none)',
-    reducedMotion: '(prefers-reduced-motion: reduce)',
   },
 
   api: {
@@ -96,7 +94,6 @@ export const siteConfig = {
           { page: 'boss', labelKey: 'nav.boss' },
           { page: 'addon', labelKey: 'nav.addon' },
           { page: 'talents', labelKey: 'nav.talents', domId: 'menuCalc' },
-          { page: 'talents', labelKey: 'nav.armory', anchor: 'armory', domId: 'menuArmory' },
         ],
       },
     ] satisfies NavGroup[],
@@ -108,7 +105,6 @@ export const siteConfig = {
     { page: 'recruitment', labelKey: 'nav.recruitment' },
     { page: 'boss', labelKey: 'nav.bossFooter' },
     { page: 'talents', labelKey: 'nav.talents' },
-    { page: 'talents', labelKey: 'nav.armory', anchor: 'armory' },
   ] satisfies NavLink[],
 } as const;
 

@@ -6,7 +6,6 @@ import { boss } from './boss.ts';
 import { addon } from './addon.ts';
 import { talents } from './talents.ts';
 import { leveling } from './leveling.ts';
-import { armory } from './armory.ts';
 
 export const fr = {
   ...common,
@@ -16,5 +15,4 @@ export const fr = {
   addon,
   talents,
   leveling,
-  armory,
 } as const;

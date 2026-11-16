@@ -16,6 +16,8 @@ export interface AddonInstallTab {
   steps: readonly string[];
   /** Le panneau se termine-t-il par un paragraphe de remarque ? */
   note: boolean;
+  /** Jeton CSS d'espacement au-dessus du panneau (repris de la page d'origine). */
+  offsetToken?: string;
 }
 
 export const addonConfig = {
@@ -24,11 +26,28 @@ export const addonConfig = {
     themeColor: '#100d16',
   },
 
-  /** Onglets du guide d'installation : un seul panneau visible à la fois (sans JS, tous restent visibles). */
-  tabs: {
-    tabSelector: '.addon-onglet',
-    panelSelector: '.addon-panneau',
-    activeClass: 'is-active',
+  /** Identifiants DOM partagés entre le gabarit et le JavaScript. */
+  ids: {
+    menuToggle: 'gp-menu-toggle',
+    sidebar: 'gp-sidebar',
+    overlay: 'gp-menu-overlay',
+    themeToggle: 'gp-theme-toggle',
+    themeIcon: 'gp-theme-icon',
+  },
+
+  classes: {
+    /** Classe posée sur <body> quand le menu latéral est ouvert. */
+    menuOpen: 'gp-menu-open',
+    /** Liens du menu latéral (un clic referme le menu). */
+    navLinks: '.gp-nav a',
+  },
+
+  /** Touche qui referme le menu latéral. */
+  closeKey: 'Escape',
+
+  icons: {
+    menu: '☰',
+    flowArrow: '→',
   },
 
   /** Ancres des sections. */
@@ -42,7 +61,7 @@ export const addonConfig = {
     faq: 'faq',
   },
 
-  /** Entrées du sommaire de la page, dans l'ordre (libellés : addon.nav.<clé>). */
+  /** Entrées du menu latéral, dans l'ordre (libellés : addon.nav.<clé>). */
   nav: ['home', 'how', 'downloads', 'install', 'discord', 'faq'] satisfies AddonSectionKey[],
 
   /** Carte d'illustration du bandeau : nombre d'artisans par métier. */
@@ -54,8 +73,14 @@ export const addonConfig = {
     ],
   },
 
-  /** Les trois pièces du système (clés de addon.how.cards). */
+  /** Cartes « trois pièces » (clés de addon.how.cards). */
   featureCards: ['addon', 'companion', 'bot'],
+  /** Nombre de chiffres des numéros de cartes (01, 02…). */
+  featureNumberDigits: 2,
+  /** Cartes « à la carte » (numérotées dans cet ordre). */
+  separateCards: ['addon', 'companion'],
+  /** Nombre de chiffres des numéros des cartes « à la carte » (1, 2). */
+  separateNumberDigits: 1,
 
   /** Étapes du parcours de synchronisation (la première est mise en avant). */
   flow: ['play', 'scan', 'sync', 'consult'],
@@ -92,8 +117,8 @@ export const addonConfig = {
   /** Onglets du guide d'installation, dans l'ordre. */
   install: [
     { key: 'windows', id: 'installation-windows', steps: ['pack', 'separate', 'scan'], note: true },
-    { key: 'mac', id: 'installation-mac', steps: ['download', 'separate', 'unblock', 'scan'], note: false },
-    { key: 'linux', id: 'installation-linux', steps: ['unzip', 'run', 'separate', 'scan'], note: false },
+    { key: 'mac', id: 'installation-mac', steps: ['download', 'separate', 'unblock', 'scan'], note: false, offsetToken: '--gp-install-panel-offset' },
+    { key: 'linux', id: 'installation-linux', steps: ['unzip', 'run', 'separate', 'scan'], note: false, offsetToken: '--gp-install-panel-offset' },
   ] satisfies AddonInstallTab[],
 
   /** Commandes Discord, dans l'ordre (clés de addon.discord.commands). */

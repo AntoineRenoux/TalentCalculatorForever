@@ -1,14 +1,13 @@
-/** Textes de la page d'accueil (même structure que le site d'origine former-hope.fr). */
+/** Textes de la page d'accueil. */
 export const home = {
   hero: {
     logoAlt: "Logo de la guilde Former Hope : écu bleu au lion d'argent, marteaux croisés et bannières",
+    devise: 'Fondée en {year} · Alliance · WOW FOREVER',
     tagline: "Unis par l'aventure, guidés par l'envie.",
-    lede: "Guilde PvE francophone de l'Alliance sur WoW Forever, fondée en {year}.",
     intro: "Une guilde stable d'adultes qui vise à clean chaque patch sans transformer le jeu en second travail. On progresse, on rigole, et on s’amuse. Notre objectif : un groupe soudé qui avance comme une vraie équipe.",
     ctaRecruitment: 'Voir les postes ouverts',
     ctaBoss: 'Guide des boss',
   },
-
   guild: {
     title: 'La guilde',
     welcome: 'Bienvenue chez Former Hope, une guilde PvE chill qui souhaite avant tout construire une communauté soudée, mature et agréable, tout en avançant sérieusement dans le contenu PvE.',
@@ -19,12 +18,10 @@ export const home = {
     raids: 'On raide le mardi et le dimanche, de 21h00 à 00h00, heure de Paris. Présence attendue sur deux soirs minimum. Les potions, les flacons et les nourritures de raid sont fournis par la banque de guilde : tu viens avec ton stuff optimisé et ta bonne humeur.',
     outside: 'En dehors du raid, on fait des rerolls, des donjons, de l’optimisation, et j’en passe, très souvent avec des soirées qui durent bien plus longtemps que prévu.',
   },
-
   expectations: {
     title: "Ce qu'on attend",
     text: "Connaître les tactiques avant le soir du raid, accepter les retours sans les prendre personnellement, et prévenir sur Discord quand tu ne peux pas venir. C'est tout. Le reste s'apprend en jeu.",
   },
-
   sheet: {
     title: 'Fiche',
     rows: {
@@ -34,17 +31,5 @@ export const home = {
       hours: { term: 'Horaires', value: '21h00 – 00h00' },
       voice: { term: 'Vocal', value: 'Discord obligatoire' },
     },
-  },
-
-  /** Bande de personnages (en direct depuis l'armurerie). */
-  strip: {
-    title: 'Les membres de la guilde',
-    text: 'Quelques personnages de Former Hope, en direct depuis l’armurerie.',
-  },
-
-  /** Textes utilisés par la bande de personnages (toutes pages). */
-  roster: {
-    previewAlt: 'Rendu du personnage {name}',
-    stripMember: 'Niv. {level} · {className}',
   },
 } as const;

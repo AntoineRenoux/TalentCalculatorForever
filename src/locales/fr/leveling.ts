@@ -9,6 +9,7 @@ export const leveling = {
     schoolsAria: 'Écoles',
     foreverOnly: 'Nouveautés Forever uniquement',
     untilLevel: "Jusqu'à mon niveau",
+    searchIcon: '🔍',
     searchPlaceholder: 'Rechercher un sort',
     levelShort: 'Niv.',
     noMatch: 'Aucun sort ne correspond aux filtres.',

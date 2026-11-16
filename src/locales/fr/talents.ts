@@ -1,27 +1,29 @@
 /** Textes du calculateur de talents (page talents.html). */
 export const talents = {
   hero: {
+    devise: 'Outils · WoW Forever',
     title: 'Calculateur de talents',
-    intro: 'Talents, sorts appris à chaque niveau, traits raciaux et armurerie des membres de la guilde.',
-  },
-  tabs: {
-    ariaLabel: 'Sections de l’outil',
-    calc: 'Calculateur',
-    armory: 'Armurerie',
+    intro: 'Talents, sorts appris à chaque niveau et traits raciaux.',
   },
   toolbar: {
     classesAria: 'Classes',
     levelAria: 'Niveau du personnage',
     levelDown: 'Niveau -1',
+    levelDownIcon: '−',
     levelUp: 'Niveau +1',
+    levelUpIcon: '+',
     removeMode: 'Mode retrait (mobile) : un clic retire un point',
+    removeModeIcon: '−1',
     resetAll: 'Tout réinitialiser',
+    resetAllIcon: '⟲',
     copyLink: 'Copier le lien du build',
+    copyLinkIcon: '🔗',
   },
   heading: 'Talents — {className}',
   headingEmpty: 'Talents',
   documentTitle: 'Calculateur de talents — {className}',
   search: {
+    icon: '🔍',
     placeholder: 'Rechercher parmi tous les talents',
   },
   summary: {
@@ -41,8 +43,7 @@ export const talents = {
     empty: 'Aucun point dépensé.',
     rank: '{rank}/{max}',
   },
-  welcomeTitle: 'Quelle classe jouez-vous ?',
-  welcome: 'Choisissez une classe pour ouvrir ses trois arbres de talents, ses sorts niveau par niveau et ses traits raciaux.',
+  welcome: 'Choisissez une classe ci-dessus pour commencer.',
   tooltip: {
     rank: 'Rang {rank}/{max}',
     requiresTree: 'Nécessite {points} points en {tree}',

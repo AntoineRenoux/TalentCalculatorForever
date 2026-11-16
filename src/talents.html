@@ -10,20 +10,20 @@
 
 <main>
   <div class="heros heros-compact">
-    <div class="wrap" data-reveal>
+    <div class="wrap">
+      <p class="devise">{{t talents.hero.devise}}</p>
       <h1>{{t talents.hero.title}}</h1>
       <p>{{t talents.hero.intro}}</p>
-      {{> toolTabs}}
     </div>
   </div>
 
   <div class="page wrap">
-    <div data-reveal>{{> toolbar}}</div>
+    {{> toolbar}}
 
     <section class="calc" id="calc" hidden>
       <div class="calc-head">
         <h2 id="className">{{t talents.headingEmpty}}</h2>
-        {{> searchBox id=search placeholder=talents.search.placeholder}}
+        {{> searchBox id=search placeholder=talents.search.placeholder icon=talents.search.icon}}
       </div>
       <div class="summary">
         <span id="spread" class="spread"></span>
@@ -53,7 +53,7 @@
           <div class="chips" id="schoolChips" aria-label="{{t leveling.timeline.schoolsAria}}"></div>
           <label class="check"><input type="checkbox" id="foreverOnly"> {{t leveling.timeline.foreverOnly}}</label>
           <label class="check"><input type="checkbox" id="untilLevel"> {{t leveling.timeline.untilLevel}}</label>
-          {{> searchBox id=spellSearch placeholder=leveling.timeline.searchPlaceholder small=true}}
+          {{> searchBox id=spellSearch placeholder=leveling.timeline.searchPlaceholder icon=leveling.timeline.searchIcon small=true}}
         </div>
         <ol class="timeline" id="timeline"></ol>
       </details>
@@ -68,25 +68,9 @@
       </details>
     </section>
 
-    <section class="armory" id="armory" hidden>
-      <div id="armoryList">
-        <div class="calc-head">
-          <div>
-            <h2 id="guildName">{{cfg guild.name}}</h2>
-            <p class="muted" id="guildMeta"></p>
-          </div>
-          {{> searchBox id=memberSearch placeholder=armory.list.searchPlaceholder}}
-        </div>
-        <div class="chips member-classes" id="memberClasses" aria-label="{{t armory.list.classesAria}}"></div>
-        <div class="members" id="memberList"></div>
-      </div>
-      <div id="armorySheet" hidden></div>
-    </section>
 
-    <section class="welcome" id="welcome" aria-labelledby="titre-choix">
-      <h2 id="titre-choix">{{t talents.welcomeTitle}}</h2>
+    <section class="welcome" id="welcome">
       <p>{{t talents.welcome}}</p>
-      <ul class="choix-classes" id="classPicker" data-reveal></ul>
     </section>
   </div>
 </main>
