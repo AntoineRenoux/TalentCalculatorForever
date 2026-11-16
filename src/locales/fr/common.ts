@@ -22,6 +22,7 @@ export const common = {
     bossFooter: 'Guide boss raid',
     addon: 'Addon de guilde',
     talents: 'Calculateur de talents',
+    armory: 'Armurerie',
   },
 
   theme: {

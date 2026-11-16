@@ -103,6 +103,8 @@
   --tc-page-top: 28px;
   --tc-page-bottom: 48px;
   --tc-page-top-mobile: 18px;
+  /* Marge sous l'en-tête collant quand on arrive sur #armory. */
+  --tc-armory-scroll: 96px;
   --tc-hero-top: clamp(2rem, 5vw, 3.2rem);
   --tc-hero-bottom: clamp(1.4rem, 3vw, 2rem);
 

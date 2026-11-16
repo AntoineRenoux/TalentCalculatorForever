@@ -75,10 +75,31 @@
         </div>
       </div>
     </section>
+
+    <section class="bloc wrap armory-bloc" id="armory">
+      <div class="entete">
+        <h2>{{t home.armory.title}}</h2>
+        <span class="trait"></span>
+      </div>
+
+      <div class="page armory">
+        <div id="armoryList">
+          <div class="calc-head">
+            <p class="muted" id="guildMeta"></p>
+            {{> searchBox id=memberSearch placeholder=armory.list.searchPlaceholder icon=armory.list.searchIcon}}
+          </div>
+          <div class="chips member-classes" id="memberClasses" aria-label="{{t armory.list.classesAria}}"></div>
+          <div class="members" id="memberList"></div>
+        </div>
+        <div id="armorySheet" hidden></div>
+      </div>
+    </section>
   </div>
 </main>
 
 {{> footer}}
+
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 
 </body>
 </html>

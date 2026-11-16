@@ -94,6 +94,7 @@ export const siteConfig = {
           { page: 'boss', labelKey: 'nav.boss' },
           { page: 'addon', labelKey: 'nav.addon' },
           { page: 'talents', labelKey: 'nav.talents', domId: 'menuCalc' },
+          { page: 'home', labelKey: 'nav.armory', anchor: 'armory', domId: 'menuArmory' },
         ],
       },
     ] satisfies NavGroup[],
@@ -105,6 +106,7 @@ export const siteConfig = {
     { page: 'recruitment', labelKey: 'nav.recruitment' },
     { page: 'boss', labelKey: 'nav.bossFooter' },
     { page: 'talents', labelKey: 'nav.talents' },
+    { page: 'home', labelKey: 'nav.armory', anchor: 'armory' },
   ] satisfies NavLink[],
 } as const;
 

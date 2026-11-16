@@ -22,6 +22,9 @@ export const home = {
     title: "Ce qu'on attend",
     text: "Connaître les tactiques avant le soir du raid, accepter les retours sans les prendre personnellement, et prévenir sur Discord quand tu ne peux pas venir. C'est tout. Le reste s'apprend en jeu.",
   },
+  armory: {
+    title: 'Armurerie',
+  },
   sheet: {
     title: 'Fiche',
     rows: {

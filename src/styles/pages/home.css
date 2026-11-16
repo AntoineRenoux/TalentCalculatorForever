@@ -1,3 +1,6 @@
 @import "../shared.css";
 @import "../tokens/guild.css";
 @import "../guild.css";
+@import "../tokens/talents.css";
+@import "../talents.css";
+@import "../armory.css";

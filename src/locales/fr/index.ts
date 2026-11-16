@@ -1,5 +1,6 @@
 /** Textes français, regroupés par zone du site (un fichier par zone). */
 import { common } from './common.ts';
+import { armory } from './armory.ts';
 import { home } from './home.ts';
 import { recruitment } from './recruitment.ts';
 import { boss } from './boss.ts';
@@ -15,4 +16,5 @@ export const fr = {
   addon,
   talents,
   leveling,
+  armory,
 } as const;
